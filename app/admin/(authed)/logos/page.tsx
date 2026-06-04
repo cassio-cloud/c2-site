@@ -191,26 +191,26 @@ function RowButton({
   label,
   aria,
 }: {
-  action: () => Promise<void>;
+  action: (formData: FormData) => Promise<void>;
   disabled?: boolean;
   variant?: "default" | "danger";
   label: string;
   aria?: string;
 }) {
+  // formAction evita <form> aninhada dentro do form de saveAll.
   return (
-    <form action={action}>
-      <button
-        type="submit"
-        disabled={disabled}
-        aria-label={aria}
-        className={`rounded border px-2 py-1 font-mono text-[10px] disabled:opacity-30 ${
-          variant === "danger"
-            ? "border-accent/30 text-accent hover:bg-accent/10"
-            : "border-line"
-        }`}
-      >
-        {label}
-      </button>
-    </form>
+    <button
+      type="submit"
+      formAction={action}
+      disabled={disabled}
+      aria-label={aria}
+      className={`rounded border px-2 py-1 font-mono text-[10px] disabled:opacity-30 ${
+        variant === "danger"
+          ? "border-accent/30 text-accent hover:bg-accent/10"
+          : "border-line"
+      }`}
+    >
+      {label}
+    </button>
   );
 }

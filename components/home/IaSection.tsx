@@ -19,10 +19,10 @@ export async function IaSection() {
               lineHeight: 0.96,
             }}
           >
-            <span className="font-bold whitespace-nowrap">
+            <span className="font-bold md:whitespace-nowrap">
               não é sobre usar ia.
             </span>{" "}
-            <span className="font-light text-mute-2 whitespace-nowrap">
+            <span className="font-light text-mute-2 md:whitespace-nowrap">
               é sobre saber quando usar.
             </span>
           </h2>

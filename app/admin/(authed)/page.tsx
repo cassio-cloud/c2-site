@@ -61,7 +61,6 @@ export default async function AdminCasesPage() {
       agency: "",
       director: "",
       year: String(new Date().getFullYear()),
-      format: "",
       description: "",
       media: [],
       tags: tagsRaw

@@ -27,7 +27,6 @@ export default async function CaseEditorPage(props: Props) {
       agency: String(formData.get("agency") ?? all[idx].agency),
       director: String(formData.get("director") ?? all[idx].director),
       year: String(formData.get("year") ?? all[idx].year),
-      format: String(formData.get("format") ?? all[idx].format),
       description: String(formData.get("description") ?? all[idx].description),
       tags: String(formData.get("tags") ?? "")
         .split(/[,\s]+/)
@@ -135,7 +134,6 @@ export default async function CaseEditorPage(props: Props) {
             <Field name="director" label="Direção" defaultValue={c2case.director} />
             <Field name="year" label="Ano" defaultValue={c2case.year} />
           </div>
-          <Field name="format" label="Formato" defaultValue={c2case.format} />
 
           <Field
             name="tags"

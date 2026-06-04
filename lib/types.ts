@@ -15,7 +15,6 @@ export type Case = {
   agency: string;
   director: string;
   year: string;
-  format: string;
   description: string;
   media: MediaItem[];
   tags: string[];

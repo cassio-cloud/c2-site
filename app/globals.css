@@ -46,6 +46,9 @@ html, body {
   color: var(--paper);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  /* Trava scroll horizontal acidental no mobile (sob qualquer
+     elemento que possa estourar a viewport por uma fração de pixel). */
+  overflow-x: hidden;
 }
 
 /* Wrap: container padrão com gutters horizontais. */

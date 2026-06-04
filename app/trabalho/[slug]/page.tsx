@@ -11,6 +11,7 @@ import { BackLink } from "@/components/work/BackLink";
 import { mediaSrc } from "@/lib/media-url";
 import { getCase, listSlugs, readCases } from "@/lib/cases";
 import { fmtTag } from "@/lib/tags";
+import type { Case } from "@/lib/types";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -79,16 +80,18 @@ export default async function CasePage(props: Props) {
       <Header />
 
       {/*
-        Barra "Voltar" sticky logo abaixo do header fixed.
-        backdrop-blur + bg semi-transparente garante legibilidade
-        sobre qualquer mídia que role atrás dela.
+        Barra "Voltar":
+        - Wrapper externo dá o offset inicial pra ficar abaixo do header fixed.
+        - Em desktop, o inner vira sticky com backdrop-blur. Em mobile não.
       */}
-      <div
-        className="sticky z-40 border-b border-line/30 bg-ink/85 backdrop-blur"
-        style={{ top: "clamp(56px, 5.6vw, 84px)" }}
-      >
-        <div className="wrap flex items-center py-3">
-          <BackLink />
+      <div style={{ paddingTop: "clamp(96px, 11vw, 120px)" }}>
+        <div
+          className="z-40 md:sticky md:border-b md:border-line/30 md:bg-ink/85 md:backdrop-blur"
+          style={{ top: "clamp(56px, 5.6vw, 84px)" }}
+        >
+          <div className="wrap flex items-center py-3">
+            <BackLink />
+          </div>
         </div>
       </div>
 
@@ -121,7 +124,6 @@ export default async function CasePage(props: Props) {
                     <MetaRow label="Produção" value="C2 Content" />
                     <MetaRow label="Direção" value={c2case.director} />
                     <MetaRow label="Ano" value={c2case.year} />
-                    <MetaRow label="Formato" value={c2case.format} />
                   </dl>
                 </Reveal>
               </aside>
@@ -136,23 +138,7 @@ export default async function CasePage(props: Props) {
             </div>
 
             <div className="mt-32 border-t border-line pt-12">
-              <Link
-                href={`/trabalho/${next.slug}`}
-                className="group flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between"
-              >
-                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-mute-2">
-                  Próximo case →
-                </span>
-                <span
-                  className="font-bold lowercase tracking-tight transition-opacity group-hover:opacity-70"
-                  style={{
-                    fontSize: "clamp(28px, 4vw, 64px)",
-                    letterSpacing: "-0.035em",
-                  }}
-                >
-                  {next.title}
-                </span>
-              </Link>
+              <NextCaseLink next={next} />
             </div>
           </div>
         </section>
@@ -161,6 +147,60 @@ export default async function CasePage(props: Props) {
       <Lightbox items={c2case.media} />
       <Footer />
     </>
+  );
+}
+
+/**
+ * Card de "Próximo case" com thumb da capa à esquerda + título à direita.
+ * Cover preferido: c2case.cover → primeira imagem → primeira mídia.
+ */
+function NextCaseLink({ next }: { next: Case }) {
+  const coverImage =
+    next.cover ?? next.media.find((m) => m.type === "image")?.src;
+  const coverVideo =
+    !coverImage && next.media[0]?.type === "video" ? next.media[0]?.src : null;
+
+  return (
+    <Link
+      href={`/trabalho/${next.slug}`}
+      className="group flex items-center gap-4 md:gap-8"
+    >
+      <div className="relative aspect-[4/3] w-28 shrink-0 overflow-hidden bg-ink-3 md:w-48">
+        {coverImage ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={mediaSrc(coverImage)}
+            alt=""
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : coverVideo ? (
+          <video
+            src={mediaSrc(coverVideo)}
+            muted
+            playsInline
+            preload="metadata"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : null}
+      </div>
+
+      <div className="min-w-0 flex-1">
+        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-mute-2 md:text-[11px]">
+          Próximo case →
+        </p>
+        <p
+          className="mt-2 font-bold lowercase tracking-tight transition-opacity group-hover:opacity-70"
+          style={{
+            fontSize: "clamp(20px, 3.4vw, 56px)",
+            letterSpacing: "-0.035em",
+            lineHeight: 1.05,
+          }}
+        >
+          {next.title}
+        </p>
+      </div>
+    </Link>
   );
 }
 

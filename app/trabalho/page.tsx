@@ -8,6 +8,9 @@ import { readCases, filterByTag } from "@/lib/cases";
 import { sizeAt } from "@/lib/work-layout";
 import { FILTER_TAGS, fmtTag, type CanonicalTag } from "@/lib/tags";
 
+/** Listagem é dinâmica (cases mudam via admin). */
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Work",
   description:

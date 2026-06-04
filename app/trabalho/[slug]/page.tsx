@@ -15,7 +15,14 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-/** SSG: gera HTML estático em build para cada um dos 19 cases. */
+/**
+ * Páginas de case dinâmicas no runtime — admin pode editar cases
+ * e os JSONs no Blob mudam sem rebuild. Mantemos a tipagem RSC
+ * normal; o cache do CDN é desabilitado por revalidate=0.
+ */
+export const dynamic = "force-dynamic";
+
+/** Lista de slugs pra fallback no error boundary (não pré-gera). */
 export async function generateStaticParams() {
   const slugs = await listSlugs();
   return slugs.map((slug) => ({ slug }));

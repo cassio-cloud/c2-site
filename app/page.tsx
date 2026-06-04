@@ -11,6 +11,13 @@ import { OrganizationLd } from "@/components/seo/JsonLd";
 import { readSite } from "@/lib/site";
 import { mediaSrc } from "@/lib/media-url";
 
+/**
+ * Home dinâmica: a Vercel CDN cacheava o HTML mesmo com revalidatePath
+ * acionado pelo admin. Render-on-request resolve. Como o RSC é leve
+ * e os assets (mídia, fonts) são CDN-cached, o hit cold é só o HTML.
+ */
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const site = await readSite();
   return (

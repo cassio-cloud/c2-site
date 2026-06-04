@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { readSite } from "@/lib/site";
+import { mediaSrc } from "@/lib/media-url";
 import { Reveal } from "./Reveal";
 
 export async function Clientes() {
@@ -32,7 +33,7 @@ export async function Clientes() {
               </span>
               <div className="relative h-1/2 w-3/5">
                 <Image
-                  src={`/${logo.src}`}
+                  src={mediaSrc(logo.src)}
                   alt={logo.name}
                   fill
                   sizes="(max-width: 900px) 40vw, 14vw"

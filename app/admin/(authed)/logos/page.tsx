@@ -1,6 +1,7 @@
 import { revalidatePath } from "next/cache";
 import { readSite, writeSite } from "@/lib/site";
 import { saveUploadedFile, safeName, deleteMedia } from "@/lib/upload";
+import { mediaSrc } from "@/lib/media-url";
 
 export default async function LogosEditorPage() {
   const site = await readSite();
@@ -127,7 +128,7 @@ export default async function LogosEditorPage() {
                 <div className="flex h-12 items-center justify-center bg-ink-3">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={`/${l.src}`}
+                    src={mediaSrc(l.src)}
                     alt={l.name}
                     style={{ filter: "brightness(0) invert(1)" }}
                     className="max-h-8 max-w-12 object-contain opacity-80"

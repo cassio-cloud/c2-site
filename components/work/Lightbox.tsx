@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import type { MediaItem } from "@/lib/types";
+import { mediaSrc } from "@/lib/media-url";
 
 type Props = {
   items: MediaItem[];
@@ -104,7 +105,7 @@ export function Lightbox({ items }: Props) {
       >
         {item.type === "video" ? (
           <video
-            src={`/${item.src}`}
+            src={mediaSrc(item.src)}
             controls
             autoPlay
             playsInline
@@ -113,7 +114,7 @@ export function Lightbox({ items }: Props) {
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={`/${item.src}`}
+            src={mediaSrc(item.src)}
             alt=""
             style={{
               maxWidth: "96vw",

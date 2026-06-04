@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { getCase, readCases, writeCases } from "@/lib/cases";
 import { deleteMedia, saveUploadedFile } from "@/lib/upload";
 import { FILTER_TAGS, fmtTag, normTag } from "@/lib/tags";
+import { mediaSrc } from "@/lib/media-url";
 import type { Case } from "@/lib/types";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -303,7 +304,7 @@ function MediaGrid({
             {m.type === "video" ? (
               // eslint-disable-next-line @next/next/no-img-element
               <video
-                src={`/${m.src}`}
+                src={mediaSrc(m.src)}
                 muted
                 loop
                 playsInline
@@ -312,7 +313,7 @@ function MediaGrid({
             ) : (
               // eslint-disable-next-line @next/next/no-img-element
               <img
-                src={`/${m.src}`}
+                src={mediaSrc(m.src)}
                 alt=""
                 className="h-full w-full object-cover"
               />

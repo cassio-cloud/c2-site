@@ -7,6 +7,7 @@ import { Reveal } from "@/components/home/Reveal";
 import { CaseMedia } from "@/components/work/CaseMedia";
 import { Lightbox } from "@/components/work/Lightbox";
 import { CaseLd } from "@/components/seo/JsonLd";
+import { mediaSrc } from "@/lib/media-url";
 import { getCase, listSlugs, readCases } from "@/lib/cases";
 import { fmtTag } from "@/lib/tags";
 
@@ -30,7 +31,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     c.cover ??
     c.media.find((m) => m.type === "image")?.src ??
     c.media[0]?.src;
-  const ogImage = cover ? `/${cover}` : undefined;
+  // OG precisa de URL absoluta (já tratado pelo metadataBase se for path local)
+  const ogImage = cover ? mediaSrc(cover) : undefined;
   const desc =
     c.description?.slice(0, 200).trim() ??
     `${c.title} · Produção C2 Content · ${c.year}`;

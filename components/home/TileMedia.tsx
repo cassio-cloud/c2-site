@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { MediaItem } from "@/lib/types";
+import { mediaSrc } from "@/lib/media-url";
 
 type Props = {
   cover: MediaItem;
@@ -67,7 +68,7 @@ export function TileMedia({ cover, alt }: Props) {
       <div ref={containerRef} className="absolute inset-0">
         <video
           ref={videoRef}
-          src={shouldLoad ? `/${cover.src}` : undefined}
+          src={shouldLoad ? mediaSrc(cover.src) : undefined}
           className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
           muted
           loop
@@ -80,7 +81,7 @@ export function TileMedia({ cover, alt }: Props) {
 
   return (
     <Image
-      src={`/${cover.src}`}
+      src={mediaSrc(cover.src)}
       alt={alt}
       fill
       sizes="(max-width: 900px) 100vw, 50vw"

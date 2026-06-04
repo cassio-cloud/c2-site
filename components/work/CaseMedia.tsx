@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { MediaItem } from "@/lib/types";
+import { mediaSrc } from "@/lib/media-url";
 
 type Props = {
   item: MediaItem;
@@ -71,7 +72,7 @@ export function CaseMedia({ item, index }: Props) {
         {item.type === "video" ? (
           <video
             ref={videoRef}
-            src={loaded ? `/${item.src}` : undefined}
+            src={loaded ? mediaSrc(item.src) : undefined}
             muted
             loop
             playsInline
@@ -80,7 +81,7 @@ export function CaseMedia({ item, index }: Props) {
           />
         ) : (
           <Image
-            src={`/${item.src}`}
+            src={mediaSrc(item.src)}
             alt=""
             width={2400}
             height={1600}

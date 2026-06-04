@@ -1,11 +1,9 @@
-import { promises as fs } from "node:fs";
-import { CASES_JSON } from "./paths";
+import { cases as storage } from "./storage";
 import type { Case } from "./types";
 
-/** Leitura crua do arquivo. Não cacheada — cada call lê do disco. */
+/** Leitura: Blob em prod, disco em dev. */
 export async function readCases(): Promise<Case[]> {
-  const raw = await fs.readFile(CASES_JSON, "utf8");
-  return JSON.parse(raw) as Case[];
+  return await storage.read<Case[]>();
 }
 
 export async function getCase(slug: string): Promise<Case | null> {
@@ -18,9 +16,9 @@ export async function listSlugs(): Promise<string[]> {
   return all.map((c) => c.slug);
 }
 
-/** Sobrescreve o JSON inteiro. Usado pelo admin (PUT /api/cases). */
+/** Sobrescreve o JSON inteiro. */
 export async function writeCases(cases: Case[]): Promise<void> {
-  await fs.writeFile(CASES_JSON, JSON.stringify(cases, null, 2), "utf8");
+  await storage.write(cases);
 }
 
 export function getFeatured(cases: Case[]): Case[] {

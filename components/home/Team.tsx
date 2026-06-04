@@ -1,4 +1,5 @@
 import { readSite } from "@/lib/site";
+import { mediaSrc } from "@/lib/media-url";
 import { Reveal } from "./Reveal";
 
 export async function Team() {
@@ -43,7 +44,7 @@ export async function Team() {
               <div className="relative aspect-[3/4] overflow-hidden rounded-[2px] bg-ink-3">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={p.photo.startsWith("http") ? p.photo : `/${p.photo}`}
+                  src={mediaSrc(p.photo)}
                   alt={p.name}
                   loading="lazy"
                   className="h-full w-full object-cover transition-all duration-700 ease-out [filter:grayscale(100%)_contrast(1.04)] group-hover:[filter:grayscale(100%)_contrast(1.04)_brightness(1.06)]"

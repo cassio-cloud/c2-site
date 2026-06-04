@@ -9,6 +9,7 @@ import { Contact } from "@/components/home/Contact";
 import { Footer } from "@/components/home/Footer";
 import { OrganizationLd } from "@/components/seo/JsonLd";
 import { readSite } from "@/lib/site";
+import { mediaSrc } from "@/lib/media-url";
 
 export default async function Home() {
   const site = await readSite();
@@ -16,7 +17,7 @@ export default async function Home() {
     <>
       <OrganizationLd />
       <Header />
-      <Hero videoSrc={site.hero.embed || `/${site.hero.video}`} />
+      <Hero videoSrc={site.hero.embed || mediaSrc(site.hero.video)} />
       <BentoGrid />
       <IaSection />
       <Estrutura />

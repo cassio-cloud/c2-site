@@ -56,7 +56,12 @@ export function CaseLd({ c2case }: { c2case: Case }) {
     c2case.cover ??
     c2case.media.find((m) => m.type === "image")?.src ??
     c2case.media[0]?.src;
-  const image = cover ? `${SITE_URL}/${cover}` : undefined;
+  // cover pode ser Blob URL (absoluta) ou path local (`media/...`)
+  const image = cover
+    ? /^https?:\/\//i.test(cover)
+      ? cover
+      : `${SITE_URL}/${cover}`
+    : undefined;
 
   const data = {
     "@context": "https://schema.org",

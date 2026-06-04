@@ -43,8 +43,8 @@ next-env.d.ts
 # C2: secret persistente do admin (gerado no boot do server)
 .admin-secret
 
-# C2: mídia > 100MB (limite do GitHub) — sincronizar via rsync separado
-media/reel.mp4
-media/reel.mov
-media/reel.webm
+# C2: mídia > 100MB (limite do GitHub) — sincronizar separadamente
+public/media/reel.mp4
+public/media/reel.mov
+public/media/reel.webm
 

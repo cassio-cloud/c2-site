@@ -2,20 +2,25 @@ import type { NextConfig } from "next";
 import path from "node:path";
 
 const nextConfig: NextConfig = {
-  // Silencia o warning do Turbopack ao detectar lockfile no parent dir
-  // (o site legacy em ../ tem seu próprio package-lock.json).
+  // Silencia o warning do Turbopack ao detectar lockfile no parent dir.
   turbopack: {
     root: path.join(__dirname),
   },
 
-  // Mídia segue o esquema atual: /media/cases/<slug>/01.jpg, /media/reel.mp4, etc.
-  // Em produção será servida via rota custom; em dev, importamos do parent dir.
+  // Mídia: public/media/** (estática) + Blob (uploads em prod).
   images: {
     qualities: [60, 75, 90],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+      },
+      {
+        protocol: "https",
+        hostname: "c2content.nyc3.digitaloceanspaces.com",
+      },
+    ],
   },
-
-  // Build standalone para deploy em PM2 no Droplet (sem precisar de Node global).
-  output: "standalone",
 
   // Server Actions usadas pra upload de mídia (vídeos de case ~até 500MB).
   experimental: {

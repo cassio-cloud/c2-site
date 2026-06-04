@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { Grain } from "./Grain";
 import { parseEmbedUrl, type EmbedSource } from "@/lib/embed";
+import { mediaSrc } from "@/lib/media-url";
 
 type Props = {
   /** URL embed YouTube/Vimeo OU path local (`/media/reel.mp4`). */
@@ -80,7 +81,7 @@ function BackgroundVideo({ source }: { source: EmbedSource }) {
       (entries) => {
         for (const e of entries) {
           if (e.isIntersecting && !v.src) {
-            v.src = `/${source.src}`;
+            v.src = mediaSrc(source.src);
             v.load();
             io.disconnect();
           }

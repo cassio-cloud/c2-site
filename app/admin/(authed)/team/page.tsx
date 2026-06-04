@@ -1,6 +1,7 @@
 import { revalidatePath } from "next/cache";
 import { readSite, writeSite } from "@/lib/site";
 import { deleteMedia, safeName, saveUploadedFile } from "@/lib/upload";
+import { mediaSrc } from "@/lib/media-url";
 
 export default async function TeamEditorPage() {
   const site = await readSite();
@@ -145,7 +146,7 @@ export default async function TeamEditorPage() {
                 {m.photo ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
-                    src={m.photo.startsWith("http") ? m.photo : `/${m.photo}`}
+                    src={mediaSrc(m.photo)}
                     alt={m.name}
                     className="aspect-[3/4] w-full object-cover [filter:grayscale(100%)]"
                   />

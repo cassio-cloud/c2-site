@@ -18,7 +18,7 @@ npm run dev                  # http://localhost:3000
 
 - Home: <http://localhost:3000>
 - Portfólio: <http://localhost:3000/trabalho>
-- Admin: <http://localhost:3000/admin> (senha padrão `c2admin` se não setar)
+- Admin: <http://localhost:3000/admin> (senha definida em `ADMIN_PASSWORD`)
 
 ## Estrutura
 

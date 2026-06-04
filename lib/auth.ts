@@ -24,7 +24,21 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       },
       authorize: async (credentials) => {
         const pw = credentials?.password;
-        const expected = process.env.ADMIN_PASSWORD || "c2admin";
+        const expected = process.env.ADMIN_PASSWORD;
+
+        // Fail-closed: sem ADMIN_PASSWORD configurado, ninguém entra.
+        // Em prod isso força o operador a setar a env var no servidor.
+        // Em dev, copie .env.example pra .env.local e defina ADMIN_PASSWORD.
+        if (!expected) {
+          if (process.env.NODE_ENV !== "production") {
+            console.warn(
+              "[c2-admin] ADMIN_PASSWORD não setada. Defina em .env.local " +
+                "(veja .env.example) pra liberar o login.",
+            );
+          }
+          return null;
+        }
+
         if (typeof pw === "string" && pw === expected) {
           return { id: "admin", name: "C2 Admin", role: "admin" };
         }

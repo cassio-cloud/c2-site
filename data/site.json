@@ -1,0 +1,174 @@
+{
+  "hero": {
+    "video": "media/reel.mp4"
+  },
+  "logos": [
+    {
+      "name": "Carrano",
+      "src": "media/logos/carrano.svg",
+      "large": false
+    },
+    {
+      "name": "Unicred",
+      "src": "media/logos/unicred.png",
+      "large": false
+    },
+    {
+      "name": "Escala",
+      "src": "media/logos/escala.png",
+      "large": false
+    },
+    {
+      "name": "Rissul",
+      "src": "media/logos/rissul.png",
+      "large": false
+    },
+    {
+      "name": "Stok Center",
+      "src": "media/logos/stokcenter.png",
+      "large": false
+    },
+    {
+      "name": "Nomad",
+      "src": "media/logos/nomad.png",
+      "large": false
+    },
+    {
+      "name": "Americanas",
+      "src": "media/logos/americanas.svg",
+      "large": false
+    },
+    {
+      "name": "Ipanema",
+      "src": "media/logos/ipanema.png",
+      "large": false
+    },
+    {
+      "name": "ParkShopping Canoas",
+      "src": "media/logos/park.png",
+      "large": false
+    },
+    {
+      "name": "Via Marte",
+      "src": "media/logos/viamarte.png",
+      "large": false
+    },
+    {
+      "name": "Abicalçados",
+      "src": "media/logos/abicalcados.png",
+      "large": false
+    },
+    {
+      "name": "Vicenza",
+      "src": "media/logos/vicenza.png",
+      "large": true
+    },
+    {
+      "name": "BarraShopping Sul",
+      "src": "media/logos/barra.png",
+      "large": false
+    },
+    {
+      "name": "Grêmio",
+      "src": "media/logos/gremio.png",
+      "large": false
+    },
+    {
+      "name": "Brivia",
+      "src": "media/logos/brivia.png",
+      "large": false
+    },
+    {
+      "name": "WT.AG",
+      "src": "media/logos/wtag.png",
+      "large": false
+    },
+    {
+      "name": "Husqvarna",
+      "src": "media/logos/husqvarna.png",
+      "large": true
+    },
+    {
+      "name": "Ismo",
+      "src": "media/logos/ismo.png",
+      "large": false
+    },
+    {
+      "name": "Nürnbergmesse",
+      "src": "media/logos/nurnbergmesse.png",
+      "large": false
+    },
+    {
+      "name": "Golden Lake",
+      "src": "media/logos/golden.png",
+      "large": true
+    }
+  ],
+  "contact": {
+    "email": "producao@c2content.com.br",
+    "whatsapp": "+55 51 99535-4727",
+    "whatsappLink": "https://wa.me/5551995354727",
+    "studios": [
+      {
+        "name": "311",
+        "location": "Novo Hamburgo, RS"
+      },
+      {
+        "name": "909",
+        "location": "São Paulo, SP"
+      }
+    ],
+    "social": [
+      {
+        "name": "Instagram",
+        "url": "https://instagram.com/c2content"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://linkedin.com/company/c2content"
+      },
+      {
+        "name": "YouTube",
+        "url": "https://youtube.com/@c2content"
+      }
+    ]
+  },
+  "team": [
+    {
+      "name": "Cássio Caberlon",
+      "role": "Fundador · Direção criativa · Foto",
+      "code": "CCB · 0114",
+      "photo": "https://c2content.nyc3.digitaloceanspaces.com/01K1TW83AVP0126W4A3A526SZS.jpg"
+    },
+    {
+      "name": "Luana Bier Hans",
+      "role": "Novos negócios · Relacionamento",
+      "code": "LBH · 0318",
+      "photo": "https://c2content.nyc3.digitaloceanspaces.com/01J748DM24TEXG3PSW29TW25N1.jpg"
+    },
+    {
+      "name": "Cassiano Caberlon",
+      "role": "Direção de arte · Retoque",
+      "code": "CBC · 0220",
+      "photo": "https://c2content.nyc3.digitaloceanspaces.com/01HZ7ZMFJ49CFM679NF7XWYA6K.jpg"
+    },
+    {
+      "name": "Gabriel Spindler",
+      "role": "Edição · Motion",
+      "code": "GSP · 0421",
+      "photo": "https://c2content.nyc3.digitaloceanspaces.com/01JNHMP7CX9MEQ6RH64236NSMJ.jpg"
+    },
+    {
+      "name": "Bruno Fiuza",
+      "role": "Produção executiva",
+      "code": "BFI · 0522",
+      "photo": "https://c2content.nyc3.digitaloceanspaces.com/01JM2SW867HZ3N7TE0290B2BQ2.jpg"
+    },
+    {
+      "name": "Pâmela Oliveira",
+      "role": "Foto · Produção",
+      "code": "POL · 0623",
+      "photo": "https://c2content.nyc3.digitaloceanspaces.com/01HZ7ZNBHJ0Z8N7W67NCBNNWKC.jpg"
+    }
+  ]
+}

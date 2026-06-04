@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="C2 asterisk">
+  <title>C2 · marca secundária · asterisco · paper (para fundo escuro)</title>
+  <g fill="#efefef">
+    <rect x="44" y="2" width="12" height="96" rx="1"/>
+    <rect x="44" y="2" width="12" height="96" rx="1" transform="rotate(45 50 50)"/>
+    <rect x="44" y="2" width="12" height="96" rx="1" transform="rotate(90 50 50)"/>
+    <rect x="44" y="2" width="12" height="96" rx="1" transform="rotate(135 50 50)"/>
+  </g>
+</svg>

@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/* ── C2 design tokens ─────────────────────────────────────────────────
+ * Mirror dos vars do site legacy (index.html). Mantemos a mesma
+ * paleta + clamps para garantir paridade visual sem re-design.
+ */
+:root {
+  --ink:    #0d0d0d;
+  --ink-2:  #131313;
+  --ink-3:  #1a1a1a;
+  --ink-4:  #262626;
+  --paper:  #efefef;
+  --mute-1: rgba(239, 239, 239, 0.88);
+  --mute-2: rgba(239, 239, 239, 0.55);
+  --mute-3: rgba(239, 239, 239, 0.32);
+  --mute-4: rgba(239, 239, 239, 0.16);
+  --line:   rgba(239, 239, 239, 0.08);
+  --accent: #ff4b1f;
+  --warn:   #ffb84b;
+
+  --max: 2200px;
+  --gut: clamp(20px, 2.2vw, 40px);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@theme inline {
+  --color-ink:    var(--ink);
+  --color-ink-2:  var(--ink-2);
+  --color-ink-3:  var(--ink-3);
+  --color-ink-4:  var(--ink-4);
+  --color-paper:  var(--paper);
+  --color-mute-1: var(--mute-1);
+  --color-mute-2: var(--mute-2);
+  --color-mute-3: var(--mute-3);
+  --color-mute-4: var(--mute-4);
+  --color-line:   var(--line);
+  --color-accent: var(--accent);
+  --color-warn:   var(--warn);
+
+  --font-sans: var(--font-inter), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-mono-jb), ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+html, body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Wrap: container padrão com gutters horizontais. */
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gut);
+}
+
+/* Seção padrão. */
+.section {
+  padding-block: clamp(80px, 10vw, 160px);
+}
+
+/* Grain overlay (SVG noise) — usado no hero e seções com mídia. */
+.grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+  z-index: 2;
+}
+
+/* Reveal: fade + translate baseado em IntersectionObserver
+ * (componente <Reveal /> adiciona [data-reveal] e a classe `.is-visible`
+ * quando entra no viewport). Paridade com legacy.
+ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 900ms var(--ease),
+    transform 900ms var(--ease);
+  transition-delay: var(--delay, 0ms);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Títulos grandes — mobile override.
+ * O clamp genérico usa 8vw que em 375px = 30px, forçando o min (48px).
+ * No mobile queremos ~7vw * 375 = ~26px como mínimo natural.
+ */
+@media (max-width: 640px) {
+  .h-display {
+    font-size: clamp(32px, 11vw, 80px) !important;
+  }
+}
+
+/* Rotação contínua do asterisco no footer. */
+@keyframes c2-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.c2-spin {
+  animation: c2-spin 12s linear infinite;
+  transform-origin: center;
+}

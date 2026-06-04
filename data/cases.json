@@ -1,0 +1,941 @@
+[
+  {
+    "slug": "nomad",
+    "title": "Nomad · Cartão Global",
+    "client": "Nomad",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2023",
+    "format": "Conteudo Digital",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "image",
+        "src": "media/cases/nomad/01.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/nomad/02.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/nomad/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/nomad/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/nomad/07.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/nomad/08.jpg"
+      }
+    ],
+    "tags": [
+      "campanha"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "gollog",
+    "title": "Gollog · Cargas",
+    "client": "Gollog",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2025",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "image",
+        "src": "media/cases/gollog/01.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/gollog/02.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/gollog/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/gollog/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/gollog/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/gollog/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/gollog/07.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/gollog/08.jpg"
+      }
+    ],
+    "tags": [
+      "campanha"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "barra",
+    "title": "BarraShopping Sul · Institucional",
+    "client": "BarraShopping Sul",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2026",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "video",
+        "src": "media/cases/barra/01.mp4"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/barra/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/barra/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/barra/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/barra/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/barra/07.jpg"
+      }
+    ],
+    "tags": [
+      "campanha",
+      "conteudo"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "unicred",
+    "title": "Unicred · ZIIN",
+    "client": "Unicred",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2024",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "video",
+        "src": "media/cases/unicred/01.mp4"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/unicred/02.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/unicred/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/unicred/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/unicred/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/unicred/06.jpg"
+      }
+    ],
+    "tags": [
+      "campanha",
+      "conteudo"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "carrano",
+    "title": "Carrano · Balões",
+    "client": "Carrano",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2024",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "video",
+        "src": "media/cases/carrano/02.mov"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/carrano/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/carrano/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/carrano/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/carrano/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/carrano/07.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/carrano/08.jpg"
+      }
+    ],
+    "tags": [
+      "campanha",
+      "captacao-e-motion"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "voa",
+    "title": "VOA Telecom",
+    "client": "VOA Telecom",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2024",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "image",
+        "src": "media/cases/voa/01.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/voa/02.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/voa/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/voa/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/voa/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/voa/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/voa/07.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/voa/08.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/voa/09.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/voa/10.jpg"
+      }
+    ],
+    "tags": [
+      "campanha"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "park",
+    "title": "ParkShopping Canoas",
+    "client": "ParkShopping Canoas",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2025",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "video",
+        "src": "media/cases/park/01.mp4"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/park/02.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/park/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/park/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/park/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/park/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/park/07.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/park/08.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/park/09.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/park/10.jpg"
+      }
+    ],
+    "tags": [
+      "campanha"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "golden",
+    "title": "Golden Lake",
+    "client": "Golden Lake",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2025",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "image",
+        "src": "media/cases/golden/01.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/golden/02.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/golden/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/golden/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/golden/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/golden/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/golden/07.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/golden/08.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/golden/09.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/golden/10.jpg"
+      }
+    ],
+    "tags": [
+      "campanha"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "bfshow",
+    "title": "BFSHOW · 6ª e 7ª edição",
+    "client": "BFSHOW",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2025",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "image",
+        "src": "media/cases/bfshow/01.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bfshow/02.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bfshow/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bfshow/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bfshow/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bfshow/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bfshow/07.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bfshow/08.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bfshow/09.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bfshow/10.jpg"
+      }
+    ],
+    "tags": [
+      "campanha",
+      "conteudo"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "vicenza",
+    "title": "Vicenza · Fall 23",
+    "client": "Vicenza",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2023",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "image",
+        "src": "media/cases/vicenza/01.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/vicenza/02.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/vicenza/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/vicenza/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/vicenza/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/vicenza/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/vicenza/07.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/vicenza/08.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/vicenza/09.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/vicenza/10.jpg"
+      }
+    ],
+    "tags": [
+      "conteudo"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "viamarte",
+    "title": "Via Marte · Summer 26",
+    "client": "Via Marte",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2026",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "video",
+        "src": "media/cases/viamarte/01.mp4"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/viamarte/02.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/viamarte/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/viamarte/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/viamarte/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/viamarte/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/viamarte/07.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/viamarte/08.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/viamarte/09.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/viamarte/10.jpg"
+      }
+    ],
+    "tags": [
+      "conteudo"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "yam",
+    "title": "Yam Kombucha",
+    "client": "Yam Kombucha",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2024",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "image",
+        "src": "media/cases/yam/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/yam/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/yam/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/yam/07.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/yam/09.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/yam/10.jpg"
+      }
+    ],
+    "tags": [
+      "conteudo"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "natura",
+    "title": "Natura · Linha Buriti",
+    "client": "Natura",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2025",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "image",
+        "src": "media/cases/natura/01.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/natura/02.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/natura/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/natura/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/natura/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/natura/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/natura/07.jpg"
+      }
+    ],
+    "tags": [
+      "conteudo"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "bliss",
+    "title": "Bliss",
+    "client": "Bliss",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2025",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "image",
+        "src": "media/cases/bliss/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bliss/01.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bliss/02.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bliss/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bliss/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bliss/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bliss/07.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bliss/08.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bliss/09.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bliss/10.jpg"
+      }
+    ],
+    "tags": [
+      "campanha"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "topper",
+    "title": "Topper · Fuse II",
+    "client": "Topper",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2025",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "video",
+        "src": "media/cases/topper/01.mp4"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/topper/02.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/topper/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/topper/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/topper/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/topper/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/topper/07.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/topper/08.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/topper/09.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/topper/10.jpg"
+      }
+    ],
+    "tags": [
+      "campanha",
+      "captacao-e-motion"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "ia-odontoprev",
+    "title": "Odontoprev · Dia das Mães",
+    "client": "Odontoprev",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2024",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "video",
+        "src": "media/cases/ia-odontoprev/01.mp4"
+      }
+    ],
+    "tags": [
+      "100-ia"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "ia-goat",
+    "title": "The Goat Collection",
+    "client": "The Goat Collection",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2025",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "video",
+        "src": "media/cases/ia-goat/01.mp4"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-goat/02.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-goat/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-goat/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-goat/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-goat/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-goat/07.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-goat/08.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-goat/09.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-goat/10.jpg"
+      }
+    ],
+    "tags": [
+      "100-ia"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "ia-carrano",
+    "title": "Carrano · Summer 25",
+    "client": "Carrano",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2025",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "image",
+        "src": "media/cases/ia-carrano/05.jpg"
+      },
+      {
+        "type": "video",
+        "src": "media/cases/ia-carrano/01.mp4"
+      },
+      {
+        "type": "video",
+        "src": "media/cases/ia-carrano/02.mp4"
+      },
+      {
+        "type": "video",
+        "src": "media/cases/ia-carrano/03.mp4"
+      },
+      {
+        "type": "video",
+        "src": "media/cases/ia-carrano/04.mp4"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-carrano/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-carrano/07.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-carrano/08.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-carrano/09.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-carrano/10.jpg"
+      }
+    ],
+    "tags": [
+      "campanha",
+      "hibrido-ia"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "ia-gremio",
+    "title": "Grêmio · New Balance",
+    "client": "Grêmio",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2025",
+    "format": "16:9 · 9:16 · Still",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "media": [
+      {
+        "type": "image",
+        "src": "media/cases/ia-gremio/03.jpg"
+      },
+      {
+        "type": "video",
+        "src": "media/cases/ia-gremio/01.mp4"
+      },
+      {
+        "type": "video",
+        "src": "media/cases/ia-gremio/02.mp4"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-gremio/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-gremio/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-gremio/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-gremio/07.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-gremio/08.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-gremio/09.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/ia-gremio/10.jpg"
+      }
+    ],
+    "tags": [
+      "hibrido-ia",
+      "captacao-e-motion"
+    ],
+    "featured": true
+  }
+]

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LogoLink } from "@/components/nav/LogoLink";
 
 /**
  * Topbar overlay sobre o hero. Sem barra de fundo;
@@ -18,14 +19,13 @@ export function Header() {
           className="grid items-center"
           style={{ gridTemplateColumns: "1fr auto 1fr" }}
         >
-          <Link
-            href="/"
-            aria-label="C2 Content — home"
+          <LogoLink
+            ariaLabel="C2 Content — home"
             className="pointer-events-auto justify-self-start text-paper transition-opacity hover:opacity-80"
             style={{ filter: "drop-shadow(0 1px 12px rgba(0,0,0,0.35))" }}
           >
             <C2Logo />
-          </Link>
+          </LogoLink>
 
           <nav
             className="pointer-events-auto flex items-center gap-10 font-semibold text-paper"

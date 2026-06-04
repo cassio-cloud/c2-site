@@ -7,6 +7,7 @@ import { Reveal } from "@/components/home/Reveal";
 import { CaseMedia } from "@/components/work/CaseMedia";
 import { Lightbox } from "@/components/work/Lightbox";
 import { CaseLd } from "@/components/seo/JsonLd";
+import { BackLink } from "@/components/work/BackLink";
 import { mediaSrc } from "@/lib/media-url";
 import { getCase, listSlugs, readCases } from "@/lib/cases";
 import { fmtTag } from "@/lib/tags";
@@ -77,18 +78,23 @@ export default async function CasePage(props: Props) {
       <CaseLd c2case={c2case} />
       <Header />
 
-      <main>
-        <section className="section" style={{ paddingTop: "clamp(120px, 12vw, 200px)" }}>
-          <div className="wrap">
-            <Reveal className="mb-10">
-              <Link
-                href="/trabalho"
-                className="inline-block font-mono text-[11px] uppercase tracking-[0.2em] text-mute-2 transition-colors hover:text-paper"
-              >
-                ← Voltar pra todos os cases
-              </Link>
-            </Reveal>
+      {/*
+        Barra "Voltar" sticky logo abaixo do header fixed.
+        backdrop-blur + bg semi-transparente garante legibilidade
+        sobre qualquer mídia que role atrás dela.
+      */}
+      <div
+        className="sticky z-40 border-b border-line/30 bg-ink/85 backdrop-blur"
+        style={{ top: "clamp(56px, 5.6vw, 84px)" }}
+      >
+        <div className="wrap flex items-center py-3">
+          <BackLink />
+        </div>
+      </div>
 
+      <main>
+        <section className="section" style={{ paddingTop: "clamp(24px, 4vw, 56px)" }}>
+          <div className="wrap">
             <div className="grid gap-12 md:grid-cols-[320px_1fr] md:gap-16">
               <aside className="md:sticky md:top-32 md:self-start">
                 <Reveal>

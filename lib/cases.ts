@@ -7,14 +7,18 @@ export async function readCases(): Promise<Case[]> {
 }
 
 export async function getCase(slug: string): Promise<Case | null> {
-  // Retry defensivo contra eventual consistency do Vercel Blob.
-  // Logo após criar/atualizar um case, o CDN pode demorar 50-300ms
-  // pra refletir a nova versão. Tenta até 3 vezes com backoff curto.
-  for (let attempt = 0; attempt < 3; attempt++) {
+  // Retry agressivo contra eventual consistency do Vercel Blob.
+  // Após criar/atualizar um case, o CDN da Blob pode demorar até
+  // alguns segundos pra refletir a nova versão mesmo com cache-buster.
+  // Total wait: até ~8s no pior caso.
+  const delays = [0, 400, 800, 1500, 2500, 3500];
+  for (let i = 0; i < delays.length; i++) {
+    if (delays[i] > 0) {
+      await new Promise((r) => setTimeout(r, delays[i]));
+    }
     const all = await readCases();
     const found = all.find((c) => c.slug === slug);
     if (found) return found;
-    if (attempt < 2) await new Promise((r) => setTimeout(r, 200 * (attempt + 1)));
   }
   return null;
 }

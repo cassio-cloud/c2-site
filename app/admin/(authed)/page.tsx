@@ -56,7 +56,10 @@ export default async function AdminCasesPage() {
     rawSlug: string,
     title: string,
     tagsRaw: string,
-  ): Promise<{ ok: true; slug: string } | { ok: false; error: string }> {
+  ): Promise<
+    | { ok: true; newCase: Case }
+    | { ok: false; error: string }
+  > {
     "use server";
     const slug = normTag(rawSlug.trim());
     const cleanTitle = title.trim();
@@ -88,7 +91,7 @@ export default async function AdminCasesPage() {
       revalidatePath("/");
       revalidatePath("/trabalho");
       revalidatePath("/admin");
-      return { ok: true, slug };
+      return { ok: true, newCase };
     } catch (e) {
       return {
         ok: false,

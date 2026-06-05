@@ -18,7 +18,6 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useDirtyController, useBeforeUnloadGuard } from "./dirty-state";
 import { fmtTag } from "@/lib/tags";
@@ -27,7 +26,7 @@ import type { Case } from "@/lib/types";
 export type OrderPayload = { slug: string; featured: boolean }[];
 
 type AddResult =
-  | { ok: true; slug: string }
+  | { ok: true; newCase: Case }
   | { ok: false; error: string };
 
 type Props = {
@@ -53,7 +52,6 @@ type Props = {
  */
 export function CasesListClient({ initial, actions }: Props) {
   useBeforeUnloadGuard();
-  const router = useRouter();
   const { markSaving, markSaved, markError, markDirty } = useDirtyController();
   const [cases, setCases] = useState<Case[]>(initial);
   const [adding, setAdding] = useState(false);
@@ -158,12 +156,15 @@ export function CasesListClient({ initial, actions }: Props) {
           ) : null}
         </div>
 
-        {/* Add new — imediato. Não faz redirect server-side: client
-            navega após o slug voltar, evitando race com o Blob CDN. */}
+        {/* Add new — não navega imediatamente. Adiciona local na lista
+            (UX instantânea) e o user clica "Editar" quando quiser.
+            getCase tem retry agressivo, então mesmo clicks rápidos
+            funcionam dentro de poucos segundos. */}
         <form
           onSubmit={async (e) => {
             e.preventDefault();
-            const fd = new FormData(e.currentTarget);
+            const form = e.currentTarget;
+            const fd = new FormData(form);
             const slug = String(fd.get("slug") ?? "");
             const title = String(fd.get("title") ?? "");
             const tags = String(fd.get("tags") ?? "");
@@ -175,10 +176,10 @@ export function CasesListClient({ initial, actions }: Props) {
                 setAddError(result.error);
                 return;
               }
-              // Pequeno delay defensivo contra eventual consistency
-              // do Blob CDN, mesmo já tendo cache-buster + retry.
-              await new Promise((r) => setTimeout(r, 350));
-              router.push(`/admin/cases/${result.slug}`);
+              // Adiciona local imediatamente (não depende de revalidate)
+              setCases((curr) => [result.newCase, ...curr]);
+              // Limpa form
+              form.reset();
             } catch (err) {
               setAddError(
                 err instanceof Error ? err.message : "Falha ao criar case",

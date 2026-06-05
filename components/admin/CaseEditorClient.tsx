@@ -16,6 +16,7 @@ import {
   rectSortingStrategy,
   sortableKeyboardCoordinates,
 } from "@dnd-kit/sortable";
+import { upload } from "@vercel/blob/client";
 import Link from "next/link";
 import { useEditableState, useDirtyController, useBeforeUnloadGuard } from "./dirty-state";
 import { SortableMediaItem } from "./SortableMediaItem";
@@ -37,15 +38,20 @@ export type CaseEditorPayload = {
 type Props = {
   slug: string;
   initial: Case;
+  /** True em prod com Vercel Blob conectado. Em dev local, false. */
+  blobMode: boolean;
   /** Server actions injected pelo page server component. */
   actions: {
     save: (payload: CaseEditorPayload) => Promise<void>;
+    /** Upload via Server Action — limitado a ~4.5MB na Vercel Hobby. */
     uploadFiles: (formData: FormData) => Promise<MediaItem[]>;
+    /** Anexa items que JÁ subiram pro Blob (vindo de client upload). */
+    attachMedia: (items: MediaItem[]) => Promise<void>;
     deleteCase: () => Promise<void>;
   };
 };
 
-export function CaseEditorClient({ slug, initial, actions }: Props) {
+export function CaseEditorClient({ slug, initial, blobMode, actions }: Props) {
   useBeforeUnloadGuard();
   const { markSaving, markSaved, markError } = useDirtyController();
 
@@ -115,18 +121,36 @@ export function CaseEditorClient({ slug, initial, actions }: Props) {
 
   async function handleUpload(files: FileList | null) {
     if (!files || files.length === 0) return;
-    const fd = new FormData();
-    for (const f of files) fd.append("files", f);
     setUploading(true);
     try {
-      const added = await actions.uploadFiles(fd);
-      // Append imediatamente — upload é fluxo imediato (não batch).
-      // Como uploadFiles JÁ persistiu no Blob + JSON do server, o
-      // estado server agora é initial.media + added. Sincronizamos
-      // local com isso usando setMedia (que marca dirty).
-      // Mas como acabou de salvar, manualmente marcamos saved.
-      const next = [...media, ...added];
-      setMedia(next);
+      const added: MediaItem[] = [];
+      if (blobMode) {
+        // Client upload: arquivo vai DIRETO pro Blob via signed URL.
+        // Bypassa o limite de ~4.5MB do Server Action no Hobby tier.
+        for (const file of Array.from(files)) {
+          const ext = (file.name.split(".").pop() ?? "jpg").toLowerCase();
+          const isVideo = ["mp4", "mov", "webm"].includes(ext);
+          // Timestamp + index pra evitar colisão na mesma seleção.
+          const idx = added.length;
+          const pathname = `c2/media/cases/${slug}/${Date.now()}-${idx}.${ext}`;
+          const blob = await upload(pathname, file, {
+            access: "public",
+            handleUploadUrl: "/api/blob-upload",
+          });
+          added.push({
+            type: isVideo ? "video" : "image",
+            src: blob.url,
+          });
+        }
+        await actions.attachMedia(added);
+      } else {
+        // Dev local: passa pelo Server Action (filesystem).
+        const fd = new FormData();
+        for (const f of Array.from(files)) fd.append("files", f);
+        const result = await actions.uploadFiles(fd);
+        added.push(...result);
+      }
+      setMedia([...media, ...added]);
       markSaved();
     } catch (e) {
       markError(e instanceof Error ? e.message : "Falha no upload");
@@ -274,7 +298,9 @@ export function CaseEditorClient({ slug, initial, actions }: Props) {
               className="text-sm text-paper file:mr-4 file:rounded file:border file:border-line file:bg-ink-3 file:px-3 file:py-1 file:font-mono file:text-[10px] file:uppercase file:tracking-[0.2em] file:text-paper disabled:opacity-50"
             />
             <span className="self-center font-mono text-[10px] uppercase tracking-[0.2em] text-mute-2">
-              Upload imediato · até 500MB
+              {blobMode
+                ? "Upload direto ao Blob · até 500MB"
+                : "Upload local · até 4MB"}
             </span>
           </div>
 

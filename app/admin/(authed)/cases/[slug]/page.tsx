@@ -2,6 +2,7 @@ import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { getCase, readCases, writeCases } from "@/lib/cases";
 import { deleteMedia, saveUploadedFile } from "@/lib/upload";
+import { isBlobMode } from "@/lib/storage";
 import { CaseEditorClient, type CaseEditorPayload } from "@/components/admin/CaseEditorClient";
 import type { Case, MediaItem } from "@/lib/types";
 
@@ -53,7 +54,10 @@ export default async function CaseEditorPage(props: Props) {
     revalidatePath("/admin");
   }
 
-  /** Upload fluxo imediato — sobe pro Blob e devolve os items. */
+  /**
+   * Upload via Server Action (modo legado, ainda usado em DEV local
+   * sem Blob e como fallback). Limitado a 4.5MB na Vercel Hobby.
+   */
   async function uploadFiles(formData: FormData): Promise<MediaItem[]> {
     "use server";
     const files = formData.getAll("files") as File[];
@@ -82,6 +86,25 @@ export default async function CaseEditorPage(props: Props) {
     return added;
   }
 
+  /**
+   * Anexa uma mídia que JÁ está no Blob (subiu via client upload).
+   * Recebe só metadata leve — não atinge o limite de 4.5MB do
+   * Server Action, então arquivos grandes funcionam.
+   */
+  async function attachMedia(items: MediaItem[]): Promise<void> {
+    "use server";
+    if (!Array.isArray(items) || items.length === 0) return;
+    const all = await readCases();
+    const idx = all.findIndex((c) => c.slug === slug);
+    if (idx < 0) throw new Error("Case não encontrado");
+    all[idx].media.push(...items);
+    await writeCases(all);
+
+    revalidatePath("/");
+    revalidatePath(`/trabalho/${slug}`);
+    revalidatePath(`/admin/cases/${slug}`);
+  }
+
   async function deleteCase() {
     "use server";
     const all = await readCases();
@@ -103,7 +126,8 @@ export default async function CaseEditorPage(props: Props) {
     <CaseEditorClient
       slug={slug}
       initial={c2case}
-      actions={{ save, uploadFiles, deleteCase }}
+      blobMode={isBlobMode()}
+      actions={{ save, uploadFiles, attachMedia, deleteCase }}
     />
   );
 }

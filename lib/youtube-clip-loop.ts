@@ -66,20 +66,16 @@ function loadYouTubeApi(): Promise<void> {
 }
 
 /**
- * Anexa loop curto a um iframe YouTube e reporta state do player.
+ * Anexa loop curto a um iframe YouTube.
  *
  * @param iframeRef ref do iframe (precisa ter src com enablejsapi=1)
  * @param maxSeconds duração do loop (default 10s)
  * @param enabled liga/desliga (útil pra lazy load)
- * @param onPlayingChange callback opcional pra reagir ao state.
- *   `true` quando entrou em PLAYING; `false` durante buffering,
- *   unstarted, paused, ended, cued.
  */
 export function useYouTubeClipLoop(
   iframeRef: React.RefObject<HTMLIFrameElement | null>,
   maxSeconds = 10,
   enabled = true,
-  onPlayingChange?: (isPlaying: boolean) => void,
 ) {
   useEffect(() => {
     if (!enabled) return;
@@ -99,10 +95,8 @@ export function useYouTubeClipLoop(
               event.target.playVideo();
             },
             onStateChange: (event) => {
-              // 1 = playing, qualquer outro state mostra overlay no YouTube
-              const isPlaying = event.data === 1;
-              onPlayingChange?.(isPlaying);
-              if (isPlaying && !pollId) {
+              // 1 = playing
+              if (event.data === 1 && !pollId) {
                 pollId = setInterval(() => {
                   if (!player) return;
                   const t = player.getCurrentTime();
@@ -126,5 +120,5 @@ export function useYouTubeClipLoop(
         // ignore
       }
     };
-  }, [iframeRef, maxSeconds, enabled, onPlayingChange]);
+  }, [iframeRef, maxSeconds, enabled]);
 }

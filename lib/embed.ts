@@ -7,13 +7,33 @@
  */
 
 export type EmbedSource =
-  | { kind: "youtube"; embedUrl: string; videoId: string }
-  | { kind: "vimeo"; embedUrl: string; videoId: string }
+  | {
+      kind: "youtube";
+      embedUrl: string;
+      videoId: string;
+      /** True quando a URL original é um Short (formato vertical 9:16). */
+      isVertical: boolean;
+    }
+  | { kind: "vimeo"; embedUrl: string; videoId: string; isVertical: boolean }
   | { kind: "file"; src: string }
   | { kind: "none" };
 
+/**
+ * Captura YouTube em todos os formatos comuns:
+ *   - youtube.com/watch?v=ABC
+ *   - youtu.be/ABC
+ *   - youtube.com/embed/ABC
+ *   - youtube.com/v/ABC
+ *   - youtube.com/shorts/ABC      ← Shorts (vertical)
+ *   - m.youtube.com/... (mobile)
+ *   - www.youtube.com/... (com subdomínio)
+ */
 const YT_REGEX =
-  /(?:youtube\.com\/(?:watch\?v=|embed\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/;
+  /(?:(?:www\.|m\.)?youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/;
+
+/** Detecta se a URL é um Short (vertical) antes de extrair o ID. */
+const YT_SHORTS_REGEX = /youtube\.com\/shorts\//i;
+
 const VIMEO_REGEX = /vimeo\.com\/(?:video\/)?(\d+)/;
 
 export function parseEmbedUrl(raw: string | undefined | null): EmbedSource {
@@ -23,6 +43,7 @@ export function parseEmbedUrl(raw: string | undefined | null): EmbedSource {
   const yt = input.match(YT_REGEX);
   if (yt) {
     const id = yt[1];
+    const isVertical = YT_SHORTS_REGEX.test(input);
     const params = new URLSearchParams({
       autoplay: "1",
       mute: "1",
@@ -39,6 +60,7 @@ export function parseEmbedUrl(raw: string | undefined | null): EmbedSource {
       kind: "youtube",
       videoId: id,
       embedUrl: `https://www.youtube.com/embed/${id}?${params.toString()}`,
+      isVertical,
     };
   }
 
@@ -57,6 +79,9 @@ export function parseEmbedUrl(raw: string | undefined | null): EmbedSource {
       kind: "vimeo",
       videoId: id,
       embedUrl: `https://player.vimeo.com/video/${id}?${params.toString()}`,
+      // Vimeo não tem flag de "shorts" — sempre 16/9 por default.
+      // Se precisar marcar vertical no futuro, exige config manual.
+      isVertical: false,
     };
   }
 

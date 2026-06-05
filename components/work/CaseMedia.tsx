@@ -63,19 +63,27 @@ export function CaseMedia({ item, index }: Props) {
     );
 
   // Embed (YouTube/Vimeo): renderiza iframe direto, sem lightbox.
+  // Shorts são verticais (9:16) — outros embeds são 16:9.
   if (item.type === "embed") {
     const src = parseEmbedUrl(item.src);
     if (src.kind === "youtube" || src.kind === "vimeo") {
+      const aspect = src.isVertical ? "9/16" : "16/9";
+      const maxWidth = src.isVertical ? "min(420px, 60vw)" : undefined;
       return (
-        <div className="relative aspect-[16/9] w-full overflow-hidden bg-ink-3">
-          <iframe
-            src={src.embedUrl}
-            title="Vídeo do case"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-            className="absolute inset-0 h-full w-full"
-            style={{ border: 0 }}
-          />
+        <div className="flex w-full justify-center">
+          <div
+            className="relative w-full overflow-hidden bg-ink-3"
+            style={{ aspectRatio: aspect, maxWidth }}
+          >
+            <iframe
+              src={src.embedUrl}
+              title="Vídeo do case"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full"
+              style={{ border: 0 }}
+            />
+          </div>
         </div>
       );
     }

@@ -111,7 +111,7 @@ export function Lightbox({ items }: Props) {
             playsInline
             style={{ maxWidth: "96vw", maxHeight: "92vh" }}
           />
-        ) : (
+        ) : item.type === "image" ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={mediaSrc(item.src)}
@@ -122,7 +122,7 @@ export function Lightbox({ items }: Props) {
               objectFit: "contain",
             }}
           />
-        )}
+        ) : null}
       </div>
 
       <span className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[11px] uppercase tracking-[0.2em] text-mute-1">

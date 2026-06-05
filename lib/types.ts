@@ -3,8 +3,13 @@
  * Alterações no shape devem refletir aqui — TS pega regressões em build.
  */
 
+/**
+ * Item de mídia. `src` é:
+ *   - "image" / "video": path local ("media/cases/...") ou URL Blob/Spaces
+ *   - "embed": URL completa do YouTube ou Vimeo (renderizado como iframe)
+ */
 export type MediaItem = {
-  type: "image" | "video";
+  type: "image" | "video" | "embed";
   src: string;
 };
 

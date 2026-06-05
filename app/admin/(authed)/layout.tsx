@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { auth, signOut } from "@/lib/auth";
+import { DirtyProvider } from "@/components/admin/dirty-state";
+import { DirtyBadge } from "@/components/admin/DirtyBadge";
 
 export const metadata = {
   title: "Admin",
@@ -27,31 +29,36 @@ export default async function AuthedAdminLayout({
   }
 
   return (
-    <div className="flex min-h-[100dvh] flex-col">
-      <header className="border-b border-line">
-        <div className="wrap flex items-center justify-between py-4">
-          <div className="flex items-center gap-8">
-            <Link href="/admin" className="font-bold tracking-tight" style={{ letterSpacing: "-0.04em" }}>
-              C2 · Admin
-            </Link>
-            <nav className="flex gap-6 font-mono text-[11px] uppercase tracking-[0.2em] text-mute-2">
-              <Link href="/admin" className="hover:text-paper">Cases</Link>
-              <Link href="/admin/site" className="hover:text-paper">Site</Link>
-              <Link href="/admin/team" className="hover:text-paper">Time</Link>
-              <Link href="/admin/logos" className="hover:text-paper">Logos</Link>
-            </nav>
+    <DirtyProvider>
+      <div className="flex min-h-[100dvh] flex-col">
+        <header className="border-b border-line">
+          <div className="wrap flex items-center justify-between gap-6 py-4">
+            <div className="flex items-center gap-8">
+              <Link href="/admin" className="font-bold tracking-tight" style={{ letterSpacing: "-0.04em" }}>
+                C2 · Admin
+              </Link>
+              <nav className="flex gap-6 font-mono text-[11px] uppercase tracking-[0.2em] text-mute-2">
+                <Link href="/admin" className="hover:text-paper">Cases</Link>
+                <Link href="/admin/site" className="hover:text-paper">Site</Link>
+                <Link href="/admin/team" className="hover:text-paper">Time</Link>
+                <Link href="/admin/logos" className="hover:text-paper">Logos</Link>
+              </nav>
+            </div>
+            <div className="flex items-center gap-6">
+              <DirtyBadge />
+              <form action={logout}>
+                <button
+                  type="submit"
+                  className="font-mono text-[11px] uppercase tracking-[0.2em] text-mute-2 transition-colors hover:text-paper"
+                >
+                  Sair →
+                </button>
+              </form>
+            </div>
           </div>
-          <form action={logout}>
-            <button
-              type="submit"
-              className="font-mono text-[11px] uppercase tracking-[0.2em] text-mute-2 transition-colors hover:text-paper"
-            >
-              Sair →
-            </button>
-          </form>
-        </div>
-      </header>
-      <main className="flex-1">{children}</main>
-    </div>
+        </header>
+        <main className="flex-1">{children}</main>
+      </div>
+    </DirtyProvider>
   );
 }

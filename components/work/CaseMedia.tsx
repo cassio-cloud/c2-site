@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { MediaItem } from "@/lib/types";
 import { mediaSrc } from "@/lib/media-url";
+import { parseEmbedUrl } from "@/lib/embed";
 
 type Props = {
   item: MediaItem;
@@ -60,6 +61,26 @@ export function CaseMedia({ item, index }: Props) {
     window.dispatchEvent(
       new CustomEvent("c2:lightbox", { detail: { index } }),
     );
+
+  // Embed (YouTube/Vimeo): renderiza iframe direto, sem lightbox.
+  if (item.type === "embed") {
+    const src = parseEmbedUrl(item.src);
+    if (src.kind === "youtube" || src.kind === "vimeo") {
+      return (
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-ink-3">
+          <iframe
+            src={src.embedUrl}
+            title="Vídeo do case"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            className="absolute inset-0 h-full w-full"
+            style={{ border: 0 }}
+          />
+        </div>
+      );
+    }
+    return null;
+  }
 
   return (
     <button

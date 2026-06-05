@@ -86,30 +86,45 @@ function EmbedCover({ src }: { src: string }) {
       style={{ containerType: "size" }}
     >
       {shouldLoad ? (
-        <iframe
-          ref={iframeRef}
-          src={parsed.embedUrl}
-          title=""
-          allow="autoplay; fullscreen; picture-in-picture"
-          referrerPolicy="strict-origin-when-cross-origin"
-          loading="lazy"
-          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-          style={
-            isVertical
-              ? {
-                  // Vídeo 9/16: encaixa pela altura; largura proporcional
-                  width: "max(100cqw, 56.25cqh)",
-                  height: "max(177.78cqw, 100cqh)",
-                  border: 0,
-                }
-              : {
-                  // Vídeo 16/9: encaixa pela largura; altura proporcional
-                  width: "max(100cqw, 177.78cqh)",
-                  height: "max(56.25cqw, 100cqh)",
-                  border: 0,
-                }
-          }
-        />
+        <>
+          <iframe
+            ref={iframeRef}
+            src={parsed.embedUrl}
+            title=""
+            allow="autoplay; fullscreen; picture-in-picture"
+            referrerPolicy="strict-origin-when-cross-origin"
+            loading="lazy"
+            tabIndex={-1}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            style={
+              isVertical
+                ? {
+                    // Vídeo 9/16: encaixa pela altura; largura proporcional
+                    width: "max(100cqw, 56.25cqh)",
+                    height: "max(177.78cqw, 100cqh)",
+                    border: 0,
+                  }
+                : {
+                    // Vídeo 16/9: encaixa pela largura; altura proporcional
+                    width: "max(100cqw, 177.78cqh)",
+                    height: "max(56.25cqw, 100cqh)",
+                    border: 0,
+                  }
+            }
+          />
+          {/*
+            Scrim invisível por cima do iframe. Captura todos os toques
+            e impede que o YouTube mostre seu overlay touch-controls em
+            mobile. Não tem onClick — o click bubble naturalmente até
+            o <Link> ancestor que envolve o tile inteiro.
+          */}
+          <div
+            className="absolute inset-0 z-10"
+            aria-hidden
+            // Permite que o cursor "pointer" do Link continue aparecendo.
+            style={{ cursor: "pointer" }}
+          />
+        </>
       ) : null}
     </div>
   );

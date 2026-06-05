@@ -54,7 +54,10 @@ export function parseEmbedUrl(raw: string | undefined | null): EmbedSource {
       showinfo: "0",
       modestbranding: "1",
       playsinline: "1",
-      iv_load_policy: "3",
+      iv_load_policy: "3", // sem annotations
+      cc_load_policy: "0", // sem closed captions
+      disablekb: "1", // sem atalhos de teclado
+      fs: "0", // sem botão fullscreen
       enablejsapi: "1", // permite o useYouTubeClipLoop controlar o player
     });
     return {

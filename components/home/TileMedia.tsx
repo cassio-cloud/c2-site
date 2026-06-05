@@ -48,6 +48,10 @@ function EmbedCover({ src }: { src: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
+  // True só enquanto state === PLAYING. Em qualquer outro state
+  // (unstarted, buffering, paused, ended, cued) o YouTube mostra
+  // overlay touch-controls. Mascaramos via opacity neste caso.
+  const [isPlaying, setIsPlaying] = useState(false);
   const parsed = parseEmbedUrl(src);
 
   useEffect(() => {
@@ -71,7 +75,12 @@ function EmbedCover({ src }: { src: string }) {
   // Loop curto via YouTube Player API (só ativo quando o iframe
   // existe e a URL é YouTube com enablejsapi=1).
   const isYouTube = parsed.kind === "youtube";
-  useYouTubeClipLoop(iframeRef, CLIP_LOOP_SECONDS, shouldLoad && isYouTube);
+  useYouTubeClipLoop(
+    iframeRef,
+    CLIP_LOOP_SECONDS,
+    shouldLoad && isYouTube,
+    setIsPlaying,
+  );
 
   if (parsed.kind !== "youtube" && parsed.kind !== "vimeo") {
     return null;
@@ -96,21 +105,25 @@ function EmbedCover({ src }: { src: string }) {
             loading="lazy"
             tabIndex={-1}
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-            style={
-              isVertical
+            style={{
+              // YouTube só esconde controls quando state === PLAYING.
+              // Pra esconder overlay no boot + durante seek do loop,
+              // mantemos iframe invisível em qualquer outro state.
+              // Background ink-3 do container preenche o vácuo.
+              opacity: isYouTube ? (isPlaying ? 1 : 0) : 1,
+              transition: "opacity 200ms ease-out",
+              ...(isVertical
                 ? {
-                    // Vídeo 9/16: encaixa pela altura; largura proporcional
                     width: "max(100cqw, 56.25cqh)",
                     height: "max(177.78cqw, 100cqh)",
                     border: 0,
                   }
                 : {
-                    // Vídeo 16/9: encaixa pela largura; altura proporcional
                     width: "max(100cqw, 177.78cqh)",
                     height: "max(56.25cqw, 100cqh)",
                     border: 0,
-                  }
-            }
+                  }),
+            }}
           />
           {/*
             Scrim invisível por cima do iframe. Captura todos os toques
@@ -121,7 +134,6 @@ function EmbedCover({ src }: { src: string }) {
           <div
             className="absolute inset-0 z-10"
             aria-hidden
-            // Permite que o cursor "pointer" do Link continue aparecendo.
             style={{ cursor: "pointer" }}
           />
         </>

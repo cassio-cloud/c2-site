@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import type { MediaItem } from "@/lib/types";
 import { mediaSrc } from "@/lib/media-url";
 import { parseEmbedUrl } from "@/lib/embed";
+import { useYouTubeClipLoop } from "@/lib/youtube-clip-loop";
 
 type Props = {
   cover: MediaItem;
@@ -40,8 +41,12 @@ export function TileMedia({ cover, alt }: Props) {
 
 // ── Embed ──────────────────────────────────────────────────────────
 
+/** Duração do clip-preview no tile (segundos). */
+const CLIP_LOOP_SECONDS = 10;
+
 function EmbedCover({ src }: { src: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const parsed = parseEmbedUrl(src);
 
@@ -63,6 +68,11 @@ function EmbedCover({ src }: { src: string }) {
     return () => io.disconnect();
   }, []);
 
+  // Loop curto via YouTube Player API (só ativo quando o iframe
+  // existe e a URL é YouTube com enablejsapi=1).
+  const isYouTube = parsed.kind === "youtube";
+  useYouTubeClipLoop(iframeRef, CLIP_LOOP_SECONDS, shouldLoad && isYouTube);
+
   if (parsed.kind !== "youtube" && parsed.kind !== "vimeo") {
     return null;
   }
@@ -77,6 +87,7 @@ function EmbedCover({ src }: { src: string }) {
     >
       {shouldLoad ? (
         <iframe
+          ref={iframeRef}
           src={parsed.embedUrl}
           title=""
           allow="autoplay; fullscreen; picture-in-picture"

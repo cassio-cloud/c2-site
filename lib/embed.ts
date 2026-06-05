@@ -48,13 +48,14 @@ export function parseEmbedUrl(raw: string | undefined | null): EmbedSource {
       autoplay: "1",
       mute: "1",
       loop: "1",
-      playlist: id, // necessário pra loop funcionar
+      playlist: id, // necessário pra loop do vídeo inteiro
       controls: "0",
       rel: "0",
       showinfo: "0",
       modestbranding: "1",
       playsinline: "1",
       iv_load_policy: "3",
+      enablejsapi: "1", // permite o useYouTubeClipLoop controlar o player
     });
     return {
       kind: "youtube",

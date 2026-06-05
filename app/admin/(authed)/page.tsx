@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { readCases, writeCases } from "@/lib/cases";
 import { deleteMedia } from "@/lib/upload";
@@ -47,39 +46,55 @@ export default async function AdminCasesPage() {
     revalidatePath("/admin");
   }
 
-  async function addCase(formData: FormData) {
+  /**
+   * Cria um novo case e retorna o slug.
+   * Não usa server-side redirect — o client navega após receber
+   * o slug, depois de pequeno delay pra garantir que o Blob
+   * já propagou a escrita (eventual consistency).
+   */
+  async function addCase(
+    rawSlug: string,
+    title: string,
+    tagsRaw: string,
+  ): Promise<{ ok: true; slug: string } | { ok: false; error: string }> {
     "use server";
-    const rawSlug = String(formData.get("slug") ?? "").trim();
-    const title = String(formData.get("title") ?? "").trim();
-    const tagsRaw = String(formData.get("tags") ?? "").trim();
-    const slug = normTag(rawSlug);
-    if (!slug || !title) return;
+    const slug = normTag(rawSlug.trim());
+    const cleanTitle = title.trim();
+    if (!slug) return { ok: false, error: "Slug obrigatório" };
+    if (!cleanTitle) return { ok: false, error: "Título obrigatório" };
 
-    const all = await readCases();
-    if (all.some((c) => c.slug === slug)) {
-      throw new Error(`Slug "${slug}" já existe`);
+    try {
+      const all = await readCases();
+      if (all.some((c) => c.slug === slug)) {
+        return { ok: false, error: `Slug "${slug}" já existe` };
+      }
+
+      const newCase: Case = {
+        slug,
+        title: cleanTitle,
+        client: "",
+        agency: "",
+        director: "",
+        year: String(new Date().getFullYear()),
+        description: "",
+        media: [],
+        tags: tagsRaw.trim()
+          ? tagsRaw.split(/[,\s]+/).map(normTag).filter(Boolean)
+          : [],
+        featured: false,
+      };
+
+      await writeCases([newCase, ...all]);
+      revalidatePath("/");
+      revalidatePath("/trabalho");
+      revalidatePath("/admin");
+      return { ok: true, slug };
+    } catch (e) {
+      return {
+        ok: false,
+        error: e instanceof Error ? e.message : "Falha ao criar case",
+      };
     }
-
-    const newCase: Case = {
-      slug,
-      title,
-      client: "",
-      agency: "",
-      director: "",
-      year: String(new Date().getFullYear()),
-      description: "",
-      media: [],
-      tags: tagsRaw
-        ? tagsRaw.split(/[,\s]+/).map(normTag).filter(Boolean)
-        : [],
-      featured: false,
-    };
-
-    await writeCases([newCase, ...all]);
-    revalidatePath("/");
-    revalidatePath("/trabalho");
-    revalidatePath("/admin");
-    redirect(`/admin/cases/${slug}`);
   }
 
   return (

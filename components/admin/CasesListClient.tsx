@@ -18,6 +18,7 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useDirtyController, useBeforeUnloadGuard } from "./dirty-state";
 import { fmtTag } from "@/lib/tags";
@@ -25,12 +26,20 @@ import type { Case } from "@/lib/types";
 
 export type OrderPayload = { slug: string; featured: boolean }[];
 
+type AddResult =
+  | { ok: true; slug: string }
+  | { ok: false; error: string };
+
 type Props = {
   initial: Case[];
   actions: {
     saveOrder: (payload: OrderPayload) => Promise<void>;
     deleteCase: (slug: string) => Promise<void>;
-    addCase: (formData: FormData) => Promise<void>;
+    addCase: (
+      rawSlug: string,
+      title: string,
+      tagsRaw: string,
+    ) => Promise<AddResult>;
   };
 };
 
@@ -44,8 +53,11 @@ type Props = {
  */
 export function CasesListClient({ initial, actions }: Props) {
   useBeforeUnloadGuard();
+  const router = useRouter();
   const { markSaving, markSaved, markError, markDirty } = useDirtyController();
   const [cases, setCases] = useState<Case[]>(initial);
+  const [adding, setAdding] = useState(false);
+  const [addError, setAddError] = useState<string | null>(null);
   const initialOrder = useState(() =>
     initial.map((c) => `${c.slug}:${c.featured ? 1 : 0}`).join("|"),
   )[0];
@@ -146,34 +158,69 @@ export function CasesListClient({ initial, actions }: Props) {
           ) : null}
         </div>
 
-        {/* Add new — imediato */}
+        {/* Add new — imediato. Não faz redirect server-side: client
+            navega após o slug voltar, evitando race com o Blob CDN. */}
         <form
-          action={actions.addCase}
+          onSubmit={async (e) => {
+            e.preventDefault();
+            const fd = new FormData(e.currentTarget);
+            const slug = String(fd.get("slug") ?? "");
+            const title = String(fd.get("title") ?? "");
+            const tags = String(fd.get("tags") ?? "");
+            setAdding(true);
+            setAddError(null);
+            try {
+              const result = await actions.addCase(slug, title, tags);
+              if (!result.ok) {
+                setAddError(result.error);
+                return;
+              }
+              // Pequeno delay defensivo contra eventual consistency
+              // do Blob CDN, mesmo já tendo cache-buster + retry.
+              await new Promise((r) => setTimeout(r, 350));
+              router.push(`/admin/cases/${result.slug}`);
+            } catch (err) {
+              setAddError(
+                err instanceof Error ? err.message : "Falha ao criar case",
+              );
+            } finally {
+              setAdding(false);
+            }
+          }}
           className="mb-10 grid gap-3 border border-line bg-ink-2/30 p-4 md:grid-cols-[1fr_1fr_1fr_auto]"
         >
           <input
             name="slug"
             placeholder="slug-do-case"
             required
-            className="border-b border-line bg-transparent px-2 py-2 font-mono text-sm outline-none focus:border-paper"
+            disabled={adding}
+            className="border-b border-line bg-transparent px-2 py-2 font-mono text-sm outline-none focus:border-paper disabled:opacity-50"
           />
           <input
             name="title"
             placeholder="Título do case"
             required
-            className="border-b border-line bg-transparent px-2 py-2 text-sm outline-none focus:border-paper"
+            disabled={adding}
+            className="border-b border-line bg-transparent px-2 py-2 text-sm outline-none focus:border-paper disabled:opacity-50"
           />
           <input
             name="tags"
             placeholder="tags separadas por vírgula"
-            className="border-b border-line bg-transparent px-2 py-2 text-sm outline-none focus:border-paper"
+            disabled={adding}
+            className="border-b border-line bg-transparent px-2 py-2 text-sm outline-none focus:border-paper disabled:opacity-50"
           />
           <button
             type="submit"
-            className="rounded bg-paper px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-ink transition-opacity hover:opacity-80"
+            disabled={adding}
+            className="rounded bg-paper px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-ink transition-opacity hover:opacity-80 disabled:opacity-50"
           >
-            + Adicionar
+            {adding ? "Criando…" : "+ Adicionar"}
           </button>
+          {addError ? (
+            <p className="col-span-full font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
+              {addError}
+            </p>
+          ) : null}
         </form>
 
         <p className="mb-4 text-xs text-mute-2">

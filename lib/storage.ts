@@ -35,7 +35,11 @@ export async function readJsonKey<T>(key: JsonKey, fallbackPath: string): Promis
   if (useBlob) {
     try {
       const info = await head(key);
-      const res = await fetch(info.url, { cache: "no-store" });
+      // Cache-buster: força o CDN do Blob a buscar a versão atual
+      // em vez de servir cópia stale. Sem isso, escritas recentes
+      // podem demorar minutos pra aparecer em reads na Vercel.
+      const url = `${info.url}${info.url.includes("?") ? "&" : "?"}_=${Date.now()}`;
+      const res = await fetch(url, { cache: "no-store" });
       if (res.ok) return (await res.json()) as T;
     } catch {
       // Blob não existe ainda → segue pro fallback bundlado

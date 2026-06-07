@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 type Props = {
   idx: number
   total: number
@@ -14,7 +16,6 @@ type Props = {
  */
 export function SlideFrame({ idx, total, theme = "dark" }: Props) {
   const isDark = theme === "dark"
-  const ink = isDark ? "var(--paper)" : "var(--ink)"
   const line = isDark ? "rgba(239,239,239,0.18)" : "rgba(13,13,13,0.18)"
   const mute = isDark ? "rgba(239,239,239,0.55)" : "rgba(13,13,13,0.55)"
   const pad = (n: number) => String(n).padStart(2, "0")
@@ -38,17 +39,20 @@ export function SlideFrame({ idx, total, theme = "dark" }: Props) {
         style={{ top: barTop, paddingInline: barInline }}
       >
         <div className="flex items-center justify-between">
-          <span
+          <Image
+            src="/media/credencial/c2-logo.svg"
+            alt="C2"
+            width={120}
+            height={57}
+            priority
             style={{
-              color: ink,
-              fontWeight: 700,
-              fontSize: 16,
-              letterSpacing: "-0.02em",
-              fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+              height: 17,
+              width: "auto",
+              display: "block",
+              // SVG é #f5f5f5 (claro): mantém no dark, inverte pra escuro no light
+              filter: isDark ? "none" : "invert(1)",
             }}
-          >
-            C2.
-          </span>
+          />
           <span style={monoCSS}>where content</span>
           <span style={monoCSS}>2026</span>
         </div>
@@ -66,7 +70,7 @@ export function SlideFrame({ idx, total, theme = "dark" }: Props) {
           style={{ marginBottom: 10, height: 1, background: line, width: "100%" }}
         />
         <div className="flex items-center justify-between">
-          <span style={monoCSS}>RS • SP</span>
+          <span style={{ ...monoCSS, textTransform: "uppercase" }}>RS • SP</span>
           <span style={monoCSS}>meets craft</span>
           <span style={monoCSS}>
             {pad(idx + 1)} / {pad(total)}

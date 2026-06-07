@@ -5,7 +5,7 @@ import { motion } from "motion/react"
 import type { Case } from "@/data/credencial/cases"
 import { SITE_URL } from "@/data/credencial/cases"
 import { Grain } from "../Grain"
-import { CredVideo } from "../CredVideo"
+import { CredHero } from "../CredHero"
 import { usePortrait, FACE_POSITION } from "../Editorial"
 
 const EASE = [0.32, 0.72, 0, 1] as const
@@ -105,7 +105,7 @@ export function SlideCase({ case: c }: Props) {
       animate={{ opacity: 1, transition: { duration: 0.7, ease: EASE } }}
     >
       {hasVideo ? (
-        <CredVideo
+        <CredHero
           src={c.video!}
           className="absolute inset-0 h-full w-full object-cover"
           style={{ objectPosition: FACE_POSITION }}

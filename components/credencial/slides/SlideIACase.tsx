@@ -5,7 +5,7 @@ import { motion } from "motion/react"
 import type { IACase } from "@/data/credencial/ia"
 import { SITE_URL } from "@/data/credencial/ia"
 import { Grain } from "../Grain"
-import { CredVideo } from "../CredVideo"
+import { CredHero } from "../CredHero"
 import { usePortrait, FACE_POSITION } from "../Editorial"
 
 const EASE = [0.32, 0.72, 0, 1] as const
@@ -88,7 +88,7 @@ export function SlideIACase({ ia }: Props) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.7, ease: EASE } }}
     >
-      <CredVideo
+      <CredHero
         src={ia.video}
         className="absolute inset-0 h-full w-full object-cover"
         style={{ objectPosition: "center center" }}

@@ -61,7 +61,7 @@ export const iaCases: IACase[] = [
     cliente: "BYD",
     projeto: "King",
     tipo: "100% IA",
-    video: `${L}/ia-byd/video.mp4`,
+    video: "https://youtu.be/0bS00K6SG2g",
     imagens: [
       `${L}/ia-byd/01.png`, `${L}/ia-byd/02.png`, `${L}/ia-byd/03.png`,
       `${L}/ia-byd/04.jpg`, `${L}/ia-byd/05.png`,
@@ -74,7 +74,7 @@ export const iaCases: IACase[] = [
     cliente: "Legacy",
     projeto: "Natal",
     tipo: "100% IA",
-    video: `${L}/ia-legacy/video.mp4`,
+    video: "https://youtube.com/shorts/MIwUKaboaxQ",
     imagens: [],
     sobre: "Filme de Natal 100% IA. Da ideia à entrega, produzido com IA generativa.",
     siteSlug: "ia-legacy",

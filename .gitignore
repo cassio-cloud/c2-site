@@ -43,14 +43,9 @@ next-env.d.ts
 # C2: secret persistente do admin (gerado no boot do server)
 .admin-secret
 
-# C2: mídia > 100MB (limite do GitHub) — sincronizar separadamente
-public/media/reel.mp4
+# C2: mídia legada (sincronizar separadamente, se >100MB)
 public/media/reel.mov
 public/media/reel.webm
-
-# C2 credencial: vídeos e reel sobem via Vercel CLI (não pro git)
-public/media/credencial/lib2/*/video.mp4
-public/media/credencial/reel/
 
 # Claude Code: planos/sessão locais
 .claude/

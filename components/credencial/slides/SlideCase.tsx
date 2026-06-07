@@ -15,8 +15,10 @@ type Props = { case: Case }
 export function SlideCase({ case: c }: Props) {
   const portrait = usePortrait()
   const hasVideo = Boolean(c.video)
-  // hero (grande) = vídeo, senão a 1ª imagem; resto vai no grid lateral (até 6)
-  const stills = (hasVideo ? c.imagens : c.imagens.slice(1)).slice(0, 6)
+  // hero (grande) = vídeo, senão a 1ª imagem; resto vai no grid lateral
+  // (até 6 no desktop, no máx. 3 no mobile/portrait)
+  const maxStills = portrait ? 3 : 6
+  const stills = (hasVideo ? c.imagens : c.imagens.slice(1)).slice(0, maxStills)
   const mainImg = hasVideo ? undefined : c.imagens[0]
   // grid lateral: 1 coluna até 3 fotos, 2 colunas de 4 a 6
   const sideCols = stills.length > 3 ? 2 : 1

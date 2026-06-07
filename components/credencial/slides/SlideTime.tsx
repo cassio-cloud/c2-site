@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react"
 import { time } from "@/data/credencial/time"
-import { CropMarks, GridLines, IndexLabel } from "../Editorial"
+import { CropMarks, GridLines, IndexLabel, usePortrait } from "../Editorial"
 
 const EASE = [0.32, 0.72, 0, 1] as const
 const INSET = "clamp(40px, 6vw, 110px)"
@@ -12,16 +12,17 @@ const INSET = "clamp(40px, 6vw, 110px)"
  * grid 3×2, intro e moldura de grid pra ganhar peso visual.
  */
 export function SlideTime() {
+  const portrait = usePortrait()
   return (
     <div
       className="relative flex h-full w-full flex-col bg-paper text-ink"
       style={{
-        paddingInline: "clamp(60px, 8vw, 120px)",
-        paddingTop: "clamp(80px, 12vh, 130px)",
-        paddingBottom: "clamp(60px, 9vh, 110px)",
+        paddingInline: portrait ? "clamp(24px, 6vw, 120px)" : "clamp(60px, 8vw, 120px)",
+        paddingTop: portrait ? "clamp(92px, 13vh, 130px)" : "clamp(80px, 12vh, 130px)",
+        paddingBottom: portrait ? "clamp(40px, 6vh, 110px)" : "clamp(60px, 9vh, 110px)",
       }}
     >
-      <GridLines theme="light" cols={3} inset={INSET} />
+      <GridLines theme="light" cols={portrait ? 2 : 3} inset={INSET} />
       <CropMarks theme="light" inset={INSET} />
 
       {/* eyebrow */}
@@ -37,8 +38,13 @@ export function SlideTime() {
 
       {/* título + intro */}
       <div
-        className="relative z-10 flex items-end justify-between"
-        style={{ gap: "clamp(20px, 4vw, 80px)", marginBottom: "clamp(20px, 3vh, 36px)" }}
+        className="relative z-10 flex justify-between"
+        style={{
+          flexDirection: portrait ? "column" : "row",
+          alignItems: portrait ? "flex-start" : "flex-end",
+          gap: portrait ? "clamp(8px, 1.5vh, 16px)" : "clamp(20px, 4vw, 80px)",
+          marginBottom: "clamp(16px, 3vh, 36px)",
+        }}
       >
         <motion.h2
           className="lowercase"
@@ -69,13 +75,13 @@ export function SlideTime() {
         </motion.p>
       </div>
 
-      {/* grid 3×2 de retratos */}
+      {/* grid de retratos — 3×2 no desktop, 2×3 no portrait */}
       <div
         className="relative z-10 grid flex-1"
         style={{
-          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateColumns: portrait ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
           gridAutoRows: "1fr",
-          gap: "clamp(10px, 1vw, 18px)",
+          gap: portrait ? "clamp(8px, 2vw, 18px)" : "clamp(10px, 1vw, 18px)",
           minHeight: 0,
         }}
       >
@@ -141,6 +147,7 @@ export function SlideTime() {
                   fontSize: "clamp(11px, 0.85vw, 14px)",
                   marginTop: 3,
                   lineHeight: 1.2,
+                  overflowWrap: "break-word",
                 }}
               >
                 {p.funcao}

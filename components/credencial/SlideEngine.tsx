@@ -37,19 +37,9 @@ const slides: SlideDef[] = [
   { render: () => <SlideManifesto />, theme: "light" },
   { render: () => <SlideServicos />, theme: "light" },
 
-  // — intro da empresa: estrutura · time · clientes —
+  // — trabalho (prova) —
   {
-    render: () => <SlideDivider label="03 · A EMPRESA" titulo="a empresa." bg="light" />,
-    theme: "light",
-    variant: "fade",
-  },
-  { render: () => <SlideEstrutura />, theme: "light" },
-  { render: () => <SlideTime />, theme: "light" },
-  { render: () => <SlideClientes />, theme: "dark" },
-
-  // — trabalho —
-  {
-    render: () => <SlideDivider label="04 · TRABALHO" titulo="trabalho." bg="dark" />,
+    render: () => <SlideDivider label="03 · TRABALHO" titulo="trabalho." bg="dark" />,
     theme: "dark",
     variant: "fade",
   },
@@ -58,9 +48,9 @@ const slides: SlideDef[] = [
     theme: "dark" as const,
   })),
 
-  // — ia —
+  // — ia (diferencial) —
   {
-    render: () => <SlideDivider label="05 · IA" titulo="ia." bg="dark" glow />,
+    render: () => <SlideDivider label="04 · IA" titulo="ia." bg="dark" glow />,
     theme: "dark",
     variant: "fade",
   },
@@ -69,6 +59,16 @@ const slides: SlideDef[] = [
     render: () => <SlideIACase ia={ia} />,
     theme: "dark" as const,
   })),
+
+  // — a empresa (confiança): estrutura · time · clientes —
+  {
+    render: () => <SlideDivider label="05 · A EMPRESA" titulo="a empresa." bg="light" />,
+    theme: "light",
+    variant: "fade",
+  },
+  { render: () => <SlideEstrutura />, theme: "light" },
+  { render: () => <SlideTime />, theme: "light" },
+  { render: () => <SlideClientes />, theme: "dark" },
 
   { render: () => <SlideContato />, theme: "dark" },
 ]

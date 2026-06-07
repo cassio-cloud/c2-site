@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "motion/react"
-import { CropMarks, GridLines, IndexLabel, ghostColor } from "../Editorial"
+import { CropMarks, GridLines, IndexLabel, ghostColor, usePortrait } from "../Editorial"
 
 const EASE = [0.32, 0.72, 0, 1] as const
 const INSET = "clamp(40px, 6vw, 110px)"
@@ -48,7 +48,7 @@ function CornerMarks() {
   )
 }
 
-function Card({ s, i }: { s: Studio; i: number }) {
+function Card({ s, i, portrait }: { s: Studio; i: number; portrait: boolean }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
@@ -62,8 +62,8 @@ function Card({ s, i }: { s: Studio; i: number }) {
       style={{
         background: "rgba(13,13,13,0.035)",
         boxShadow: "inset 0 0 0 1px rgba(13,13,13,0.06)",
-        padding: "clamp(28px, 3vw, 52px)",
-        minHeight: "clamp(420px, 38vw, 600px)",
+        padding: portrait ? "clamp(22px, 6vw, 36px)" : "clamp(28px, 3vw, 52px)",
+        minHeight: portrait ? "clamp(240px, 31vh, 320px)" : "clamp(420px, 38vw, 600px)",
       }}
     >
       <CornerMarks />
@@ -75,7 +75,7 @@ function Card({ s, i }: { s: Studio; i: number }) {
         style={{
           right: "-2%",
           bottom: "-12%",
-          fontSize: "clamp(220px, 26vw, 460px)",
+          fontSize: portrait ? "clamp(150px, 44vw, 240px)" : "clamp(220px, 26vw, 460px)",
           lineHeight: 0.7,
           letterSpacing: "-0.06em",
           color: ghostColor("light"),
@@ -85,13 +85,14 @@ function Card({ s, i }: { s: Studio; i: number }) {
       </span>
 
       <div
-        className="relative z-10 flex items-baseline justify-between border-b pb-3 font-mono"
+        className="relative z-10 flex items-baseline justify-between gap-2 border-b pb-3 font-mono"
         style={{
           borderColor: "rgba(13,13,13,0.14)",
-          fontSize: 11,
-          letterSpacing: "0.2em",
+          fontSize: portrait ? 10 : 11,
+          letterSpacing: "0.18em",
           textTransform: "uppercase",
           color: "rgba(13,13,13,0.55)",
+          whiteSpace: "nowrap",
         }}
       >
         <span>Studio · {s.nome.replace(".", "")}</span>
@@ -101,7 +102,7 @@ function Card({ s, i }: { s: Studio; i: number }) {
       <p
         className="relative z-10 font-bold tracking-tight lowercase"
         style={{
-          fontSize: "clamp(80px, 12vw, 200px)",
+          fontSize: portrait ? "clamp(64px, 22vw, 120px)" : "clamp(80px, 12vw, 200px)",
           letterSpacing: "-0.05em",
           lineHeight: 0.88,
           marginTop: "auto",
@@ -152,15 +153,20 @@ function Card({ s, i }: { s: Studio; i: number }) {
 }
 
 export function SlideEstrutura() {
+  const portrait = usePortrait()
   return (
     <div
       className="relative h-full w-full overflow-hidden bg-paper text-ink"
       style={{
-        paddingInline: "clamp(60px, 8vw, 120px)",
-        paddingBlock: "clamp(80px, 12vh, 120px)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: portrait ? "flex-start" : "center",
+        paddingInline: portrait ? "clamp(28px, 7vw, 120px)" : "clamp(60px, 8vw, 120px)",
+        paddingTop: portrait ? "clamp(92px, 14vh, 120px)" : "clamp(80px, 12vh, 120px)",
+        paddingBottom: portrait ? "clamp(48px, 7vh, 120px)" : "clamp(80px, 12vh, 120px)",
       }}
     >
-      <GridLines theme="light" cols={2} inset={INSET} />
+      <GridLines theme="light" cols={portrait ? 1 : 2} inset={INSET} />
       <CropMarks theme="light" inset={INSET} />
 
       <div
@@ -184,22 +190,22 @@ export function SlideEstrutura() {
         }}
         style={{
           fontWeight: 700,
-          fontSize: "clamp(48px, 8vw, 132px)",
+          fontSize: portrait ? "clamp(40px, 13vw, 80px)" : "clamp(48px, 8vw, 132px)",
           letterSpacing: "-0.045em",
           lineHeight: 0.96,
           margin: 0,
-          marginBottom: "clamp(32px, 5vh, 64px)",
+          marginBottom: portrait ? "clamp(20px, 3vh, 40px)" : "clamp(32px, 5vh, 64px)",
         }}
       >
         estrutura.
       </motion.h2>
 
       <div
-        className="grid grid-cols-2"
-        style={{ gap: "clamp(20px, 2vw, 40px)" }}
+        className={portrait ? "grid grid-cols-1" : "grid grid-cols-2"}
+        style={{ gap: "clamp(16px, 2vw, 40px)" }}
       >
         {STUDIOS.map((s, i) => (
-          <Card key={s.nome} s={s} i={i} />
+          <Card key={s.nome} s={s} i={i} portrait={portrait} />
         ))}
       </div>
     </div>

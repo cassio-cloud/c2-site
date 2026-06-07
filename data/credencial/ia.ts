@@ -46,7 +46,7 @@ export const iaCases: IACase[] = [
   {
     id: "vbet",
     cliente: "VBET",
-    projeto: "Hyper",
+    projeto: "Hype",
     tipo: "100% IA",
     video: `${L}/ia-vbet/video.mp4`,
     imagens: [

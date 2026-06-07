@@ -14,7 +14,8 @@ type Props = { ia: IACase }
 
 export function SlideIACase({ ia }: Props) {
   const portrait = usePortrait()
-  const stills = (ia.imagens ?? []).slice(0, 6)
+  const maxStills = portrait ? 3 : 6
+  const stills = (ia.imagens ?? []).slice(0, maxStills)
   const hasStills = stills.length > 0
   const sideCols = stills.length > 3 ? 2 : 1
   const sideRows = Math.ceil(Math.max(stills.length, 1) / sideCols)

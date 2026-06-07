@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
     root: path.join(__dirname),
   },
 
+  // Mídia em public/media é servida estática pela CDN — não deve ser
+  // empacotada nas funções serverless (estourava o limite de 300MB).
+  outputFileTracingExcludes: {
+    "*": ["public/media/**"],
+  },
+
   // Mídia: public/media/** (estática) + Blob (uploads em prod).
   images: {
     qualities: [60, 75, 90],

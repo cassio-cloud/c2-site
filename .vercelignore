@@ -1,0 +1,5 @@
+.next
+.git
+.claude
+node_modules
+*.tsbuildinfo

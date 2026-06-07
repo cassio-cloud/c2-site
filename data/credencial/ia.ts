@@ -66,7 +66,7 @@ export const iaCases: IACase[] = [
       `${L}/ia-byd/01.png`, `${L}/ia-byd/02.png`, `${L}/ia-byd/03.png`,
       `${L}/ia-byd/04.jpg`, `${L}/ia-byd/05.png`,
     ],
-    sobre: "Lançamento automotivo 100% IA. Geração de imagem e vídeo em pipeline próprio.",
+    sobre: "Personal project de Cássio Caberlon — estudo de consistência de produto e movimentos.",
     siteSlug: "ia-byd",
   },
   {

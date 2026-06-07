@@ -62,8 +62,8 @@ function Card({ s, i, portrait }: { s: Studio; i: number; portrait: boolean }) {
       style={{
         background: "rgba(13,13,13,0.035)",
         boxShadow: "inset 0 0 0 1px rgba(13,13,13,0.06)",
-        padding: portrait ? "clamp(22px, 6vw, 36px)" : "clamp(28px, 3vw, 52px)",
-        minHeight: portrait ? "clamp(240px, 31vh, 320px)" : "clamp(420px, 38vw, 600px)",
+        padding: portrait ? "clamp(16px, 4.5vw, 28px)" : "clamp(28px, 3vw, 52px)",
+        minHeight: portrait ? "clamp(168px, 23vh, 260px)" : "clamp(420px, 38vw, 600px)",
       }}
     >
       <CornerMarks />
@@ -75,7 +75,7 @@ function Card({ s, i, portrait }: { s: Studio; i: number; portrait: boolean }) {
         style={{
           right: "-2%",
           bottom: "-12%",
-          fontSize: portrait ? "clamp(150px, 44vw, 240px)" : "clamp(220px, 26vw, 460px)",
+          fontSize: portrait ? "clamp(120px, 36vw, 200px)" : "clamp(220px, 26vw, 460px)",
           lineHeight: 0.7,
           letterSpacing: "-0.06em",
           color: ghostColor("light"),
@@ -102,7 +102,7 @@ function Card({ s, i, portrait }: { s: Studio; i: number; portrait: boolean }) {
       <p
         className="relative z-10 font-bold tracking-tight lowercase"
         style={{
-          fontSize: portrait ? "clamp(64px, 22vw, 120px)" : "clamp(80px, 12vw, 200px)",
+          fontSize: portrait ? "clamp(52px, 16vw, 96px)" : "clamp(80px, 12vw, 200px)",
           letterSpacing: "-0.05em",
           lineHeight: 0.88,
           marginTop: "auto",
@@ -162,8 +162,8 @@ export function SlideEstrutura() {
         flexDirection: "column",
         justifyContent: portrait ? "flex-start" : "center",
         paddingInline: portrait ? "clamp(28px, 7vw, 120px)" : "clamp(60px, 8vw, 120px)",
-        paddingTop: portrait ? "clamp(92px, 14vh, 120px)" : "clamp(80px, 12vh, 120px)",
-        paddingBottom: portrait ? "clamp(48px, 7vh, 120px)" : "clamp(80px, 12vh, 120px)",
+        paddingTop: portrait ? "clamp(78px, 11vh, 120px)" : "clamp(80px, 12vh, 120px)",
+        paddingBottom: portrait ? "clamp(34px, 5vh, 120px)" : "clamp(80px, 12vh, 120px)",
       }}
     >
       <GridLines theme="light" cols={portrait ? 1 : 2} inset={INSET} />
@@ -190,11 +190,11 @@ export function SlideEstrutura() {
         }}
         style={{
           fontWeight: 700,
-          fontSize: portrait ? "clamp(40px, 13vw, 80px)" : "clamp(48px, 8vw, 132px)",
+          fontSize: portrait ? "clamp(38px, 12vw, 80px)" : "clamp(48px, 8vw, 132px)",
           letterSpacing: "-0.045em",
           lineHeight: 0.96,
           margin: 0,
-          marginBottom: portrait ? "clamp(20px, 3vh, 40px)" : "clamp(32px, 5vh, 64px)",
+          marginBottom: portrait ? "clamp(14px, 2vh, 40px)" : "clamp(32px, 5vh, 64px)",
         }}
       >
         estrutura.
@@ -202,7 +202,7 @@ export function SlideEstrutura() {
 
       <div
         className={portrait ? "grid grid-cols-1" : "grid grid-cols-2"}
-        style={{ gap: "clamp(16px, 2vw, 40px)" }}
+        style={{ gap: portrait ? "clamp(12px, 3vw, 40px)" : "clamp(16px, 2vw, 40px)" }}
       >
         {STUDIOS.map((s, i) => (
           <Card key={s.nome} s={s} i={i} portrait={portrait} />

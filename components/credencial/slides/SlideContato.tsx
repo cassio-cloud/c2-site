@@ -110,7 +110,7 @@ export function SlideContato() {
               margin: 0,
             }}
           >
-            vamos trabalhar juntos.
+            tks.
           </h2>
         </Linha>
 
@@ -141,28 +141,22 @@ export function SlideContato() {
               +55 51 99535-4727
             </a>
           </Linha>
+          <Linha delay={0.45}>
+            <a
+              href="https://c2content.com.br"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono"
+              style={{
+                color: "var(--mute-1)",
+                fontSize: 14,
+                letterSpacing: "0.05em",
+              }}
+            >
+              c2content.com.br
+            </a>
+          </Linha>
         </div>
-
-        <Linha delay={0.5}>
-          <div
-            className="font-mono"
-            style={{
-              color: "var(--mute-3)",
-              fontSize: 12,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              marginTop: "clamp(24px, 4vh, 40px)",
-              display: "flex",
-              gap: 20,
-            }}
-          >
-            <span>Instagram</span>
-            <span>·</span>
-            <span>LinkedIn</span>
-            <span>·</span>
-            <span>YouTube</span>
-          </div>
-        </Linha>
 
         <Linha delay={0.7}>
           <div

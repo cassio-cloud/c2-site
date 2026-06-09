@@ -19,6 +19,7 @@ import { SlideIAManifesto } from "./slides/SlideIAManifesto"
 import { SlideIACase } from "./slides/SlideIACase"
 import { SlideEstrutura } from "./slides/SlideEstrutura"
 import { SlideTime } from "./slides/SlideTime"
+import { SlideFogs } from "./slides/SlideFogs"
 import { SlideClientes } from "./slides/SlideClientes"
 import { SlideContato } from "./slides/SlideContato"
 
@@ -68,6 +69,7 @@ const slides: SlideDef[] = [
   },
   { render: () => <SlideEstrutura />, theme: "light" },
   { render: () => <SlideTime />, theme: "light" },
+  { render: () => <SlideFogs />, theme: "dark" },
   { render: () => <SlideClientes />, theme: "dark" },
 
   { render: () => <SlideContato />, theme: "dark" },

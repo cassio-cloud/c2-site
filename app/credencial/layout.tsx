@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next"
+import "./credencial.css"
 
 export const metadata: Metadata = {
   title: "Credencial · C2 Content",
@@ -21,7 +22,7 @@ export default function CredencialLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div
-      className="bg-ink text-paper"
+      className="cred-root"
       style={{
         // position:fixed + inset:0 trava a tela mesmo quando a barra de
         // endereço do mobile aparece/some (evita reflow do 100dvh).

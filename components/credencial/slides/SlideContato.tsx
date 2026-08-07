@@ -174,6 +174,26 @@ export function SlideContato() {
         </Linha>
       </div>
 
+      {/* a assinatura — o C2 fecha a apresentação como abriu */}
+      <motion.div
+        className="absolute z-10"
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE, delay: 0.85 } }}
+        style={{
+          right: "8vw",
+          bottom: "12vh",
+          width: "clamp(110px, 13vw, 210px)",
+        }}
+      >
+        <Image
+          src="/media/credencial/brand/c2-wordmark-paper.svg"
+          alt="C2"
+          width={120}
+          height={57}
+          className="h-auto w-full"
+        />
+      </motion.div>
+
       <Grain />
     </div>
   )

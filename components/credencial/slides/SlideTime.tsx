@@ -1,161 +1,194 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "motion/react"
 import { time } from "@/data/credencial/time"
-import { CropMarks, GridLines, IndexLabel, usePortrait } from "../Editorial"
+import { GradientBloom } from "../GradientBloom"
+import { usePortrait } from "../Editorial"
 
 const EASE = [0.32, 0.72, 0, 1] as const
-const INSET = "clamp(40px, 6vw, 110px)"
 
-/**
- * Time — retratos B&W grandes com nome/função sobrepostos (editorial),
- * grid 3×2, intro e moldura de grid pra ganhar peso visual.
- */
+/* ═══════════════════════════════════════════════════════════════════
+ * TIME — lâminas verticais full-bleed
+ *
+ * Seis retratos B&W lado a lado, cada um uma lâmina de altura total.
+ * Sobem com stagger (o baralho se monta), e a lâmina sob o ponteiro
+ * abre — as outras cedem espaço. Nome grande só na lâmina ativa;
+ * nas demais, o code mono vertical.
+ *
+ * Sem hierarquia entre fundador e time: todo mundo é uma lâmina igual.
+ * ═══════════════════════════════════════════════════════════════════ */
+
 export function SlideTime() {
+  const [active, setActive] = useState<number | null>(null)
+  // portrait: 6 lâminas lado a lado ficam espremidas — vira grade 3×2
   const portrait = usePortrait()
+
   return (
     <div
-      className="relative flex h-full w-full flex-col bg-paper text-ink"
-      style={{
-        paddingInline: portrait ? "clamp(24px, 6vw, 120px)" : "clamp(60px, 8vw, 120px)",
-        paddingTop: portrait ? "clamp(92px, 13vh, 130px)" : "clamp(80px, 12vh, 130px)",
-        paddingBottom: portrait ? "clamp(40px, 6vh, 110px)" : "clamp(60px, 9vh, 110px)",
-      }}
+      className="relative h-full w-full overflow-hidden"
+      style={{ background: "var(--black)" }}
     >
-      <GridLines theme="light" cols={portrait ? 2 : 3} inset={INSET} />
-      <CropMarks theme="light" inset={INSET} />
+      <GradientBloom x={30} y={80} size={70} intensity={0.14} breathe={false} />
 
-      {/* eyebrow */}
+      {/* título — faixa própria acima das lâminas, nada se sobrepõe */}
       <div
-        className="absolute z-10 flex items-center justify-between"
-        style={{ left: INSET, right: INSET, top: "clamp(48px, 8vh, 120px)" }}
-      >
-        <IndexLabel theme="light" strong>
-          (→) quem faz
-        </IndexLabel>
-        <IndexLabel theme="light">a empresa · time</IndexLabel>
-      </div>
-
-      {/* título + intro */}
-      <div
-        className="relative z-10 flex justify-between"
+        className="absolute z-10 flex items-end justify-between"
         style={{
-          flexDirection: portrait ? "column" : "row",
-          alignItems: portrait ? "flex-start" : "flex-end",
-          gap: portrait ? "clamp(8px, 1.5vh, 16px)" : "clamp(20px, 4vw, 80px)",
-          marginBottom: "clamp(16px, 3vh, 36px)",
+          left: "var(--cred-margin)",
+          right: "var(--cred-margin)",
+          top: "clamp(58px, 9vh, 90px)",
         }}
       >
         <motion.h2
-          className="lowercase"
+          className="cred-display"
           initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.9, ease: EASE } }}
-          style={{
-            fontWeight: 700,
-            fontSize: "clamp(48px, 8vw, 132px)",
-            letterSpacing: "-0.045em",
-            lineHeight: 0.92,
-            margin: 0,
+          animate={{
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            transition: { duration: 0.9, ease: EASE },
           }}
+          style={{ fontSize: "clamp(30px, 3.6vw, 60px)", color: "var(--paper)" }}
         >
           nosso time.
         </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, transition: { duration: 0.6 } }}
-          animate={{ opacity: 1, transition: { duration: 0.8, ease: EASE, delay: 0.2 } }}
-          style={{
-            maxWidth: "34ch",
-            fontSize: "clamp(13px, 1vw, 17px)",
-            lineHeight: 1.45,
-            color: "rgba(13,13,13,0.6)",
-            paddingBottom: 8,
-          }}
+        <motion.span
+          className="cred-mono uppercase"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { duration: 0.8, delay: 0.3 } }}
+          style={{ fontSize: 10, letterSpacing: "0.24em", color: "var(--mute-3)", paddingBottom: 8 }}
         >
-          Direção, produção e pós num só time. Desde 2018.
-        </motion.p>
+          {time.length} pessoas · direção, produção e pós
+        </motion.span>
       </div>
 
-      {/* grid de retratos — 3×2 no desktop, 2×3 no portrait */}
+      {/* lâminas — começam abaixo da faixa do título */}
       <div
-        className="relative z-10 grid flex-1"
+        className="absolute flex"
         style={{
-          gridTemplateColumns: portrait ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
-          gridAutoRows: "1fr",
-          gap: portrait ? "clamp(8px, 2vw, 18px)" : "clamp(10px, 1vw, 18px)",
-          minHeight: 0,
+          top: "clamp(124px, 19vh, 180px)",
+          left: "var(--cred-margin)",
+          right: "var(--cred-margin)",
+          bottom: "clamp(48px, 7.5vh, 72px)",
+          gap: portrait ? "clamp(6px, 1vw, 10px)" : "clamp(4px, 0.5vw, 8px)",
+          flexWrap: portrait ? "wrap" : "nowrap",
         }}
+        onMouseLeave={() => setActive(null)}
       >
-        {time.map((p, i) => (
-          <motion.div
-            key={p.nome}
-            initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              filter: "blur(0px)",
-              transition: { duration: 0.7, ease: EASE, delay: 0.2 + (i % 3) * 0.08 + Math.floor(i / 3) * 0.06 },
-            }}
-            className="group relative overflow-hidden bg-[rgba(13,13,13,0.06)]"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={p.foto}
-              alt={p.nome}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-              style={{ filter: "grayscale(100%) contrast(1.05)", objectPosition: "center 22%" }}
-            />
-            {/* gradiente */}
-            <div
-              className="pointer-events-none absolute inset-x-0 bottom-0"
-              style={{
-                height: "55%",
-                background:
-                  "linear-gradient(to top, rgba(13,13,13,0.82) 0%, rgba(13,13,13,0) 100%)",
+        {time.map((p, i) => {
+          const isActive = active === i
+          const anyActive = active !== null
+          return (
+            <motion.div
+              key={p.nome}
+              className="relative min-w-0 cursor-pointer overflow-hidden"
+              onMouseEnter={() => !portrait && setActive(i)}
+              onClick={(e) => {
+                // não deixa o clique da lâmina virar "próximo slide"
+                e.stopPropagation()
+                setActive(isActive ? null : i)
               }}
-            />
-            {/* code topo-direita */}
-            <span
-              className="absolute font-mono"
+              initial={{ y: "16%", opacity: 0 }}
+              animate={{
+                y: 0,
+                opacity: 1,
+                flexGrow: portrait ? 1 : isActive ? 3.2 : anyActive ? 0.82 : 1,
+                transition: {
+                  y: { duration: 0.85, ease: EASE, delay: 0.12 + i * 0.08 },
+                  opacity: { duration: 0.85, ease: EASE, delay: 0.12 + i * 0.08 },
+                  flexGrow: { duration: 0.65, ease: EASE },
+                },
+              }}
               style={{
-                top: 12,
-                right: 12,
-                fontSize: 9,
-                letterSpacing: "0.2em",
-                color: "rgba(239,239,239,0.7)",
+                flexBasis: portrait ? "31%" : 0,
+                height: portrait ? "calc(50% - 5px)" : "100%",
+                willChange: "flex-grow, transform",
               }}
             >
-              {p.code}
-            </span>
-            {/* nome + função */}
-            <div className="absolute" style={{ left: 16, right: 16, bottom: 14 }}>
-              <div
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={p.foto}
+                alt={p.nome}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover"
                 style={{
-                  color: "var(--paper)",
-                  fontWeight: 700,
-                  fontSize: "clamp(14px, 1.2vw, 20px)",
-                  letterSpacing: "-0.01em",
-                  lineHeight: 1.05,
+                  filter: isActive
+                    ? "grayscale(100%) contrast(1.06) brightness(1.04)"
+                    : "grayscale(100%) contrast(1.05) brightness(0.72)",
+                  objectPosition: "center 20%",
+                  transition: "filter 600ms cubic-bezier(0.32,0.72,0,1)",
+                }}
+              />
+
+              {/* véu que escurece as lâminas não-ativas */}
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.12) 45%, rgba(10,10,10,0.3) 100%)",
+                  opacity: isActive ? 0.55 : 1,
+                  transition: "opacity 600ms cubic-bezier(0.32,0.72,0,1)",
+                }}
+              />
+
+              {/* code vertical — estado fechado */}
+              <span
+                className="cred-mono absolute uppercase"
+                style={{
+                  top: 14,
+                  right: 12,
+                  fontSize: 9,
+                  writingMode: "vertical-rl",
+                  letterSpacing: "0.28em",
+                  color: "rgba(245,245,245,0.55)",
+                  opacity: isActive ? 0 : 1,
+                  transition: "opacity 400ms",
                 }}
               >
-                {p.nome}
-              </div>
-              <div
-                style={{
-                  color: "rgba(239,239,239,0.72)",
-                  fontStyle: "italic",
-                  fontSize: "clamp(11px, 0.85vw, 14px)",
-                  marginTop: 3,
-                  lineHeight: 1.2,
-                  overflowWrap: "break-word",
+                {p.code}
+              </span>
+
+              {/* nome + função — sempre no portrait, na lâmina aberta no desktop */}
+              <motion.div
+                className="absolute"
+                style={{ left: 18, right: 14, bottom: 16, zIndex: 2 }}
+                animate={{
+                  opacity: portrait || isActive ? 1 : 0,
+                  y: portrait || isActive ? 0 : 10,
+                  transition: { duration: 0.45, ease: EASE, delay: isActive ? 0.18 : 0 },
                 }}
               >
-                {p.funcao}
-              </div>
-            </div>
-          </motion.div>
-        ))}
+                <div
+                  style={{
+                    color: "var(--paper)",
+                    fontWeight: 700,
+                    fontSize: portrait ? "clamp(12px, 3vw, 18px)" : "clamp(16px, 1.5vw, 26px)",
+                    letterSpacing: "-0.02em",
+                    lineHeight: 1.02,
+                    whiteSpace: portrait ? "normal" : "nowrap",
+                  }}
+                >
+                  {p.nome.toLowerCase()}.
+                </div>
+                <div
+                  className="cred-mono uppercase"
+                  style={{
+                    fontSize: 9.5,
+                    letterSpacing: "0.2em",
+                    color: "rgba(245,245,245,0.6)",
+                    marginTop: 6,
+                    whiteSpace: portrait ? "normal" : "nowrap",
+                  }}
+                >
+                  {p.funcao}
+                </div>
+              </motion.div>
+            </motion.div>
+          )
+        })}
       </div>
+
     </div>
   )
 }

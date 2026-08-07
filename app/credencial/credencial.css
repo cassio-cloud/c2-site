@@ -1,0 +1,315 @@
+/* ═══════════════════════════════════════════════════════════════════
+ * CREDENCIAL — sistema visual v2
+ *
+ * Tokens do Brandbook v2.0 (02/ago/2026), SEM o tech-yellow.
+ * Escopados em `.cred-root` de propósito: o `globals.css` é
+ * compartilhado com a home, /trabalho e /admin — redefinir `:root`
+ * repintaria o site inteiro. Aqui, nada vaza pra fora da apresentação.
+ * ═══════════════════════════════════════════════════════════════════ */
+
+.cred-root {
+  /* ── superfícies ── */
+  --black:  #0a0a0a;  /* o fundo mais profundo — capa, dividers */
+  --ink:    #151515;  /* superfície padrão */
+  --ink-2:  #1c1c1c;
+  --ink-3:  #232323;
+  --paper:  #f5f5f5;
+  --grey:   #6b6b6b;
+
+  /* ── acento ──
+   * Âmbar é o ÚNICO acento e vive só dentro da imagem: luz, grading,
+   * refração. Nunca bloco chapado de cor, nunca texto, nunca UI.
+   * (Brandbook v2.0 §07. O tech-yellow ficou de fora a pedido.) */
+  --amber: #e0531f;
+
+  /* ── escala de mudo, reconstruída sobre paper #f5f5f5 ── */
+  --mute-1: rgba(245, 245, 245, 0.88);
+  --mute-2: rgba(245, 245, 245, 0.55);
+  --mute-3: rgba(245, 245, 245, 0.32);
+  --mute-4: rgba(245, 245, 245, 0.16);
+
+  /* ── fios: 10% e 22%, como manda o brandbook ── */
+  --line-10: rgba(245, 245, 245, 0.10);
+  --line-22: rgba(245, 245, 245, 0.22);
+
+  /* ── espelho para slides claros ── */
+  --ink-mute-1: rgba(21, 21, 21, 0.88);
+  --ink-mute-2: rgba(21, 21, 21, 0.55);
+  --ink-mute-3: rgba(21, 21, 21, 0.32);
+  --ink-mute-4: rgba(21, 21, 21, 0.16);
+  --ink-line-10: rgba(21, 21, 21, 0.10);
+  --ink-line-22: rgba(21, 21, 21, 0.22);
+
+  /* ── grid e ritmo ── */
+  --cred-margin: clamp(20px, 5vw, 96px); /* margem 5% do brandbook */
+  --baseline: 8px;
+
+  /* ── easing ──
+   * out: massa na saída, cauda rápida na entrada (Apple/Linear-tier)
+   * glass: usada nas varreduras de refração — começa preguiçosa */
+  --ease-out:   cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-in:    cubic-bezier(0.6, 0, 0.85, 0.35);
+  --ease-glass: cubic-bezier(0.65, 0, 0.35, 1);
+
+  background: var(--black);
+  color: var(--paper);
+  /* o chuvisco global mistura só com o deck, nunca com a página */
+  isolation: isolate;
+}
+
+/* Slides claros invertem a base sem trocar os nomes das variáveis.
+ * Vale no próprio root e em qualquer descendente que carregue o
+ * atributo — o tema muda por slide, dentro do root. */
+.cred-root[data-theme="light"],
+.cred-root [data-theme="light"] {
+  --mute-1: var(--ink-mute-1);
+  --mute-2: var(--ink-mute-2);
+  --mute-3: var(--ink-mute-3);
+  --mute-4: var(--ink-mute-4);
+  --line-10: var(--ink-line-10);
+  --line-22: var(--ink-line-22);
+}
+
+/* ═══════════════════════ CHUVISCO ═══════════════════════
+ * Grain de projeção, não textura de papel: um tile de ruído que
+ * pula em `steps(6)` — o quadro treme, o pixel não. É a camada que
+ * costura todos os slides pretos num filme só.
+ *
+ * O ruído é neutro (cinza) e entra em `screen` sobre o preto: a
+ * partícula acende na MESMA cor do fundo, sem tingir. No claro,
+ * inverte e multiplica — mesma leitura, sinal trocado.
+ *
+ * A curva do `feComponentTransfer` é o detalhe que importa. Ruído de
+ * média alta em `screen` LEVANTA o preto: o slide de texto fica
+ * visivelmente mais claro que o resto do deck. A curva 2.2/-1.25
+ * satura 78% do campo em preto puro — essa parte não soma nada — e
+ * deixa só os picos acenderem. Medido: o fundo sai de 10 para 13 em
+ * 255 (invisível) e a partícula mais forte chega a +32 (visível).
+ * Mexer no slope sem refazer essa conta traz o cinza de volta.
+ * ═══════════════════════════════════════════════════════════════ */
+
+.cred-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0.15;
+  mix-blend-mode: screen;
+  background-repeat: repeat;
+  background-size: 220px 220px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='c' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncR type='linear' slope='2.2' intercept='-1.25'/><feFuncG type='linear' slope='2.2' intercept='-1.25'/><feFuncB type='linear' slope='2.2' intercept='-1.25'/><feFuncA type='linear' slope='0' intercept='1'/></feComponentTransfer></filter><rect width='100%25' height='100%25' filter='url(%23c)'/></svg>");
+  /* o quadro pula, o elemento não se move: sem layer superdimensionada
+   * e sem transform, o `screen` compõe certo em qualquer GPU */
+  animation: cred-chuvisco 0.72s steps(1, end) infinite;
+}
+
+/* A camada global — uma só, por cima do deck inteiro. Só acende nos
+ * slides de texto e na capa: sobre foto e vídeo o grão compete com a
+ * imagem, que é o nosso produto. Acende e apaga em fade, para a troca
+ * de slide não estalar. */
+.cred-grain[data-fixed="1"] {
+  position: fixed;
+  z-index: 55;
+  opacity: 0;
+  transition: opacity 700ms var(--ease-out);
+}
+.cred-grain[data-fixed="1"][data-on="1"] {
+  opacity: 0.17;
+}
+
+/* No claro o sinal inverte: partícula escura, multiplicando. */
+.cred-root[data-theme="light"] .cred-grain,
+.cred-root [data-theme="light"] .cred-grain {
+  mix-blend-mode: multiply;
+  filter: invert(1);
+}
+.cred-root[data-theme="light"] .cred-grain[data-fixed="1"][data-on="1"],
+.cred-root [data-theme="light"] .cred-grain[data-fixed="1"][data-on="1"] {
+  opacity: 0.2;
+}
+
+/* oito posições sorteadas do mesmo tile — a 0.72s dá ~11 quadros por
+ * segundo, a cadência de grão de projeção. */
+@keyframes cred-chuvisco {
+  0%   { background-position:    0px    0px; }
+  12%  { background-position:  -47px   31px; }
+  25%  { background-position:   23px  -68px; }
+  37%  { background-position:  -83px  -19px; }
+  50%  { background-position:   61px   57px; }
+  62%  { background-position:  -29px   92px; }
+  75%  { background-position:   95px  -41px; }
+  87%  { background-position:  -66px  -85px; }
+  100% { background-position:    0px    0px; }
+}
+
+/* ═══════════════════════ TEXTURA ═══════════════════════ */
+
+/* Bloom — fonte de luz âmbar que respira atrás do conteúdo.
+ * Não é fundo colorido: é luz. Fica sempre abaixo do texto e
+ * sempre em `screen`, para nunca virar bloco chapado. */
+.cred-bloom {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  mix-blend-mode: screen;
+  will-change: opacity, transform;
+}
+
+@keyframes cred-breathe {
+  0%,
+  100% { opacity: 0.55; transform: scale(1) translate3d(0, 0, 0); }
+  50%  { opacity: 0.85; transform: scale(1.08) translate3d(0, -1.5%, 0); }
+}
+.cred-bloom[data-breathe="1"] {
+  animation: cred-breathe 14s var(--ease-glass) infinite;
+}
+
+/* ═══════════════════════ LINHA DE SERVIÇO ═══════════════════════
+ * A linha é a unidade: fio, índice, título. O hover abre a linha
+ * (a descrição desce) e acende a imagem na lateral. O título rola —
+ * a cópia sobe desfocando, a de baixo entra limpa.
+ * ═══════════════════════════════════════════════════════════════ */
+
+.cred-row {
+  position: relative;
+  cursor: default;
+}
+
+/* varredura de luz que corre o fio quando a linha acende */
+.cred-row-luz {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(245, 245, 245, 0.62);
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 760ms var(--ease-out);
+}
+.cred-row[data-on="1"] .cred-row-luz {
+  transform: scaleX(1);
+}
+
+/* rolagem do título — dois exemplares, um sai desfocando, outro entra */
+.cred-roll {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+.cred-roll > span {
+  display: block;
+  transition:
+    transform 680ms var(--ease-out),
+    filter 680ms var(--ease-out);
+  will-change: transform, filter;
+}
+.cred-roll > .cred-roll-b {
+  position: absolute;
+  inset: 0;
+  transform: translateY(106%);
+  filter: blur(5px);
+}
+.cred-row[data-on="1"] .cred-roll > .cred-roll-a {
+  transform: translateY(-106%);
+  filter: blur(5px);
+}
+.cred-row[data-on="1"] .cred-roll > .cred-roll-b {
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* o sinal (+) na ponta da linha — gira meia volta ao abrir */
+.cred-row-sinal {
+  transition:
+    transform 680ms var(--ease-out),
+    opacity 480ms var(--ease-out),
+    border-color 480ms var(--ease-out);
+  opacity: 0.38;
+}
+.cred-row[data-on="1"] .cred-row-sinal {
+  transform: rotate(135deg);
+  opacity: 1;
+  border-color: var(--line-22);
+}
+
+/* ═══════════════════════ CANVAS VIVO ═══════════════════════
+ * Pulsos de luz que correm os fios da prancheta (slide estrutura,
+ * fundo claro). O pulso é um filho do próprio fio: herda posição e
+ * comprimento, e o loop nunca desalinha da linha. */
+
+.cred-pulso-h {
+  position: absolute;
+  top: 0;
+  height: 1px;
+  width: 13%;
+  background: linear-gradient(
+    90deg,
+    rgba(13, 13, 13, 0) 0%,
+    rgba(13, 13, 13, 0.55) 50%,
+    rgba(13, 13, 13, 0) 100%
+  );
+  animation: cred-pulso-h 9s linear infinite;
+}
+@keyframes cred-pulso-h {
+  from { left: -14%; }
+  to   { left: 114%; }
+}
+
+.cred-pulso-v {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 15%;
+  background: linear-gradient(
+    180deg,
+    rgba(13, 13, 13, 0) 0%,
+    rgba(13, 13, 13, 0.5) 50%,
+    rgba(13, 13, 13, 0) 100%
+  );
+  animation: cred-pulso-v 11s linear infinite;
+}
+@keyframes cred-pulso-v {
+  from { top: -16%; }
+  to   { top: 116%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cred-pulso-h,
+  .cred-pulso-v { animation: none; opacity: 0; }
+}
+
+/* ═══════════════════════ TIPO ═══════════════════════ */
+
+/* O `Cr` itálico do contentCraft — a assinatura do craft.
+ * Único itálico permitido no sistema (Brandbook v2.0). */
+.cred-cr {
+  font-style: italic;
+}
+
+/* Headline institucional: caixa baixa com ponto final. */
+.cred-display {
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-transform: lowercase;
+}
+
+.cred-mono {
+  font-family: var(--font-mono-jb), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--mute-2);
+}
+
+/* ═══════════════════════ ACESSIBILIDADE ═══════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .cred-grain { animation: none; }
+  .cred-bloom[data-breathe="1"] { animation: none; }
+  .cred-root * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

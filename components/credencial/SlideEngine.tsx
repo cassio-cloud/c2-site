@@ -1,16 +1,17 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react"
-import { AnimatePresence } from "motion/react"
+import { AnimatePresence, motion } from "motion/react"
 import { cases } from "@/data/credencial/cases"
 import { iaCases } from "@/data/credencial/ia"
 import { SlideFrame } from "./SlideFrame"
 import { SlideProgress } from "./SlideProgress"
 import { AudioProvider, useAudio } from "./audio"
+import { preloadAll } from "./preload"
 import { SlideTransition, type TransitionVariant } from "./SlideTransition"
+import type { SweepFrom } from "./Refraction"
 import { SlideCapa } from "./slides/SlideCapa"
 import { SlideReel } from "./slides/SlideReel"
-import { SlideMoodboard } from "./slides/SlideMoodboard"
 import { SlideManifesto } from "./slides/SlideManifesto"
 import { SlideServicos } from "./slides/SlideServicos"
 import { SlideDivider } from "./slides/SlideDivider"
@@ -19,7 +20,6 @@ import { SlideIAManifesto } from "./slides/SlideIAManifesto"
 import { SlideIACase } from "./slides/SlideIACase"
 import { SlideEstrutura } from "./slides/SlideEstrutura"
 import { SlideTime } from "./slides/SlideTime"
-import { SlideFogs } from "./slides/SlideFogs"
 import { SlideClientes } from "./slides/SlideClientes"
 import { SlideContato } from "./slides/SlideContato"
 
@@ -29,50 +29,83 @@ type SlideDef = {
   variant?: TransitionVariant
   /** Esconde header/footer (moldura) e a progress bar — usado na capa. */
   hideFrame?: boolean
+  /** Nome da seção — vai no topo direito da moldura. */
+  secao?: string
+  /** Índice aceso na régua de formatos do rodapé. */
+  formato?: number
+  /** Lado de onde a varredura do `veil` entra — um lado por capítulo. */
+  veilFrom?: SweepFrom
+  /** Origem do zoom do `dive` — centro do tile/foto em que se entra. */
+  diveOrigin?: string
+  /**
+   * Segura a navegação por N ms ao avançar DESTE slide: o engine
+   * dispara `cred:capa-leave`, o slide roda a própria coreografia de
+   * saída (ponto viaja e abre), e só então a troca acontece.
+   */
+  exitHold?: number
+  /**
+   * Chuvisco ligado. Padrão: ligado — os slides de texto e a capa
+   * vivem dele. Desligado nos slides que são imagem (reel, cases,
+   * time), onde o grão competiria com a foto.
+   */
+  grao?: boolean
 }
 
 const slides: SlideDef[] = [
-  { render: () => <SlideCapa />, theme: "dark", hideFrame: true, variant: "fade" },
-  { render: () => <SlideReel />, theme: "dark" },
-  { render: () => <SlideMoodboard />, theme: "dark" },
-  { render: () => <SlideManifesto />, theme: "light" },
-  { render: () => <SlideServicos />, theme: "light" },
+  { render: () => <SlideCapa />, theme: "dark", hideFrame: true, variant: "fade", exitHold: 1250 },
+  { render: () => <SlideReel />, theme: "dark", variant: "still", secao: "reel", formato: 3, grao: false },
+  { render: () => <SlideManifesto />, theme: "light", variant: "dive", diveOrigin: "80% 27%", secao: "manifesto" },
+  { render: () => <SlideServicos />, theme: "dark", variant: "fade", secao: "o que fazemos" },
 
-  // — trabalho (prova) —
+  // — trabalho (prova) — a varredura entra da esquerda
   {
     render: () => <SlideDivider label="03 · TRABALHO" titulo="trabalho." bg="dark" />,
     theme: "dark",
-    variant: "fade",
+    variant: "veil",
+    veilFrom: "left",
+    secao: "trabalho",
   },
   ...cases.map((c) => ({
     render: () => <SlideCase case={c} />,
     theme: "dark" as const,
+    variant: "mask" as const,
+    secao: "trabalho",
+    formato: 3,
+    grao: false,
   })),
 
-  // — ia (diferencial) —
+  // — ia (diferencial) — a varredura desce de cima
   {
     render: () => <SlideDivider label="04 · IA" titulo="ia." bg="dark" glow />,
     theme: "dark",
-    variant: "fade",
+    variant: "veil",
+    veilFrom: "top",
+    secao: "ia",
   },
-  { render: () => <SlideIAManifesto />, theme: "dark" },
+  { render: () => <SlideIAManifesto />, theme: "dark", variant: "type", secao: "ia" },
   ...iaCases.map((ia) => ({
     render: () => <SlideIACase ia={ia} />,
     theme: "dark" as const,
+    variant: "mask" as const,
+    secao: "ia",
+    formato: 3,
+    grao: false,
   })),
 
   // — a empresa (confiança): estrutura · time · clientes —
+  // a varredura sobe de baixo
   {
     render: () => <SlideDivider label="05 · A EMPRESA" titulo="a empresa." bg="light" />,
     theme: "light",
-    variant: "fade",
+    variant: "veil",
+    veilFrom: "bottom",
+    secao: "a empresa",
   },
-  { render: () => <SlideEstrutura />, theme: "light" },
-  { render: () => <SlideTime />, theme: "light" },
-  { render: () => <SlideFogs />, theme: "dark" },
-  { render: () => <SlideClientes />, theme: "dark" },
+  { render: () => <SlideEstrutura />, theme: "light", secao: "a empresa" },
+  { render: () => <SlideTime />, theme: "dark", variant: "mask", secao: "a empresa", grao: false },
+  { render: () => <SlideClientes />, theme: "dark", variant: "depth", secao: "clientes" },
 
-  { render: () => <SlideContato />, theme: "dark" },
+  { render: () => <SlideContato />, theme: "dark", variant: "type", secao: "contato" },
 ]
 
 const TOTAL = slides.length
@@ -87,6 +120,22 @@ export function SlideEngine() {
 
 function SlideEngineInner() {
   const { muted, toggle: toggleAudio } = useAudio()
+
+  // ── preloader: carrega tudo da apresentação antes de começar ──
+  const [pct, setPct] = useState(0)
+  const [ready, setReady] = useState(false)
+  useEffect(() => {
+    let alive = true
+    // tempo mínimo em tela — o loader nunca pisca
+    const minimo = new Promise((r) => setTimeout(r, 1200))
+    Promise.all([preloadAll((p) => alive && setPct(p)), minimo]).then(() => {
+      if (alive) setReady(true)
+    })
+    return () => {
+      alive = false
+    }
+  }, [])
+
   const [idx, setIdx] = useState(0)
   const [direction, setDirection] = useState<1 | -1>(1)
   const [isFs, setIsFs] = useState(false)
@@ -128,18 +177,41 @@ function SlideEngineInner() {
     }
   }, [])
 
+  // refs pro exitHold: idx corrente sem stale closure + trava de replay
+  const idxRef = useRef(0)
+  useEffect(() => {
+    idxRef.current = idx
+  }, [idx])
+  const holdRef = useRef(false)
+
   const goTo = useCallback((next: number, dir: 1 | -1) => {
-    if (next < 0 || next >= TOTAL) return
+    if (next < 0 || next >= TOTAL || holdRef.current) return
     setDirection(dir)
     setIdx(next)
   }, [])
 
   const next = useCallback(() => {
+    if (holdRef.current) return
+    const i = idxRef.current
+    if (i >= TOTAL - 1) return
+    const hold = slides[i].exitHold
+    if (hold) {
+      // coreografia de saída: avisa o slide, espera, então troca
+      holdRef.current = true
+      window.dispatchEvent(new Event("cred:capa-leave"))
+      setTimeout(() => {
+        holdRef.current = false
+        setDirection(1)
+        setIdx(i + 1)
+      }, hold)
+      return
+    }
     setDirection(1)
-    setIdx((i) => (i < TOTAL - 1 ? i + 1 : i))
+    setIdx(i + 1)
   }, [])
 
   const prev = useCallback(() => {
+    if (holdRef.current) return
     setDirection(-1)
     setIdx((i) => (i > 0 ? i - 1 : i))
   }, [])
@@ -193,7 +265,9 @@ function SlideEngineInner() {
   return (
     <div
       ref={rootRef}
-      className="relative h-full w-full select-none bg-ink"
+      className="relative h-full w-full select-none"
+      data-theme={theme}
+      style={{ background: theme === "dark" ? "var(--black)" : "var(--paper)" }}
       onClick={onClick}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
@@ -201,14 +275,83 @@ function SlideEngineInner() {
       {!current.hideFrame && (
         <>
           <SlideProgress idx={idx} total={TOTAL} theme={theme} />
-          <SlideFrame idx={idx} total={TOTAL} theme={theme} />
+          <SlideFrame idx={idx} total={TOTAL} theme={theme} secao={current.secao} />
         </>
       )}
 
-      <AnimatePresence initial={false}>
-        <SlideTransition key={idx} direction={direction} variant={current.variant}>
-          {current.render()}
-        </SlideTransition>
+      {ready && (
+        <AnimatePresence initial={false}>
+          <SlideTransition
+            key={idx}
+            direction={direction}
+            variant={current.variant}
+            veilFrom={current.veilFrom}
+            diveOrigin={current.diveOrigin}
+          >
+            {current.render()}
+          </SlideTransition>
+        </AnimatePresence>
+      )}
+
+      {/* ── CHUVISCO — uma camada só, por cima do deck inteiro.
+           É o que costura capa, cases e dividers num filme só; cada
+           slide não carrega mais o seu. ── */}
+      <div
+        className="cred-grain"
+        data-fixed="1"
+        data-on={current.grao === false ? "0" : "1"}
+        aria-hidden
+      />
+
+      {/* ── LOADER — uma linha atravessando a tela + número mínimo ── */}
+      <AnimatePresence>
+        {!ready && (
+          <motion.div
+            key="cred-loader"
+            className="absolute inset-0 z-[200] overflow-hidden"
+            style={{ background: "var(--black)" }}
+            exit={{ y: "-100%", transition: { duration: 0.75, ease: [0.65, 0, 0.35, 1] } }}
+          >
+            {/* número — discreto, na margem direita, acima da linha */}
+            <span
+              className="font-mono"
+              style={{
+                position: "absolute",
+                right: "var(--cred-margin)",
+                top: "calc(50% - 26px)",
+                fontSize: 10,
+                letterSpacing: "0.22em",
+                color: "var(--mute-3)",
+                fontVariantNumeric: "tabular-nums",
+              }}
+            >
+              {String(Math.round(pct * 100)).padStart(3, "0")}
+            </span>
+
+            {/* a linha — borda a borda, no meio da tela */}
+            <div
+              style={{
+                position: "absolute",
+                left: 0,
+                right: 0,
+                top: "50%",
+                height: 1,
+                background: "var(--line-10)",
+              }}
+            >
+              <motion.div
+                animate={{ scaleX: pct }}
+                transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+                style={{
+                  height: "100%",
+                  background: "var(--paper)",
+                  transformOrigin: "left center",
+                  scaleX: 0,
+                }}
+              />
+            </div>
+          </motion.div>
+        )}
       </AnimatePresence>
 
       {/* controle de tela cheia — auto-hide, não interfere nas imagens */}

@@ -1,11 +1,13 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import { motion } from "motion/react"
 import type { Case } from "@/data/credencial/cases"
 import { SITE_URL } from "@/data/credencial/cases"
 import { Grain } from "../Grain"
 import { CredHero } from "../CredHero"
+import { VideoLightbox, BotaoAmpliar } from "../VideoLightbox"
 import { usePortrait, FACE_POSITION } from "../Editorial"
 
 const EASE = [0.32, 0.72, 0, 1] as const
@@ -14,6 +16,7 @@ type Props = { case: Case }
 
 export function SlideCase({ case: c }: Props) {
   const portrait = usePortrait()
+  const [ampliado, setAmpliado] = useState(false)
   const hasVideo = Boolean(c.video)
   // hero (grande) = vídeo, senão a 1ª imagem; resto vai no grid lateral
   // (até 6 no desktop, no máx. 3 no mobile/portrait)
@@ -97,6 +100,11 @@ export function SlideCase({ case: c }: Props) {
       >
         ver no site ↗
       </a>
+      {hasVideo && (
+        <span style={{ marginLeft: 22 }}>
+          <BotaoAmpliar onClick={() => setAmpliado(true)} />
+        </span>
+      )}
     </motion.div>
   )
 
@@ -107,11 +115,22 @@ export function SlideCase({ case: c }: Props) {
       animate={{ opacity: 1, transition: { duration: 0.7, ease: EASE } }}
     >
       {hasVideo ? (
-        <CredHero
-          src={c.video!}
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ objectPosition: FACE_POSITION }}
-        />
+        /* O filme PREENCHE o quadro — sem tarja, sem cama.
+           `center center` e não o crop de rosto: nossos filmes são
+           4:5 e 9:16, e o viés para o alto decepava o pé do quadro.
+           Quem quiser ver inteiro, amplia.
+
+           Com o ampliado aberto, a mídia daqui SAI do DOM. Mutar não
+           bastava: quando a fonte é YouTube quem toca é um <iframe>,
+           que nenhum `muted` nosso alcança — dois players do mesmo
+           filme e o áudio dobrava. Sem elemento, não há segundo som. */
+        !ampliado && (
+          <CredHero
+            src={c.video!}
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{ objectPosition: "center center" }}
+          />
+        )
       ) : (
         mainImg && (
           <Image
@@ -197,6 +216,13 @@ export function SlideCase({ case: c }: Props) {
         {Stills}
       </div>
       <Grain />
+      {hasVideo && (
+        <VideoLightbox
+          src={c.video!}
+          aberto={ampliado}
+          onFechar={() => setAmpliado(false)}
+        />
+      )}
     </div>
   )
 }

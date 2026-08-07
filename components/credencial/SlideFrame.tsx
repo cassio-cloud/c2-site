@@ -1,78 +1,94 @@
 import Image from "next/image"
+import { Asterisco } from "./Asterisco"
+
+/* ═══════════════════════════════════════════════════════════════════
+ * MOLDURA
+ *
+ * Brandbook v2.0 §08:
+ *   topo    — C2. contentCraft à esquerda · seção à direita
+ *   rodapé  — RS • SP · ✱ · contador
+ *
+ * Uma linha só embaixo, sem régua — os slides ficam com a área útil
+ * inteira e o rodapé volta a ser o da casa: Rio Grande do Sul e
+ * São Paulo assinando o canto esquerdo.
+ * ═══════════════════════════════════════════════════════════════════ */
 
 type Props = {
   idx: number
   total: number
   theme?: "dark" | "light"
+  secao?: string
 }
 
-/**
- * Moldura gráfica fixa em todos os slides:
- *   header: C2.   ·   where content   ·   2026     (linha 1px embaixo)
- *   footer: RS • SP  ·  meets craft  ·  2026 / NN  (linha 1px em cima)
- *
- * Sem réguas verticais — só duas hairlines horizontais (top e bottom),
- * como no PDF de referência.
- */
-export function SlideFrame({ idx, total, theme = "dark" }: Props) {
+export function SlideFrame({ idx, total, theme = "dark", secao }: Props) {
   const isDark = theme === "dark"
-  const line = isDark ? "rgba(239,239,239,0.18)" : "rgba(13,13,13,0.18)"
-  const mute = isDark ? "rgba(239,239,239,0.55)" : "rgba(13,13,13,0.55)"
   const pad = (n: number) => String(n).padStart(2, "0")
 
-  const barInline = "clamp(20px, 2.4vw, 44px)"
-  const barTop = "clamp(16px, 2vh, 28px)"
-  const barBottom = "clamp(16px, 2vh, 28px)"
-  const monoCSS: React.CSSProperties = {
+  const inline = "var(--cred-margin)"
+  const block = "clamp(14px, 2.2vh, 26px)"
+
+  const mono: React.CSSProperties = {
     fontFamily: "var(--font-mono-jb), ui-monospace, monospace",
     fontSize: 10,
     letterSpacing: "0.22em",
     textTransform: "lowercase",
-    color: mute,
+    color: "var(--mute-2)",
+    whiteSpace: "nowrap",
   }
 
   return (
     <>
-      {/* HEADER */}
+      {/* ── TOPO ── */}
       <div
         className="pointer-events-none fixed left-0 right-0 z-50"
-        style={{ top: barTop, paddingInline: barInline }}
+        style={{ top: block, paddingInline: inline }}
       >
         <div className="flex items-center justify-between">
           <Image
-            src="/media/credencial/c2-logo.svg"
-            alt="C2"
-            width={120}
-            height={57}
+            src={
+              isDark
+                ? "/media/credencial/brand/c2-wordmark-paper.svg"
+                : "/media/credencial/brand/c2-wordmark-ink.svg"
+            }
+            alt="C2."
+            width={182}
+            height={104}
             priority
-            style={{
-              height: 17,
-              width: "auto",
-              display: "block",
-              // SVG é #f5f5f5 (claro): mantém no dark, inverte pra escuro no light
-              filter: isDark ? "none" : "invert(1)",
-            }}
+            style={{ height: 17, width: "auto", display: "block" }}
           />
-          <span style={monoCSS}>where content</span>
-          <span style={monoCSS}>2026</span>
+          {secao && (
+            <span style={{ ...mono, textTransform: "uppercase" }}>{secao}</span>
+          )}
         </div>
         <div
-          style={{ marginTop: 10, height: 1, background: line, width: "100%" }}
+          style={{
+            marginTop: 10,
+            height: 1,
+            background: "var(--line-22)",
+            width: "100%",
+          }}
         />
       </div>
 
-      {/* FOOTER */}
+      {/* ── RODAPÉ — RS • SP · ✱ · contador ── */}
       <div
         className="pointer-events-none fixed left-0 right-0 z-50"
-        style={{ bottom: barBottom, paddingInline: barInline }}
+        style={{ bottom: block, paddingInline: inline }}
       >
         <div
-          style={{ marginBottom: 10, height: 1, background: line, width: "100%" }}
+          style={{
+            marginBottom: 9,
+            height: 1,
+            background: "var(--line-22)",
+            width: "100%",
+          }}
         />
         <div className="flex items-center justify-between">
-          <span style={{ ...monoCSS, textTransform: "uppercase" }}>RS • SP</span>
-          <span style={monoCSS}>meets craft</span>
-          <span style={monoCSS}>
+          <span style={{ ...mono, textTransform: "uppercase" }}>RS • SP</span>
+
+          <Asterisco size={11} style={{ color: "var(--mute-3)", flexShrink: 0 }} />
+
+          <span style={mono}>
             {pad(idx + 1)} / {pad(total)}
           </span>
         </div>

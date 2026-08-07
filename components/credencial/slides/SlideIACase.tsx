@@ -1,11 +1,13 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import { motion } from "motion/react"
 import type { IACase } from "@/data/credencial/ia"
 import { SITE_URL } from "@/data/credencial/ia"
 import { Grain } from "../Grain"
 import { CredHero } from "../CredHero"
+import { VideoLightbox, BotaoAmpliar } from "../VideoLightbox"
 import { usePortrait, FACE_POSITION } from "../Editorial"
 
 const EASE = [0.32, 0.72, 0, 1] as const
@@ -14,6 +16,7 @@ type Props = { ia: IACase }
 
 export function SlideIACase({ ia }: Props) {
   const portrait = usePortrait()
+  const [ampliado, setAmpliado] = useState(false)
   const maxStills = portrait ? 3 : 6
   const stills = (ia.imagens ?? []).slice(0, maxStills)
   const hasStills = stills.length > 0
@@ -80,6 +83,9 @@ export function SlideIACase({ ia }: Props) {
       >
         ver no site ↗
       </a>
+      <span style={{ marginLeft: 22 }}>
+        <BotaoAmpliar onClick={() => setAmpliado(true)} />
+      </span>
     </motion.div>
   )
 
@@ -89,11 +95,16 @@ export function SlideIACase({ ia }: Props) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.7, ease: EASE } }}
     >
-      <CredHero
-        src={ia.video}
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ objectPosition: "center center" }}
-      />
+      {/* Preenche o quadro, sem tarja. Para ver o filme 9:16 inteiro,
+          o botão "ampliar" abre em tela cheia — e com ele aberto a
+          mídia daqui sai do DOM, senão tocariam dois players. */}
+      {!ampliado && (
+        <CredHero
+          src={ia.video}
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: "center center" }}
+        />
+      )}
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0"
         style={{
@@ -189,6 +200,11 @@ export function SlideIACase({ ia }: Props) {
       </div>
 
       <Grain />
+      <VideoLightbox
+        src={ia.video}
+        aberto={ampliado}
+        onFechar={() => setAmpliado(false)}
+      />
     </div>
   )
 }

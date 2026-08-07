@@ -1,0 +1,32 @@
+/* ═══════════════════════════════════════════════════════════════════
+ * ASTERISCO ✱
+ *
+ * Marca secundária formalizada no Brandbook v2.0 §06 — 8 pontas,
+ * 4 eixos. Path extraído do arquivo mãe (`LOGO.pdf` → `asterisco-*.svg`),
+ * não é o glifo da Helvetica.
+ *
+ * Regra: sempre na cor do texto. Por isso `fill="currentColor"`.
+ * ═══════════════════════════════════════════════════════════════════ */
+
+type Props = {
+  size?: number
+  className?: string
+  style?: React.CSSProperties
+}
+
+export function Asterisco({ size = 10, className = "", style }: Props) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="648.9 308.78 72.45 72.45"
+      fill="currentColor"
+      className={className}
+      style={style}
+      aria-hidden
+      focusable="false"
+    >
+      <path d="M721.355 349.61v-9.208l-10.199.008-20.008 2.106 15.688-12.707 7.164-7.164-6.512-6.508-7.203 7.215-12.664 15.636 2.11-20.078.003-10.129h-9.207l.004 10.196 2.106 20.011-12.703-15.687-7.164-7.164-6.512 6.508 7.215 7.207 15.64 12.664-20.078-2.11-10.133-.004v9.207l10.211-.004 20-2.105-15.691 12.707-7.164 7.16 6.512 6.512 7.207-7.215 12.66-15.64-2.11 20.078v10.132h9.207l-.007-10.199-2.106-20.012 12.707 15.688 7.16 7.168 6.512-6.512-7.215-7.207-15.637-12.66 20.079 2.11Zm0 0" />
+    </svg>
+  )
+}

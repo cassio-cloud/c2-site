@@ -115,18 +115,20 @@ export function SlideIAManifesto() {
           animate={{ opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE, delay: 0.25 } }}
           style={{
             fontFamily: SANS,
-            fontWeight: 300,
+            fontWeight: 700,
             fontSize: "clamp(34px, 5.2vw, 100px)",
             lineHeight: 0.98,
             letterSpacing: "-0.04em",
             margin: 0,
-            maxWidth: "15ch",
+            // quebras explícitas — nada de wrap por largura quebrando coluna
+            whiteSpace: "nowrap",
           }}
         >
-          não é sobre <span style={{ fontWeight: 700 }}>usar ia.</span>
+          a ia democratizou
           <br />
-          é sobre saber{" "}
-          <span style={{ fontWeight: 700 }}>quando usar.</span>
+          a produção.
+          <br />
+          <span style={{ color: "var(--mute-3)" }}>não o critério.</span>
         </motion.p>
 
         <motion.p
@@ -141,8 +143,8 @@ export function SlideIAManifesto() {
             color: "var(--mute-2)",
           }}
         >
-          Trabalhamos com IA antes dela virar assunto. Cada projeto pede uma
-          decisão diferente — técnica, não modismo.
+          Trabalhamos com IA antes dela virar assunto. Onde entrega, não onde
+          aparece — decisão técnica, não modismo.
         </motion.p>
       </div>
 

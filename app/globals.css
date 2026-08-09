@@ -111,3 +111,19 @@ html, body {
   animation: c2-spin 12s linear infinite;
   transform-origin: center;
 }
+
+/* Âncoras do menu (About → #time, Contact → #contato).
+ *
+ * O topbar é `position: fixed`, então uma seção que para em `top: 0`
+ * fica com o título escondido atrás dele. O scroll-margin faz o
+ * navegador parar abaixo do header — vale tanto pro clique quanto
+ * pra quem abre /#time direto pela URL.
+ */
+#trabalho,
+#ia,
+#estrutura,
+#clientes,
+#time,
+#contato {
+  scroll-margin-top: clamp(76px, 8vw, 104px);
+}

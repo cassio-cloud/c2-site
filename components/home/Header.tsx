@@ -35,11 +35,11 @@ export function Header() {
             }}
           >
             <NavLink href="/trabalho">Work</NavLink>
-            <NavLink href="#time">About</NavLink>
+            <NavLink href="/#time">About</NavLink>
           </nav>
 
           <Link
-            href="#contato"
+            href="/#contato"
             className="pointer-events-auto justify-self-end font-semibold text-paper transition-opacity hover:opacity-70"
             style={{
               fontSize: "clamp(14px, 1.05vw, 16px)",

@@ -4,7 +4,7 @@ import { Footer } from "@/components/home/Footer";
 import { Reveal } from "@/components/home/Reveal";
 import { FilterChips } from "@/components/work/FilterChips";
 import { WorkTile } from "@/components/work/WorkTile";
-import { readCases, filterByTag } from "@/lib/cases";
+import { readCasesCached, filterByTag } from "@/lib/cases";
 import { sizeAt } from "@/lib/work-layout";
 import { FILTER_TAGS, fmtTag, type CanonicalTag } from "@/lib/tags";
 
@@ -32,7 +32,7 @@ export default async function TrabalhoPage(props: Props) {
     ? (tag as CanonicalTag)
     : null;
 
-  const cases = await readCases();
+  const cases = await readCasesCached();
   const visible = filterByTag(cases, activeTag);
 
   // Counts por tag pra mostrar no chip

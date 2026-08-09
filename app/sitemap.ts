@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { readCases } from "@/lib/cases";
+import { readCasesCached } from "@/lib/cases";
 
 const SITE_URL = "https://c2content.com.br";
 
@@ -12,7 +12,7 @@ const SITE_URL = "https://c2content.com.br";
  * Re-gerado em build (SSG) e revalidado quando admin edita cases.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const cases = await readCases();
+  const cases = await readCasesCached();
   const now = new Date();
 
   return [

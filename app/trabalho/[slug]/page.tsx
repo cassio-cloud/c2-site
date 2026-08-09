@@ -9,7 +9,7 @@ import { Lightbox } from "@/components/work/Lightbox";
 import { CaseLd } from "@/components/seo/JsonLd";
 import { BackLink } from "@/components/work/BackLink";
 import { mediaSrc } from "@/lib/media-url";
-import { getCase, listSlugs, readCases } from "@/lib/cases";
+import { getCase, listSlugs, readCasesCached } from "@/lib/cases";
 import { fmtTag } from "@/lib/tags";
 import type { Case } from "@/lib/types";
 
@@ -70,7 +70,7 @@ export default async function CasePage(props: Props) {
   if (!c2case) notFound();
 
   // Próximo case para CTA do final
-  const all = await readCases();
+  const all = await readCasesCached();
   const idx = all.findIndex((c) => c.slug === slug);
   const next = all[(idx + 1) % all.length];
 

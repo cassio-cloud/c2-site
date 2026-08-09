@@ -8,7 +8,7 @@ import { Team } from "@/components/home/Team";
 import { Contact } from "@/components/home/Contact";
 import { Footer } from "@/components/home/Footer";
 import { OrganizationLd } from "@/components/seo/JsonLd";
-import { readSite } from "@/lib/site";
+import { readSiteCached } from "@/lib/site";
 import { mediaSrc } from "@/lib/media-url";
 
 /**
@@ -19,7 +19,7 @@ import { mediaSrc } from "@/lib/media-url";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const site = await readSite();
+  const site = await readSiteCached();
   return (
     <>
       <OrganizationLd />

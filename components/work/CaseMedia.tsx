@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { MediaItem } from "@/lib/types";
-import { mediaSrc } from "@/lib/media-url";
+import { mediaSrc, posterSrc, webSrc } from "@/lib/media-url";
 import { parseEmbedUrl } from "@/lib/embed";
 
 type Props = {
@@ -90,18 +90,25 @@ export function CaseMedia({ item, index }: Props) {
     return null;
   }
 
+  // Vídeo abre pra tocar inteiro, imagem abre ampliada — o cursor diz qual.
+  const cursor = item.type === "video" ? "cursor-pointer" : "cursor-zoom-in";
+
   return (
     <button
       ref={ref}
       type="button"
       onClick={openLb}
-      className="block w-full cursor-zoom-in bg-ink-3 transition-opacity hover:opacity-95"
+      className={`block w-full bg-ink-3 transition-opacity hover:opacity-95 ${cursor}`}
     >
       <div className="relative w-full">
         {item.type === "video" ? (
           <video
             ref={videoRef}
-            src={loaded ? mediaSrc(item.src) : undefined}
+            // Player inline roda a versão faststart (começa a tocar nos
+            // primeiros KB). O clique abre a lightbox, que entrega o
+            // arquivo original inteiro — com som e controles.
+            src={loaded ? (webSrc(item.src) ?? mediaSrc(item.src)) : undefined}
+            poster={posterSrc(item.src) ?? undefined}
             muted
             loop
             playsInline

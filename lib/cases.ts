@@ -1,10 +1,22 @@
+import { cache } from "react";
 import { cases as storage } from "./storage";
 import type { Case } from "./types";
 
-/** Leitura: Blob em prod, disco em dev. */
+/**
+ * Leitura crua — vai no Blob toda vez. É a que o admin usa, porque uma
+ * Server Action grava e o Next re-renderiza na mesma request: memoizar
+ * aqui faria o painel mostrar o estado anterior ao save.
+ */
 export async function readCases(): Promise<Case[]> {
   return await storage.read<Case[]>();
 }
+
+/**
+ * Versão memoizada por request — para as páginas públicas, que só leem.
+ * Home chamava isto duas vezes (BentoGrid + IaSection), /trabalho uma,
+ * e cada chamada era `head()` + `fetch()` no Blob.
+ */
+export const readCasesCached = cache(readCases);
 
 export async function getCase(slug: string): Promise<Case | null> {
   // Retry agressivo contra eventual consistency do Vercel Blob.

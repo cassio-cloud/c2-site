@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { readSite } from "@/lib/site";
+import { readSiteCached } from "@/lib/site";
 import { mediaSrc } from "@/lib/media-url";
 import { Reveal } from "./Reveal";
 
 export async function Clientes() {
-  const { logos } = await readSite();
+  const { logos } = await readSiteCached();
 
   return (
     <section id="clientes" className="section">

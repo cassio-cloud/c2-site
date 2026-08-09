@@ -1,10 +1,10 @@
-import { readCases } from "@/lib/cases";
+import { readCasesCached } from "@/lib/cases";
 import { HOME_IA } from "@/lib/home-layout";
 import { BentoTile } from "./BentoTile";
 import { Reveal } from "./Reveal";
 
 export async function IaSection() {
-  const cases = await readCases();
+  const cases = await readCasesCached();
   const bySlug = new Map(cases.map((c) => [c.slug, c]));
 
   return (

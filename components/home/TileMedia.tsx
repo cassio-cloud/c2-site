@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { MediaItem } from "@/lib/types";
-import { mediaSrc } from "@/lib/media-url";
+import { mediaSrc, posterSrc, previewSrc } from "@/lib/media-url";
 import { parseEmbedUrl } from "@/lib/embed";
 import { useYouTubeClipLoop } from "@/lib/youtube-clip-loop";
 
@@ -136,6 +136,11 @@ function VideoCover({ src }: { src: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
 
+  // Tile toca a versão leve; o original fica pro clique (case + lightbox).
+  // Sem variante (upload novo, ainda no Blob) cai de volta no original.
+  const tileSrc = previewSrc(src) ?? mediaSrc(src);
+  const poster = posterSrc(src) ?? undefined;
+
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -178,7 +183,8 @@ function VideoCover({ src }: { src: string }) {
     <div ref={containerRef} className="absolute inset-0">
       <video
         ref={videoRef}
-        src={shouldLoad ? mediaSrc(src) : undefined}
+        src={shouldLoad ? tileSrc : undefined}
+        poster={poster}
         className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
         muted
         loop

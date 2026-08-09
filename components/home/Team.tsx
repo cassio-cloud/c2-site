@@ -1,9 +1,9 @@
-import { readSite } from "@/lib/site";
+import { readSiteCached } from "@/lib/site";
 import { mediaSrc } from "@/lib/media-url";
 import { Reveal } from "./Reveal";
 
 export async function Team() {
-  const { team } = await readSite();
+  const { team } = await readSiteCached();
 
   return (
     <section id="time" className="section">

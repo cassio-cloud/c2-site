@@ -1,8 +1,8 @@
-import { readSite } from "@/lib/site";
+import { readSiteCached } from "@/lib/site";
 import { Reveal } from "./Reveal";
 
 export async function Contact() {
-  const { contact } = await readSite();
+  const { contact } = await readSiteCached();
 
   return (
     <section id="contato" className="section">

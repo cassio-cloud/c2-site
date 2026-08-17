@@ -70,10 +70,16 @@ function Linha({
       data-on={on ? "1" : "0"}
       onMouseEnter={onEnter}
       style={{
+        // respiro igual em cima e embaixo: o texto nunca encosta no fio
         paddingTop: portrait ? 15 : "clamp(15px, 2vh, 28px)",
-        // no horizontal cada linha vale um terço da caixa: a coluna de
-        // texto casa com a imagem e nada se move quando uma abre
-        flex: portrait ? undefined : "1 1 0",
+        paddingBottom: portrait ? 10 : "clamp(15px, 2vh, 28px)",
+        /* No horizontal a coluna casa com a altura da imagem — mas em
+         * terços iguais a linha aberta não tinha onde caber e a
+         * descrição ia parar em cima do fio de baixo. Agora a acesa
+         * puxa mais banda e as fechadas cedem; a soma continua fixa,
+         * então a coluna e a imagem seguem fechando juntas. */
+        flex: portrait ? undefined : on ? "1.6 1 0" : "1 1 0",
+        transition: "flex-grow 620ms cubic-bezier(0.32,0.72,0,1)",
         minHeight: 0,
       }}
     >
@@ -151,7 +157,6 @@ function Linha({
         <div
           style={{
             paddingTop: 12,
-            paddingBottom: portrait ? 4 : 8,
             paddingLeft: portrait ? recuo + 14 : `calc(${recuo}px + ${vao})`,
           }}
         >

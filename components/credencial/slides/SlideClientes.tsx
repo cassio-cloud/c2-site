@@ -8,12 +8,17 @@ import { Asterisco } from "../Asterisco"
 import { usePortrait } from "../Editorial"
 
 const EASE = [0.32, 0.72, 0, 1] as const
+/** Lado (em % da altura da célula) de uma marca quadrada — base da área. */
+const AREA = 52
 
 /* ═══════════════════════════════════════════════════════════════════
  * CLIENTES — a carteira inteira numa tela
  *
- * As 20 marcas visíveis ao mesmo tempo, grade 5×4 sem células nem
+ * Todas as marcas visíveis ao mesmo tempo, grade sem células nem
  * fios — só as marcas no preto, todas na mesma escala perceptual.
+ * 5 colunas até 20 marcas, 6 acima disso; a última linha, se ficar
+ * incompleta, entra centralizada (cada marca ocupa 2 trilhas de uma
+ * grade dobrada, e a sobra vira recuo dos dois lados).
  * A entrada é o evento: cada logo chega do fundo (z) em onda diagonal,
  * e depois o quadro respira parado — hover acende a marca.
  *
@@ -22,7 +27,13 @@ const EASE = [0.32, 0.72, 0, 1] as const
 
 export function SlideClientes() {
   const portrait = usePortrait()
-  const cols = portrait ? 3 : 5
+  const total = clientes.length
+  const cols = portrait ? 3 : total > 20 ? 6 : 5
+  const sobra = total % cols
+  const cheias = total - sobra
+  /** Posição na grade dobrada: 2 trilhas por marca, última linha centrada. */
+  const coluna = (i: number) =>
+    sobra && i >= cheias ? `${cols - sobra + 1 + 2 * (i - cheias)} / span 2` : "span 2"
 
   return (
     <div
@@ -33,11 +44,16 @@ export function SlideClientes() {
 
       {/* cabeçalho */}
       <div
-        className="absolute z-10 flex items-end justify-between"
+        className="absolute z-10 flex justify-between"
         style={{
           left: "var(--cred-margin)",
           right: "var(--cred-margin)",
           top: "clamp(58px, 9vh, 90px)",
+          // no retrato não cabe lado a lado: o rótulo desce para baixo do
+          // título, em vez de quebrar em duas linhas colado nele
+          flexDirection: portrait ? "column" : "row",
+          alignItems: portrait ? "flex-start" : "flex-end",
+          gap: portrait ? 10 : 0,
         }}
       >
         <motion.h2
@@ -78,7 +94,7 @@ export function SlideClientes() {
           left: "var(--cred-margin)",
           right: "var(--cred-margin)",
           bottom: "clamp(48px, 7.5vh, 72px)",
-          gridTemplateColumns: `repeat(${cols}, 1fr)`,
+          gridTemplateColumns: `repeat(${cols * 2}, 1fr)`,
           gridAutoRows: "1fr",
           columnGap: "clamp(20px, 3vw, 60px)",
           rowGap: "clamp(8px, 1.5vh, 20px)",
@@ -91,6 +107,8 @@ export function SlideClientes() {
             <motion.div
               key={logo.name}
               className="relative flex items-center justify-center"
+              // a célula vira container: cqw/cqh medem ela, não a tela
+              style={{ gridColumn: coluna(i), containerType: "size" }}
               initial={{ opacity: 0, scale: 0.86, y: 18 }}
               animate={{
                 opacity: 1,
@@ -104,11 +122,16 @@ export function SlideClientes() {
                 },
               }}
             >
+              {/* Mesma ÁREA para todas: largura ∝ √proporção (e altura
+                  ∝ 1/√proporção). Marca comprida não some, quadrada não
+                  grita. Tetos de 92% da largura e 62% da altura da célula
+                  garantem respiro em volta de qualquer uma. */}
               <div
-                className="relative h-full w-full"
+                className="relative"
                 style={{
-                  maxHeight: logo.large ? "58%" : "42%",
-                  maxWidth: "82%",
+                  width: `min(92cqw, ${(AREA * Math.sqrt(logo.ratio) * (logo.ajuste ?? 1)).toFixed(1)}cqh)`,
+                  maxHeight: "62cqh",
+                  aspectRatio: String(logo.ratio),
                 }}
               >
                 <Image

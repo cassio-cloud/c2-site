@@ -55,6 +55,7 @@ export function collectAssets(): { imagens: string[]; videos: string[] } {
   cases.forEach((c) => {
     c.imagens.forEach((i) => imagens.add(i))
     addVideo(c.video)
+    addVideo(c.insercao?.src)
   })
   iaCases.forEach((c) => {
     ;(c.imagens ?? []).forEach((i) => imagens.add(i))

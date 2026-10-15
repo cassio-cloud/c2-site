@@ -11,11 +11,50 @@ export type Case = {
   /** Todas as imagens (01 = hero quando não há vídeo). */
   imagens: string[]
   video?: string
+  /**
+   * Clipe curto de bastidor/VFX, mudo em loop, que abre o painel de
+   * fotos em largura total — ex.: o plano com a inserção de IA.
+   */
+  insercao?: { src: string; label: string }
   sobre?: string
+  /** Sem slug = case ainda sem página no site → sem "ver no site". */
   siteSlug?: string
 }
 
 export const cases: Case[] = [
+  {
+    id: "keeta",
+    cliente: "Keeta",
+    projeto: "Crias do Corre",
+    tags: ["campanha"],
+    video: "https://youtu.be/lYk-iq4uajg",
+    sobre: "Campanha com entregadores de São Paulo. Filme e foto — direção, captação e finalização C2.",
+    imagens: [
+      `${L}/keeta/01.jpg`, `${L}/keeta/02.jpg`, `${L}/keeta/03.jpg`,
+      `${L}/keeta/04.jpg`, `${L}/keeta/05.jpg`, `${L}/keeta/06.jpg`,
+    ],
+  },
+  {
+    id: "gremio-camisa3",
+    cliente: "Grêmio × New Balance",
+    projeto: "Camisa 3",
+    tags: ["campanha", "ia"],
+    video: "https://youtu.be/0uis4XJUdKg",
+    insercao: { src: `${L}/gremio-camisa3/insercao-ia.mp4`, label: "inserção ia" },
+    sobre: "Lançamento da camisa 3. Campanha com captação real e IA aplicada na composição.",
+    imagens: [
+      `${L}/gremio-camisa3/01.jpg`, `${L}/gremio-camisa3/02.jpg`, `${L}/gremio-camisa3/03.jpg`,
+    ],
+  },
+  {
+    id: "magalu",
+    cliente: "Magalu",
+    projeto: "Fiuk",
+    tags: ["conteúdo"],
+    video: "https://youtube.com/shorts/Cq7NiQ688hY",
+    sobre: "Conteúdo que acompanha o timing — da ideia à entrega em menos de 24h.",
+    imagens: [],
+  },
   {
     id: "unicred",
     cliente: "Unicred",

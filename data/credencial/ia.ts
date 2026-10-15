@@ -81,6 +81,15 @@ export const iaCases: IACase[] = [
   },
   // — híbridas —
   {
+    id: "baikal",
+    cliente: "Golden Lake",
+    projeto: "Lançamento Baikal",
+    tipo: "híbrido",
+    video: "https://youtu.be/_ZZEscSJi5I",
+    imagens: [`${L}/ia-baikal/01.jpg`, `${L}/ia-baikal/02.jpg`, `${L}/ia-baikal/03.jpg`],
+    sobre: "Lançamento imobiliário para a Multiplan. Produção híbrida — captação real combinada com IA.",
+  },
+  {
     id: "carrano-ia",
     cliente: "Carrano",
     projeto: "Summer 25",

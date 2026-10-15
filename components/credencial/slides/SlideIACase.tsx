@@ -47,7 +47,14 @@ export function SlideIACase({ ia }: Props) {
       >
         {ia.cliente.toLowerCase()}.
         {ia.projeto && (
-          <span style={{ color: "var(--mute-2)" }}> {ia.projeto.toLowerCase()}</span>
+          // o espaço fica fora: quebra entre cliente e projeto, nunca
+          // dentro do nome do projeto
+          <>
+            {" "}
+            <span style={{ color: "var(--mute-2)", whiteSpace: "nowrap" }}>
+              {ia.projeto.toLowerCase()}
+            </span>
+          </>
         )}
       </div>
       {ia.sobre && (
@@ -64,26 +71,29 @@ export function SlideIACase({ ia }: Props) {
           {ia.sobre}
         </p>
       )}
-      <a
-        href={`${SITE_URL}/trabalho/${ia.siteSlug ?? ia.id}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={(e) => e.stopPropagation()}
-        className="font-mono"
-        style={{
-          display: "inline-block",
-          marginTop: 14,
-          color: "var(--paper)",
-          fontSize: 11,
-          letterSpacing: "0.2em",
-          textTransform: "uppercase",
-          borderBottom: "1px solid var(--mute-3)",
-          paddingBottom: 3,
-        }}
-      >
-        ver no site ↗
-      </a>
-      <span style={{ marginLeft: 22 }}>
+      {ia.siteSlug && (
+        <a
+          href={`${SITE_URL}/trabalho/${ia.siteSlug}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="font-mono"
+          style={{
+            display: "inline-block",
+            marginTop: 14,
+            marginRight: 22,
+            color: "var(--paper)",
+            fontSize: 11,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            borderBottom: "1px solid var(--mute-3)",
+            paddingBottom: 3,
+          }}
+        >
+          ver no site ↗
+        </a>
+      )}
+      <span style={{ display: "inline-block", marginTop: 14 }}>
         <BotaoAmpliar onClick={() => setAmpliado(true)} />
       </span>
     </motion.div>
@@ -195,7 +205,7 @@ export function SlideIACase({ ia }: Props) {
           className="font-mono uppercase"
           style={{ color: "var(--mute-3)", fontSize: 11, letterSpacing: "0.22em" }}
         >
-          ia · {ia.siteSlug?.replace("ia-", "")}
+          ia · {ia.siteSlug?.replace("ia-", "") ?? ia.id}
         </span>
       </div>
 

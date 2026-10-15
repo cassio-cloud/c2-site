@@ -19,9 +19,15 @@ export type Case = {
   sobre?: string
   /** Sem slug = case ainda sem página no site → sem "ver no site". */
   siteSlug?: string
+  /**
+   * Fora da apresentação por ora — dados e mídia ficam aqui, prontos.
+   * Para reativar, apague a linha `standby: true`.
+   */
+  standby?: true
 }
 
-export const cases: Case[] = [
+/** Ordem do array = ordem dos slides. */
+const todos: Case[] = [
   {
     id: "keeta",
     cliente: "Keeta",
@@ -33,6 +39,7 @@ export const cases: Case[] = [
       `${L}/keeta/01.jpg`, `${L}/keeta/02.jpg`, `${L}/keeta/03.jpg`,
       `${L}/keeta/04.jpg`, `${L}/keeta/05.jpg`, `${L}/keeta/06.jpg`,
     ],
+    siteSlug: "keeta",
   },
   {
     id: "gremio-camisa3",
@@ -45,6 +52,7 @@ export const cases: Case[] = [
     imagens: [
       `${L}/gremio-camisa3/01.jpg`, `${L}/gremio-camisa3/02.jpg`, `${L}/gremio-camisa3/03.jpg`,
     ],
+    siteSlug: "gremio-camisa-3",
   },
   {
     id: "magalu",
@@ -54,16 +62,7 @@ export const cases: Case[] = [
     video: "https://youtube.com/shorts/Cq7NiQ688hY",
     sobre: "Conteúdo que acompanha o timing — da ideia à entrega em menos de 24h.",
     imagens: [],
-  },
-  {
-    id: "unicred",
-    cliente: "Unicred",
-    projeto: "ZIIN",
-    tags: ["campanha", "conteúdo"],
-    video: "https://youtu.be/Qjof_TJGwoM",
-    sobre: "Campanha de investimentos. Direção, captação e finalização C2 em estúdio próprio.",
-    siteSlug: "unicred",
-    imagens: [`${L}/unicred/01.jpg`, `${L}/unicred/02.jpg`, `${L}/unicred/03.jpg`],
+    siteSlug: "magalu-fiuk",
   },
   {
     id: "nomad",
@@ -87,6 +86,16 @@ export const cases: Case[] = [
     imagens: [
       `${L}/gollog/01.jpg`, `${L}/gollog/02.jpg`, `${L}/gollog/03.jpg`, `${L}/gollog/04.jpg`,
     ],
+  },
+  {
+    id: "unicred",
+    cliente: "Unicred",
+    projeto: "ZIIN",
+    tags: ["campanha", "conteúdo"],
+    video: "https://youtu.be/Qjof_TJGwoM",
+    sobre: "Campanha de investimentos. Direção, captação e finalização C2 em estúdio próprio.",
+    siteSlug: "unicred",
+    imagens: [`${L}/unicred/01.jpg`, `${L}/unicred/02.jpg`, `${L}/unicred/03.jpg`],
   },
   {
     id: "barrashopping",
@@ -144,6 +153,8 @@ export const cases: Case[] = [
       `${L}/yam/04.jpg`, `${L}/yam/05.jpg`,
     ],
   },
+
+  // — stand-by: fora do deck, prontos para voltar —
   {
     id: "goldenlake",
     cliente: "Golden Lake",
@@ -154,6 +165,7 @@ export const cases: Case[] = [
     imagens: [
       `${L}/golden/01.jpg`, `${L}/golden/02.jpg`, `${L}/golden/03.jpg`, `${L}/golden/04.jpg`,
     ],
+    standby: true,
   },
   {
     id: "parkshopping",
@@ -167,5 +179,9 @@ export const cases: Case[] = [
       `${L}/park/01.jpg`, `${L}/park/02.jpg`, `${L}/park/03.jpg`,
       `${L}/park/04.jpg`, `${L}/park/05.jpg`,
     ],
+    standby: true,
   },
 ]
+
+/** O que entra na apresentação — deck, preload e montagem do contato. */
+export const cases: Case[] = todos.filter((c) => !c.standby)

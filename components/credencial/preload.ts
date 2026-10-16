@@ -6,6 +6,7 @@ import { clientes } from "@/data/credencial/clientes"
 import { time } from "@/data/credencial/time"
 import { fotosServicos } from "@/data/credencial/servicos"
 import { diretores } from "@/data/credencial/diretores"
+import { REEL_EMBED, REEL_FALLBACK } from "@/data/credencial/reel"
 import type { Versao } from "./decks"
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -53,6 +54,9 @@ export function collectAssets(versao: Versao = "v1"): { imagens: string[]; video
     // só vídeo local — YouTube/Vimeo não dá pra aquecer daqui
     if (src && src.startsWith("/media")) videos.add(src)
   }
+
+  // o reel (slide 2) primeiro, quando é arquivo do site
+  addVideo(REEL_EMBED || REEL_FALLBACK)
 
   // diretores — nas duas versões
   diretores.forEach((d) => {

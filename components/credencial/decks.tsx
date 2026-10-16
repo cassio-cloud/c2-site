@@ -82,15 +82,10 @@ const secaoDiretores: SlideDef[] = [
   ]),
 ]
 
-/* ── V1 · /credencial — capa → diretores de cena → reel, manifesto,
- * serviços → trabalho (cases) → ia → a empresa (estrutura, time,
- * clientes) ── */
-const [capa, ...restoDaAbertura] = abertura
+/* ── V1 · /credencial — trabalho (cases) → diretores de cena → ia →
+ * a empresa (estrutura, time, clientes) ── */
 const v1: SlideDef[] = [
-  capa,
-  // os diretores logo depois da capa — o elenco abre a conversa
-  ...secaoDiretores,
-  ...restoDaAbertura,
+  ...abertura,
 
   // — trabalho (prova) — a varredura entra da esquerda
   {
@@ -107,6 +102,9 @@ const v1: SlideDef[] = [
     secao: "trabalho",
     formato: 3,
   })),
+
+  // — diretores de cena, logo depois dos trabalhos — o elenco abre
+  ...secaoDiretores,
 
   // — ia (diferencial) — a varredura desce de cima
   {

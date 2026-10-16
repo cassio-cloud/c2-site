@@ -54,13 +54,14 @@ export function collectAssets(versao: Versao = "v1"): { imagens: string[]; video
     if (src && src.startsWith("/media")) videos.add(src)
   }
 
-  if (versao === "v2") {
-    // V2: a empresa + diretores — os cases da V1 não aparecem aqui
-    diretores.forEach((d) => {
-      if (d.foto) imagens.add(d.foto)
-      d.filmes.forEach((f) => addVideo(f.video))
-    })
-  } else {
+  // diretores — nas duas versões
+  diretores.forEach((d) => {
+    if (d.foto) imagens.add(d.foto)
+    d.filmes.forEach((f) => addVideo(f.video))
+  })
+
+  // V1: cases, ia, time e clientes — a V2 não tem esses slides
+  if (versao === "v1") {
     cases.forEach((c) => {
       c.imagens.forEach((i) => imagens.add(i))
       addVideo(c.video)

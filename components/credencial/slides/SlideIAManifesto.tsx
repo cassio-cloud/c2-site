@@ -5,7 +5,8 @@ import { motion } from "motion/react"
 import { GridLines, CropMarks, IndexLabel, EASE, ghostColor } from "../Editorial"
 
 const SANS = "'Helvetica Neue', Helvetica, Arial, sans-serif"
-const INSET = "clamp(40px, 6vw, 110px)"
+// mesma margem dos outros slides (diretores, time, clientes, cases)
+const INSET = "var(--cred-margin)"
 
 function Foto({
   src,

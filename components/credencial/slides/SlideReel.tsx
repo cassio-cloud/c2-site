@@ -15,7 +15,7 @@ export function SlideReel() {
         className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
         style={{
           background:
-            "linear-gradient(to top, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0) 100%)",
+            "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%)",
         }}
       />
 

@@ -37,7 +37,7 @@ export function SlideDiretorFilme({ d, f, i }: { d: Diretor; f: Filme; i: number
         className="pointer-events-none absolute inset-x-0 bottom-0"
         style={{
           height: "42%",
-          background: "linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0) 100%)",
+          background: "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 100%)",
         }}
       />
 

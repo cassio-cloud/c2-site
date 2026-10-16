@@ -52,7 +52,38 @@ const abertura: SlideDef[] = [
   { render: () => <SlideServicos />, theme: "dark", variant: "fade", secao: "o que fazemos" },
 ]
 
-/* ── V1 · /credencial — trabalho (cases) → ia → a empresa ── */
+/**
+ * Diretores de cena: o elenco (todos), depois cada diretor — perfil +
+ * um slide por filme (até 3). Elenco e perfis no branco; os filmes no
+ * preto — a sala escurece para o cinema.
+ */
+const secaoDiretores: SlideDef[] = [
+  {
+    render: () => <SlideDiretores />,
+    theme: "light",
+    variant: "mask",
+    secao: "diretores de cena",
+  },
+  ...diretores.flatMap((d) => [
+    {
+      render: () => <SlideDiretor d={d} />,
+      // no branco: o retrato (fundo branco) se funde com a página
+      theme: "light" as const,
+      variant: "mask" as const,
+      secao: "diretores de cena",
+    },
+    ...d.filmes.slice(0, 3).map((f, i) => ({
+      render: () => <SlideDiretorFilme d={d} f={f} i={i} />,
+      theme: "dark" as const,
+      variant: "still" as const,
+      secao: "diretores de cena",
+      formato: 3,
+    })),
+  ]),
+]
+
+/* ── V1 · /credencial — trabalho (cases) → ia → a empresa (estrutura,
+ * diretores, time, clientes) ── */
 const v1: SlideDef[] = [
   ...abertura,
 
@@ -89,7 +120,7 @@ const v1: SlideDef[] = [
     formato: 3,
   })),
 
-  // — a empresa (confiança): estrutura · time · clientes —
+  // — a empresa (confiança): estrutura · diretores · time · clientes —
   // a varredura sobe de baixo
   {
     render: () => <SlideDivider label="05 · A EMPRESA" titulo="a empresa." bg="light" />,
@@ -99,16 +130,16 @@ const v1: SlideDef[] = [
     secao: "a empresa",
   },
   { render: () => <SlideEstrutura />, theme: "light", secao: "a empresa" },
-  { render: () => <SlideTime />, theme: "dark", variant: "mask", secao: "a empresa" },
+  // os diretores entram logo depois da estrutura — o elenco abre a seção
+  ...secaoDiretores,
+  { render: () => <SlideTime />, theme: "light", variant: "mask", secao: "a empresa" },
   { render: () => <SlideClientes />, theme: "dark", variant: "depth", secao: "clientes" },
 
   { render: () => <SlideContato />, theme: "dark", variant: "type", secao: "contato" },
 ]
 
 /* ── V2 · /credencial/v2 — a empresa → diretores de cena → final ──
- * O "trabalho" vira o elenco: um slide com todos, depois cada diretor
- * (perfil + um slide por filme). Elenco e perfis no branco; os filmes
- * no preto — a sala escurece para o cinema. */
+ * O "trabalho" vira o elenco de diretores. */
 const v2: SlideDef[] = [
   ...abertura,
 
@@ -128,28 +159,7 @@ const v2: SlideDef[] = [
     veilFrom: "left",
     secao: "diretores de cena",
   },
-  {
-    render: () => <SlideDiretores />,
-    theme: "light",
-    variant: "mask",
-    secao: "diretores de cena",
-  },
-  ...diretores.flatMap((d) => [
-    {
-      render: () => <SlideDiretor d={d} />,
-      // no branco: o retrato (fundo branco) se funde com a página
-      theme: "light" as const,
-      variant: "mask" as const,
-      secao: "diretores de cena",
-    },
-    ...d.filmes.slice(0, 3).map((f, i) => ({
-      render: () => <SlideDiretorFilme d={d} f={f} i={i} />,
-      theme: "dark" as const,
-      variant: "still" as const,
-      secao: "diretores de cena",
-      formato: 3,
-    })),
-  ]),
+  ...secaoDiretores,
 
   { render: () => <SlideContato />, theme: "dark", variant: "type", secao: "contato" },
 ]

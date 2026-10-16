@@ -82,7 +82,7 @@ function MontagemFundo() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to top, rgba(13,13,13,0.94) 0%, rgba(13,13,13,0.78) 38%, rgba(13,13,13,0.55) 100%)",
+            "linear-gradient(to top, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.78) 38%, rgba(0,0,0,0.55) 100%)",
         }}
       />
     </div>
@@ -93,7 +93,7 @@ export function SlideContato() {
   return (
     <div
       className="relative flex h-full w-full flex-col justify-end bg-ink text-paper"
-      style={{ paddingInline: "8vw", paddingBottom: "12vh" }}
+      style={{ paddingInline: "var(--cred-margin)", paddingBottom: "12vh" }}
     >
       <MontagemFundo />
 
@@ -179,7 +179,7 @@ export function SlideContato() {
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE, delay: 0.85 } }}
         style={{
-          right: "8vw",
+          right: "var(--cred-margin)",
           bottom: "12vh",
           width: "clamp(110px, 13vw, 210px)",
         }}

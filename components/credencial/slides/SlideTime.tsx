@@ -3,76 +3,54 @@
 import { useState } from "react"
 import { motion } from "motion/react"
 import { time } from "@/data/credencial/time"
-import { GradientBloom } from "../GradientBloom"
 import { usePortrait } from "../Editorial"
 
 const EASE = [0.32, 0.72, 0, 1] as const
 
 /* ═══════════════════════════════════════════════════════════════════
- * TIME — lâminas verticais full-bleed
+ * TIME — o mesmo desenho do elenco de diretores, no branco
  *
- * Seis retratos B&W lado a lado, cada um uma lâmina de altura total.
- * Sobem com stagger (o baralho se monta), e a lâmina sob o ponteiro
- * abre — as outras cedem espaço. Nome grande só na lâmina ativa;
- * nas demais, o code mono vertical.
+ * No branco porque os retratos do time têm fundo claro de estúdio —
+ * no preto eles viravam uma colcha de cinzas diferentes.
  *
- * Sem hierarquia entre fundador e time: todo mundo é uma lâmina igual.
+ * Retratos B&W de ponta a ponta, quase a altura toda; nome e função
+ * sempre à vista, embaixo, como numa ficha de elenco. A coluna sob o
+ * ponteiro abre e as outras cedem espaço.
+ *
+ * Sem hierarquia entre fundador e time: todo mundo é uma coluna igual.
  * ═══════════════════════════════════════════════════════════════════ */
 
 export function SlideTime() {
   const [active, setActive] = useState<number | null>(null)
-  // portrait: 6 lâminas lado a lado ficam espremidas — vira grade 3×2
+  // portrait: 6 colunas lado a lado ficam espremidas — vira grade 3×2
   const portrait = usePortrait()
 
   return (
-    <div
-      className="relative h-full w-full overflow-hidden"
-      style={{ background: "var(--black)" }}
-    >
-      <GradientBloom x={30} y={80} size={70} intensity={0.14} breathe={false} />
-
-      {/* título — faixa própria acima das lâminas, nada se sobrepõe */}
-      <div
-        className="absolute z-10 flex items-end justify-between"
+    <div className="relative h-full w-full overflow-hidden" style={{ background: "var(--paper)" }}>
+      <motion.h2
+        className="cred-display absolute z-10"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } }}
         style={{
           left: "var(--cred-margin)",
-          right: "var(--cred-margin)",
-          top: "clamp(58px, 9vh, 90px)",
+          top: "clamp(52px, 8vh, 84px)",
+          fontSize: portrait ? "clamp(30px, 9vw, 48px)" : "clamp(30px, 3.4vw, 58px)",
+          color: "var(--ink)",
+          margin: 0,
         }}
       >
-        <motion.h2
-          className="cred-display"
-          initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)",
-            transition: { duration: 0.9, ease: EASE },
-          }}
-          style={{ fontSize: "clamp(30px, 3.6vw, 60px)", color: "var(--paper)" }}
-        >
-          nosso time.
-        </motion.h2>
-        <motion.span
-          className="cred-mono uppercase"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { duration: 0.8, delay: 0.3 } }}
-          style={{ fontSize: 10, letterSpacing: "0.24em", color: "var(--mute-3)", paddingBottom: 8 }}
-        >
-          {time.length} pessoas · direção, produção e pós
-        </motion.span>
-      </div>
+        nosso time.
+      </motion.h2>
 
-      {/* lâminas — começam abaixo da faixa do título */}
       <div
         className="absolute flex"
         style={{
-          top: "clamp(124px, 19vh, 180px)",
-          left: "var(--cred-margin)",
-          right: "var(--cred-margin)",
-          bottom: "clamp(48px, 7.5vh, 72px)",
-          gap: portrait ? "clamp(6px, 1vw, 10px)" : "clamp(4px, 0.5vw, 8px)",
+          top: portrait ? "clamp(120px, 17vh, 160px)" : "clamp(118px, 18vh, 170px)",
+          left: 0,
+          right: 0,
+          bottom: portrait ? "clamp(40px, 6vh, 56px)" : "clamp(44px, 6.5vh, 64px)",
           flexWrap: portrait ? "wrap" : "nowrap",
+          rowGap: portrait ? 18 : 0,
         }}
         onMouseLeave={() => setActive(null)}
       >
@@ -82,91 +60,59 @@ export function SlideTime() {
           return (
             <motion.div
               key={p.nome}
-              className="relative min-w-0 cursor-pointer overflow-hidden"
+              className="relative flex min-w-0 cursor-pointer flex-col"
               onMouseEnter={() => !portrait && setActive(i)}
               onClick={(e) => {
-                // não deixa o clique da lâmina virar "próximo slide"
+                // a coluna abre; o clique não vira "próximo slide"
                 e.stopPropagation()
                 setActive(isActive ? null : i)
               }}
-              initial={{ y: "16%", opacity: 0 }}
+              initial={{ y: 28, opacity: 0 }}
               animate={{
                 y: 0,
                 opacity: 1,
-                flexGrow: portrait ? 1 : isActive ? 3.2 : anyActive ? 0.82 : 1,
+                flexGrow: portrait ? 1 : isActive ? 2.6 : anyActive ? 0.85 : 1,
                 transition: {
-                  y: { duration: 0.85, ease: EASE, delay: 0.12 + i * 0.08 },
-                  opacity: { duration: 0.85, ease: EASE, delay: 0.12 + i * 0.08 },
+                  y: { duration: 0.85, ease: EASE, delay: 0.1 + i * 0.07 },
+                  opacity: { duration: 0.85, ease: EASE, delay: 0.1 + i * 0.07 },
                   flexGrow: { duration: 0.65, ease: EASE },
                 },
               }}
               style={{
                 flexBasis: portrait ? "31%" : 0,
-                height: portrait ? "calc(50% - 5px)" : "100%",
+                height: portrait ? "calc(50% - 9px)" : "100%",
                 willChange: "flex-grow, transform",
               }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={p.foto}
-                alt={p.nome}
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover"
-                style={{
-                  filter: isActive
-                    ? "grayscale(100%) contrast(1.06) brightness(1.04)"
-                    : "grayscale(100%) contrast(1.05) brightness(0.72)",
-                  objectPosition: "center 20%",
-                  transition: "filter 600ms cubic-bezier(0.32,0.72,0,1)",
-                }}
-              />
+              <div className="relative min-h-0 flex-1 overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={p.foto}
+                  alt={p.nome}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  style={{ objectPosition: "center 20%", filter: "grayscale(100%) contrast(1.05)" }}
+                />
+              </div>
 
-              {/* véu que escurece as lâminas não-ativas */}
+              {/* ficha — sempre à vista, altura fixa (alinha a faixa) */}
               <div
-                className="pointer-events-none absolute inset-0"
                 style={{
-                  background:
-                    "linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.12) 45%, rgba(10,10,10,0.3) 100%)",
-                  opacity: isActive ? 0.55 : 1,
-                  transition: "opacity 600ms cubic-bezier(0.32,0.72,0,1)",
-                }}
-              />
-
-              {/* code vertical — estado fechado */}
-              <span
-                className="cred-mono absolute uppercase"
-                style={{
-                  top: 14,
-                  right: 12,
-                  fontSize: 9,
-                  writingMode: "vertical-rl",
-                  letterSpacing: "0.28em",
-                  color: "rgba(245,245,245,0.55)",
-                  opacity: isActive ? 0 : 1,
-                  transition: "opacity 400ms",
-                }}
-              >
-                {p.code}
-              </span>
-
-              {/* nome + função — sempre no portrait, na lâmina aberta no desktop */}
-              <motion.div
-                className="absolute"
-                style={{ left: 18, right: 14, bottom: 16, zIndex: 2 }}
-                animate={{
-                  opacity: portrait || isActive ? 1 : 0,
-                  y: portrait || isActive ? 0 : 10,
-                  transition: { duration: 0.45, ease: EASE, delay: isActive ? 0.18 : 0 },
+                  padding: portrait ? "8px 6px 0" : "14px 14px 0",
+                  height: portrait ? 46 : 64,
+                  flexShrink: 0,
                 }}
               >
                 <div
                   style={{
-                    color: "var(--paper)",
+                    color: "var(--ink)",
                     fontWeight: 700,
-                    fontSize: portrait ? "clamp(12px, 3vw, 18px)" : "clamp(16px, 1.5vw, 26px)",
+                    fontSize: portrait ? "clamp(10px, 2.7vw, 14px)" : "clamp(13px, 1.25vw, 22px)",
                     letterSpacing: "-0.02em",
-                    lineHeight: 1.02,
-                    whiteSpace: portrait ? "normal" : "nowrap",
+                    lineHeight: 1.05,
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
                   }}
                 >
                   {p.nome.toLowerCase()}.
@@ -174,21 +120,22 @@ export function SlideTime() {
                 <div
                   className="cred-mono uppercase"
                   style={{
-                    fontSize: 9.5,
-                    letterSpacing: "0.2em",
-                    color: "rgba(245,245,245,0.6)",
-                    marginTop: 6,
-                    whiteSpace: portrait ? "normal" : "nowrap",
+                    fontSize: 9,
+                    color: "rgba(0,0,0,0.45)",
+                    marginTop: 5,
+                    letterSpacing: "0.18em",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
                   }}
                 >
                   {p.funcao}
                 </div>
-              </motion.div>
+              </div>
             </motion.div>
           )
         })}
       </div>
-
     </div>
   )
 }

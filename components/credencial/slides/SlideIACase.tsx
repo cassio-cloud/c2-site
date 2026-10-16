@@ -28,8 +28,8 @@ export function SlideIACase({ ia }: Props) {
       className="absolute z-10"
       style={{
         bottom: "clamp(60px, 9vh, 110px)",
-        left: "clamp(32px, 5vw, 80px)",
-        right: "clamp(32px, 5vw, 80px)",
+        left: "var(--cred-margin)",
+        right: "var(--cred-margin)",
         maxWidth: portrait ? "none" : "min(48vw, 560px)",
       }}
       initial={{ opacity: 0, y: 14 }}
@@ -119,7 +119,7 @@ export function SlideIACase({ ia }: Props) {
         style={{
           height: "55%",
           background:
-            "linear-gradient(to top, rgba(13,13,13,0.92) 0%, rgba(13,13,13,0) 100%)",
+            "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 100%)",
         }}
       />
       {TextBlock}
@@ -189,8 +189,8 @@ export function SlideIACase({ ia }: Props) {
       <div
         className="absolute z-20 flex items-center justify-between"
         style={{
-          left: "clamp(32px, 5vw, 80px)",
-          right: "clamp(32px, 5vw, 80px)",
+          left: "var(--cred-margin)",
+          right: "var(--cred-margin)",
           top: "clamp(72px, 9vh, 112px)",
         }}
       >

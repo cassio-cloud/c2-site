@@ -48,7 +48,8 @@ export function SlideClientes() {
         style={{
           left: "var(--cred-margin)",
           right: "var(--cred-margin)",
-          top: "clamp(58px, 9vh, 90px)",
+          // mesma altura e corpo do título dos diretores e do time
+          top: "clamp(52px, 8vh, 84px)",
           // no retrato não cabe lado a lado: o rótulo desce para baixo do
           // título, em vez de quebrar em duas linhas colado nele
           flexDirection: portrait ? "column" : "row",
@@ -65,7 +66,7 @@ export function SlideClientes() {
             filter: "blur(0px)",
             transition: { duration: 0.9, ease: EASE },
           }}
-          style={{ fontSize: "clamp(30px, 3.6vw, 60px)", color: "var(--paper)" }}
+          style={{ fontSize: "clamp(30px, 3.4vw, 58px)", color: "var(--paper)", margin: 0 }}
         >
           clientes.
         </motion.h2>

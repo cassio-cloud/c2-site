@@ -258,7 +258,7 @@ function Lateral({
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "linear-gradient(to top, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.06) 48%, rgba(10,10,10,0) 100%)",
+                "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.06) 48%, rgba(0,0,0,0) 100%)",
             }}
           />
         </div>

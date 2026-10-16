@@ -94,23 +94,19 @@ const todos: Diretor[] = [
     ],
   },
   {
-    id: "diego-lisboa",
-    nome: "Diego Lisboa",
-    foto: `${F}/diego-lisboa.jpg`,
-    frase: "histórias reais que emocionam e comunicam.",
+    id: "john-porciuncula",
+    nome: "John Porciúncula",
+    foto: `${F}/john-porciuncula.jpg`,
+    frase: "transformar ideias em experiências audiovisuais.",
     bio:
-      "Diretor de cena e cineasta baiano, com mais de 20 anos entre publicidade, documentário e ficção. Combina força visual e experimentação de linguagem com uma habilidade central: encontrar em pessoas reais histórias capazes de emocionar. Na publicidade, dirigiu para o Governo Federal e a Embratur, com agências como Propeg, Leiaute e Calia — e a campanha “Depoimentos”, do Governo da Bahia, levou Profissionais do Ano, Galo de Bronze em Gramado e o Grand Prix Bahia Recall.",
-    premios: [
-      "Profissionais do Ano",
-      "Galo de Bronze · Gramado",
-      "Grand Prix Bahia Recall",
-      "Melhor Direção e Melhor Roteiro · “Ode”",
-    ],
-    marcas: ["Governo Federal", "Embratur", "Governo da Bahia"],
+      "Diretor de cinema, publicidade, televisão e documentário. Transita entre linguagens e formatos — do conteúdo digital e do branded content ao entretenimento e a projetos internacionais — transformando conceitos em narrativas que precisam dizer alguma coisa. “Dirigir é saber o que fazer alguém sentir quando a imagem termina.”",
+    premios: ["Cannes Lions", "New York Festivals", "El Ojo", "Gramado", "Colunistas"],
+    marcas: ["P&G", "Mastercard", "Coca-Cola", "Renner"],
     filmes: [
-      { marca: "Embratur", titulo: "Amazônia", video: "https://vimeo.com/1006608110" },
-      { marca: "Governo Federal", titulo: "Mãe Gentil", video: "https://vimeo.com/893069981" },
-      { marca: "Governo da Bahia", video: "https://vimeo.com/1120172427" },
+      { marca: "Hyundai", video: "https://vimeo.com/291579979" },
+      // no Vimeo a peça se chama "Chicken Parm"
+      { marca: "Bullguer", titulo: "Máfia", video: "https://vimeo.com/1090920090" },
+      { marca: "Localiza", video: "https://vimeo.com/269678314" },
     ],
   },
   {
@@ -134,19 +130,23 @@ const todos: Diretor[] = [
     ],
   },
   {
-    id: "john-porciuncula",
-    nome: "John Porciúncula",
-    foto: `${F}/john-porciuncula.jpg`,
-    frase: "transformar ideias em experiências audiovisuais.",
+    id: "diego-lisboa",
+    nome: "Diego Lisboa",
+    foto: `${F}/diego-lisboa.jpg`,
+    frase: "histórias reais que emocionam e comunicam.",
     bio:
-      "Diretor de cinema, publicidade, televisão e documentário. Transita entre linguagens e formatos — do conteúdo digital e do branded content ao entretenimento e a projetos internacionais — transformando conceitos em narrativas que precisam dizer alguma coisa. “Dirigir é saber o que fazer alguém sentir quando a imagem termina.”",
-    premios: ["Cannes Lions", "New York Festivals", "El Ojo", "Gramado", "Colunistas"],
-    marcas: ["P&G", "Mastercard", "Coca-Cola", "Renner"],
+      "Diretor de cena e cineasta baiano, com mais de 20 anos entre publicidade, documentário e ficção. Combina força visual e experimentação de linguagem com uma habilidade central: encontrar em pessoas reais histórias capazes de emocionar. Na publicidade, dirigiu para o Governo Federal e a Embratur, com agências como Propeg, Leiaute e Calia — e a campanha “Depoimentos”, do Governo da Bahia, levou Profissionais do Ano, Galo de Bronze em Gramado e o Grand Prix Bahia Recall.",
+    premios: [
+      "Profissionais do Ano",
+      "Galo de Bronze · Gramado",
+      "Grand Prix Bahia Recall",
+      "Melhor Direção e Melhor Roteiro · “Ode”",
+    ],
+    marcas: ["Governo Federal", "Embratur", "Governo da Bahia"],
     filmes: [
-      { marca: "Hyundai", video: "https://vimeo.com/291579979" },
-      // no Vimeo a peça se chama "Chicken Parm"
-      { marca: "Bullguer", titulo: "Máfia", video: "https://vimeo.com/1090920090" },
-      { marca: "Localiza", video: "https://vimeo.com/269678314" },
+      { marca: "Embratur", titulo: "Amazônia", video: "https://vimeo.com/1006608110" },
+      { marca: "Governo Federal", titulo: "Mãe Gentil", video: "https://vimeo.com/893069981" },
+      { marca: "Governo da Bahia", video: "https://vimeo.com/1120172427" },
     ],
   },
 ]

@@ -19,7 +19,18 @@ const EASE = [0.32, 0.72, 0, 1] as const
 const TEXTO = "rgba(0,0,0,0.78)"
 const ROTULO = "rgba(0,0,0,0.42)"
 
-function Linha({ rotulo, itens, delay }: { rotulo: string; itens: string[]; delay: number }) {
+function Linha({
+  rotulo,
+  itens,
+  delay,
+  fecho,
+}: {
+  rotulo: string
+  itens: string[]
+  delay: number
+  /** Texto depois da lista — ex.: ", entre muitas outras". */
+  fecho?: string
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
@@ -30,6 +41,7 @@ function Linha({ rotulo, itens, delay }: { rotulo: string; itens: string[]; dela
         {rotulo}
       </span>
       {itens.join(" · ")}
+      {fecho && <span style={{ color: ROTULO }}>{fecho}</span>}
     </motion.div>
   )
 }
@@ -115,7 +127,7 @@ export function SlideDiretor({ d }: { d: Diretor }) {
 
             <div style={{ display: "grid", gap: 6, marginTop: portrait ? 14 : "clamp(12px, 3.6vh, 32px)" }}>
               {d.premios?.length ? <Linha rotulo="prêmios" itens={d.premios} delay={0.45} /> : null}
-              {d.marcas?.length ? <Linha rotulo="marcas" itens={d.marcas} delay={0.52} /> : null}
+              {d.marcas?.length ? <Linha rotulo="marcas" itens={d.marcas} delay={0.52} fecho=", entre muitas outras." /> : null}
             </div>
           </>
         )}

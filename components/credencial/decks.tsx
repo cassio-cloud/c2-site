@@ -82,10 +82,15 @@ const secaoDiretores: SlideDef[] = [
   ]),
 ]
 
-/* ── V1 · /credencial — trabalho (cases) → ia → a empresa (estrutura,
- * diretores, time, clientes) ── */
+/* ── V1 · /credencial — capa → diretores de cena → reel, manifesto,
+ * serviços → trabalho (cases) → ia → a empresa (estrutura, time,
+ * clientes) ── */
+const [capa, ...restoDaAbertura] = abertura
 const v1: SlideDef[] = [
-  ...abertura,
+  capa,
+  // os diretores logo depois da capa — o elenco abre a conversa
+  ...secaoDiretores,
+  ...restoDaAbertura,
 
   // — trabalho (prova) — a varredura entra da esquerda
   {
@@ -120,7 +125,7 @@ const v1: SlideDef[] = [
     formato: 3,
   })),
 
-  // — a empresa (confiança): estrutura · diretores · time · clientes —
+  // — a empresa (confiança): estrutura · time · clientes —
   // a varredura sobe de baixo
   {
     render: () => <SlideDivider label="05 · A EMPRESA" titulo="a empresa." bg="light" />,
@@ -130,8 +135,6 @@ const v1: SlideDef[] = [
     secao: "a empresa",
   },
   { render: () => <SlideEstrutura />, theme: "light", secao: "a empresa" },
-  // os diretores entram logo depois da estrutura — o elenco abre a seção
-  ...secaoDiretores,
   { render: () => <SlideTime />, theme: "light", variant: "mask", secao: "a empresa" },
   { render: () => <SlideClientes />, theme: "dark", variant: "depth", secao: "clientes" },
 

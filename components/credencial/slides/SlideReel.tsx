@@ -1,6 +1,5 @@
 "use client"
 
-import { Grain } from "../Grain"
 import { CredHero } from "../CredHero"
 import { REEL_EMBED, REEL_FALLBACK } from "@/data/credencial/reel"
 
@@ -27,7 +26,6 @@ export function SlideReel() {
         REEL 2026
       </div>
 
-      <Grain />
     </div>
   )
 }

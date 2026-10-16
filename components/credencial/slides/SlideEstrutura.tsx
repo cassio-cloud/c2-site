@@ -3,7 +3,6 @@
 import { useState } from "react"
 import Image from "next/image"
 import { motion } from "motion/react"
-import { Asterisco } from "../Asterisco"
 import { usePortrait } from "../Editorial"
 
 const EASE = [0.32, 0.72, 0, 1] as const
@@ -15,6 +14,10 @@ const EASE = [0.32, 0.72, 0, 1] as const
  * é enxuto de propósito: TRÊS horizontais e UMA vertical central,
  * full-bleed, com as cruzes de registro só onde os fios realmente
  * se cruzam. Pulsos de luz correm os fios depois de montado.
+ *
+ * Revisão: a moldura não tem mais fios — a malha daqui é o que dá
+ * estrutura ao branco. Sem o rótulo "estúdios próprios"; a faixa dos
+ * estúdios cresceu até 72vh.
  *
  * O palco é dos estúdios: a faixa de cima (a maior) é 311 + 909.
  * Os números viram uma linha compacta embaixo — 08+ anos de craft
@@ -131,8 +134,8 @@ function Cruz({ x, y, delay }: { x: string; y: string; delay: number }) {
         height: 11,
         translate: "-50% -50%",
         zIndex: 2,
-        boxShadow: "0 0 0 3px #f5f5f5",
-        background: "#f5f5f5",
+        boxShadow: "0 0 0 3px var(--paper)",
+        background: "var(--paper)",
       }}
     >
       <span style={{ ...braco, left: 0, right: 0, top: 5, height: 1 }} />
@@ -318,8 +321,8 @@ export function SlideEstrutura() {
    * apresentação já fazem o resto da moldura. */
   // Y1 abre espaço pro título — mesmo campo do grid de clientes
   const Y1 = portrait ? "clamp(110px, 16vh, 150px)" : "clamp(124px, 19vh, 180px)"
-  const Y2 = portrait ? "67vh" : "64vh"
-  const Y3 = portrait ? "88vh" : "87vh"
+  const Y2 = portrait ? "70vh" : "72vh"
+  const Y3 = portrait ? "90vh" : "90vh"
   const YMEIO = "41vh" // só retrato: divisa 311/909
   const X2 = "50%"
 
@@ -347,22 +350,6 @@ export function SlideEstrutura() {
         >
           estrutura.
         </motion.h2>
-
-        <motion.div
-          className="flex items-center gap-3 uppercase"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { duration: 0.8, delay: 0.35 } }}
-          style={{
-            fontFamily: MONO,
-            fontSize: 10,
-            letterSpacing: "0.24em",
-            color: "rgba(13,13,13,0.45)",
-            paddingBottom: 8,
-          }}
-        >
-          <Asterisco size={10} />
-          estúdios próprios
-        </motion.div>
       </div>
       {/* ── o canvas: 3 horizontais + 1 vertical, full-bleed ── */}
       <Fio delay={0.1} horizontal origem="inicio" style={{ top: Y1, left: 0, right: 0 }} />

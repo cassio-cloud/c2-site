@@ -10,13 +10,13 @@ type Props = {
 
 export function SlideProgress({ idx, total, theme = "dark" }: Props) {
   const pct = ((idx + 1) / total) * 100
-  const trackBg = theme === "dark" ? "rgba(239,239,239,0.08)" : "rgba(13,13,13,0.08)"
   const fillBg = theme === "dark" ? "rgba(239,239,239,0.55)" : "rgba(13,13,13,0.55)"
 
   return (
     <div
       className="pointer-events-none fixed left-0 right-0 top-0 z-50"
-      style={{ height: 1, background: trackBg }}
+      // sem trilho: só o traço que cresce — nenhum fio de ponta a ponta
+      style={{ height: 1 }}
     >
       <motion.div
         className="h-full"

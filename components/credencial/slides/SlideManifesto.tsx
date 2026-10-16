@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { motion } from "motion/react"
-import { GridLines, CropMarks, IndexLabel, EASE } from "../Editorial"
+import { GridLines, EASE } from "../Editorial"
 
 const SANS = "'Helvetica Neue', Helvetica, Arial, sans-serif"
 const INSET = "clamp(40px, 6vw, 110px)"
@@ -22,6 +22,10 @@ const mute = "rgba(21,21,21,0.42)"
  *   da produção à ia.           (o sussurro, em mute)
  *
  * O único itálico do sistema é o Cr — Brandbook v2.0.
+ *
+ * Só o texto, as duas fotos e a grade de colunas, no branco: sem marcas
+ * de corte, rótulos de coluna ou rodapé. A grade fica — é ela que dá
+ * estrutura ao branco agora que a moldura não tem fios.
  * ═══════════════════════════════════════════════════════════════════ */
 
 function MaskedLine({
@@ -86,8 +90,6 @@ export function SlideManifesto() {
   return (
     <div className="relative h-full w-full overflow-hidden bg-paper text-ink" data-theme="light">
       <GridLines theme="light" cols={4} inset={INSET} />
-      <CropMarks theme="light" inset={INSET} />
-
       {/* fotos editoriais — atrás do tipo */}
       <Foto
         src="/media/credencial/moodboard/mb-03.jpg"
@@ -95,9 +97,9 @@ export function SlideManifesto() {
         rotate={-2}
         style={{
           right: "calc(" + INSET + " + 2vw)",
-          top: "15%",
-          width: "clamp(120px, 14vw, 230px)",
-          height: "clamp(150px, 18vw, 300px)",
+          top: "11%",
+          width: "clamp(170px, 21vw, 400px)",
+          height: "clamp(210px, 27vw, 520px)",
         }}
       />
       <Foto
@@ -105,27 +107,13 @@ export function SlideManifesto() {
         delay={0.9}
         rotate={2.5}
         style={{
-          right: "calc(" + INSET + " + 13vw)",
-          bottom: "15%",
-          width: "clamp(100px, 11vw, 180px)",
-          height: "clamp(120px, 14vw, 230px)",
+          right: "calc(" + INSET + " + 18vw)",
+          bottom: "9%",
+          width: "clamp(130px, 15vw, 290px)",
+          height: "clamp(165px, 19vw, 370px)",
         }}
       />
 
-      {/* marcadores de grid no topo */}
-      <div
-        className="absolute z-10 flex items-center justify-between"
-        style={{ left: INSET, right: INSET, top: "clamp(48px, 8vh, 120px)" }}
-      >
-        <div style={{ display: "flex", gap: "clamp(40px, 22vw, 320px)" }}>
-          <IndexLabel theme="light">A</IndexLabel>
-          <IndexLabel theme="light">B</IndexLabel>
-          <IndexLabel theme="light">C</IndexLabel>
-        </div>
-        <IndexLabel theme="light" strong>
-          (→) manifesto
-        </IndexLabel>
-      </div>
 
       {/* o bloco — 4 linhas em escada, cada uma nascendo da baseline */}
       <div
@@ -176,18 +164,6 @@ export function SlideManifesto() {
         </MaskedLine>
       </div>
 
-      {/* rodapé editorial */}
-      <motion.div
-        className="absolute z-10 flex items-end justify-between"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { duration: 0.8, ease: EASE, delay: 0.85 } }}
-        style={{ left: INSET, right: INSET, bottom: "clamp(48px, 8vh, 120px)" }}
-      >
-        <IndexLabel theme="light">desde 2018</IndexLabel>
-        <IndexLabel theme="light" strong>
-          01 — 03
-        </IndexLabel>
-      </motion.div>
     </div>
   )
 }

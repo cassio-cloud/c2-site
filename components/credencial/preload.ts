@@ -5,6 +5,8 @@ import { iaCases } from "@/data/credencial/ia"
 import { clientes } from "@/data/credencial/clientes"
 import { time } from "@/data/credencial/time"
 import { fotosServicos } from "@/data/credencial/servicos"
+import { diretores } from "@/data/credencial/diretores"
+import type { Versao } from "./decks"
 
 /* ═══════════════════════════════════════════════════════════════════
  * PRELOAD — abre rápido, aquece o resto por baixo
@@ -43,7 +45,7 @@ const IMAGE_TIMEOUT = 6000
 const DEADLINE = 6000
 
 /** Tudo que existe na apresentação, separado por tipo. */
-export function collectAssets(): { imagens: string[]; videos: string[] } {
+export function collectAssets(versao: Versao = "v1"): { imagens: string[]; videos: string[] } {
   const imagens = new Set<string>(ESSENCIAIS)
   const videos = new Set<string>()
 
@@ -52,17 +54,25 @@ export function collectAssets(): { imagens: string[]; videos: string[] } {
     if (src && src.startsWith("/media")) videos.add(src)
   }
 
-  cases.forEach((c) => {
-    c.imagens.forEach((i) => imagens.add(i))
-    addVideo(c.video)
-    addVideo(c.insercao?.src)
-  })
-  iaCases.forEach((c) => {
-    ;(c.imagens ?? []).forEach((i) => imagens.add(i))
-    addVideo(c.video)
-  })
-  clientes.forEach((l) => imagens.add(l.src))
-  time.forEach((p) => imagens.add(p.foto))
+  if (versao === "v2") {
+    // V2: a empresa + diretores — os cases da V1 não aparecem aqui
+    diretores.forEach((d) => {
+      if (d.foto) imagens.add(d.foto)
+      d.filmes.forEach((f) => addVideo(f.video))
+    })
+  } else {
+    cases.forEach((c) => {
+      c.imagens.forEach((i) => imagens.add(i))
+      addVideo(c.video)
+      addVideo(c.insercao?.src)
+    })
+    iaCases.forEach((c) => {
+      ;(c.imagens ?? []).forEach((i) => imagens.add(i))
+      addVideo(c.video)
+    })
+    clientes.forEach((l) => imagens.add(l.src))
+    time.forEach((p) => imagens.add(p.foto))
+  }
   imagens.add("/media/credencial/estudio/311.jpg")
 
   return { imagens: Array.from(imagens), videos: Array.from(videos) }
@@ -121,8 +131,8 @@ function aquecerVideo(src: string): Promise<void> {
 }
 
 /** Fase 2: o resto, sem bloquear — imagens antes, vídeos depois. */
-async function aquecerEmSegundoPlano(jaFeitos: Set<string>) {
-  const { imagens, videos } = collectAssets()
+async function aquecerEmSegundoPlano(jaFeitos: Set<string>, versao: Versao) {
+  const { imagens, videos } = collectAssets(versao)
 
   // imagens em lotes pequenos: aquece sem estrangular a rede do slide
   const pendentes = imagens.filter((s) => !jaFeitos.has(s))
@@ -142,7 +152,10 @@ async function aquecerEmSegundoPlano(jaFeitos: Set<string>) {
  * Carrega o essencial e devolve o controle. Progresso 0–1 vale só
  * para a fase 1 — é o que o loader mostra.
  */
-export async function preloadAll(onProgress: (p: number) => void): Promise<void> {
+export async function preloadAll(
+  onProgress: (p: number) => void,
+  versao: Versao = "v1",
+): Promise<void> {
   const total = ESSENCIAIS.length
   let done = 0
   const tick = () => {
@@ -157,5 +170,5 @@ export async function preloadAll(onProgress: (p: number) => void): Promise<void>
   onProgress(1)
 
   // a partir daqui a apresentação já está no ar
-  void aquecerEmSegundoPlano(new Set(ESSENCIAIS))
+  void aquecerEmSegundoPlano(new Set(ESSENCIAIS), versao)
 }

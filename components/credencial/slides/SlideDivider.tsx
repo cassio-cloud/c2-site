@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "motion/react"
-import { Grain } from "../Grain"
 import { GridLines, CropMarks, IndexLabel, EASE, ghostColor } from "../Editorial"
 
 const SANS = "'Helvetica Neue', Helvetica, Arial, sans-serif"
@@ -101,7 +100,6 @@ export function SlideDivider({ label, titulo, bg, glow = false }: Props) {
         </motion.h1>
       </div>
 
-      {isDark && <Grain />}
     </div>
   )
 }

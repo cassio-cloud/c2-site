@@ -5,7 +5,6 @@ import Image from "next/image"
 import { motion } from "motion/react"
 import type { Case } from "@/data/credencial/cases"
 import { SITE_URL } from "@/data/credencial/cases"
-import { Grain } from "../Grain"
 import { CredHero } from "../CredHero"
 import { VideoLightbox, BotaoAmpliar } from "../VideoLightbox"
 import { usePortrait, FACE_POSITION } from "../Editorial"
@@ -165,7 +164,7 @@ export function SlideCase({ case: c }: Props) {
           <CredHero
             src={c.video!}
             className="absolute inset-0 h-full w-full object-cover"
-            style={{ objectPosition: "center center" }}
+            style={{ objectPosition: c.focoVideo ?? "center center" }}
           />
         ))
       ) : (
@@ -177,7 +176,7 @@ export function SlideCase({ case: c }: Props) {
             sizes="100vw"
             priority
             className="object-cover"
-            style={{ objectPosition: FACE_POSITION }}
+            style={{ objectPosition: c.focoFotos ?? FACE_POSITION }}
           />
         )
       )}
@@ -277,7 +276,7 @@ export function SlideCase({ case: c }: Props) {
             fill
             sizes="33vw"
             className="object-cover"
-            style={{ objectPosition: FACE_POSITION }}
+            style={{ objectPosition: c.focoFotos ?? FACE_POSITION }}
           />
         </motion.div>
       ))}
@@ -299,7 +298,6 @@ export function SlideCase({ case: c }: Props) {
         {Hero}
         {Stills}
       </div>
-      <Grain />
       {hasVideo && (
         <VideoLightbox
           src={c.video!}

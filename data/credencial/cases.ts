@@ -12,6 +12,18 @@ export type Case = {
   imagens: string[]
   video?: string
   /**
+   * Onde fica o foco do vídeo no quadro (CSS object-position; padrão
+   * "center center"). Para filme VERTICAL em quadro horizontal o corte
+   * do meio pode decepar o rosto — sobe a janela com "center 20%".
+   * Só vale para vídeo local (num embed do YouTube não há como mirar).
+   */
+  focoVideo?: string
+  /**
+   * Mesmo ajuste para as fotos do painel (padrão: FACE_POSITION,
+   * "center 28%"). Use quando os rostos ficam bem no alto da imagem.
+   */
+  focoFotos?: string
+  /**
    * Clipe curto de bastidor/VFX, mudo em loop, que abre o painel de
    * fotos em largura total — ex.: o plano com a inserção de IA.
    */
@@ -113,6 +125,9 @@ const todos: Case[] = [
     projeto: "True Love",
     tags: ["campanha", "conteúdo"],
     video: `${L}/carrano/video.mp4`,
+    // filme 9:16 e fotos verticais de corpo inteiro: rosto no terço de cima
+    focoVideo: "center 20%",
+    focoFotos: "center 12%",
     sobre: "Campanha de moda. Produção de imagem e vídeo, do conceito ao entregável.",
     siteSlug: "carrano",
     imagens: [`${L}/carrano/01.jpg`, `${L}/carrano/02.jpg`, `${L}/carrano/03.jpg`],

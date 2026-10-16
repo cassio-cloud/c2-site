@@ -5,7 +5,6 @@ import Image from "next/image"
 import { motion } from "motion/react"
 import type { IACase } from "@/data/credencial/ia"
 import { SITE_URL } from "@/data/credencial/ia"
-import { Grain } from "../Grain"
 import { CredHero } from "../CredHero"
 import { VideoLightbox, BotaoAmpliar } from "../VideoLightbox"
 import { usePortrait, FACE_POSITION } from "../Editorial"
@@ -209,7 +208,6 @@ export function SlideIACase({ ia }: Props) {
         </span>
       </div>
 
-      <Grain />
       <VideoLightbox
         src={ia.video}
         aberto={ampliado}

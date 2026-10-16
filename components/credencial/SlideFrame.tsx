@@ -1,98 +1,68 @@
 import Image from "next/image"
-import { Asterisco } from "./Asterisco"
 
 /* ═══════════════════════════════════════════════════════════════════
- * MOLDURA
+ * MOLDURA — só os cantos
  *
- * Brandbook v2.0 §08:
- *   topo    — C2. contentCraft à esquerda · seção à direita
- *   rodapé  — RS • SP · ✱ · contador
+ *   C2. ┐                    ┌
  *
- * Uma linha só embaixo, sem régua — os slides ficam com a área útil
- * inteira e o rodapé volta a ser o da casa: Rio Grande do Sul e
- * São Paulo assinando o canto esquerdo.
+ *   RS • SP ┘          └ 08 / 19
+ *
+ * A marca, a assinatura da casa e o contador, cada um num canto, com o
+ * mesmo recuo curto — e nada atravessando a tela. Sem fios de ponta a
+ * ponta, sem nome de seção: a área útil é do conteúdo.
+ *
+ * Os cantos são brancos com `mix-blend-mode: difference`: viram preto
+ * sobre o branco e branco sobre o preto sozinhos — legíveis em slide
+ * claro, escuro ou em cima de foto, sem depender do tema.
  * ═══════════════════════════════════════════════════════════════════ */
 
 type Props = {
   idx: number
   total: number
   theme?: "dark" | "light"
-  secao?: string
 }
 
-export function SlideFrame({ idx, total, theme = "dark", secao }: Props) {
-  const isDark = theme === "dark"
+/** Recuo dos cantos — mais perto da borda que a margem do conteúdo. */
+const CANTO = "clamp(14px, 1.6vw, 30px)"
+
+const MONO: React.CSSProperties = {
+  fontFamily: "var(--font-mono-jb), ui-monospace, monospace",
+  fontSize: 10,
+  letterSpacing: "0.22em",
+  color: "rgba(255,255,255,0.55)",
+  whiteSpace: "nowrap",
+  mixBlendMode: "difference",
+}
+
+export function SlideFrame({ idx, total }: Props) {
   const pad = (n: number) => String(n).padStart(2, "0")
-
-  const inline = "var(--cred-margin)"
-  const block = "clamp(14px, 2.2vh, 26px)"
-
-  const mono: React.CSSProperties = {
-    fontFamily: "var(--font-mono-jb), ui-monospace, monospace",
-    fontSize: 10,
-    letterSpacing: "0.22em",
-    textTransform: "lowercase",
-    color: "var(--mute-2)",
-    whiteSpace: "nowrap",
-  }
 
   return (
     <>
-      {/* ── TOPO ── */}
       <div
-        className="pointer-events-none fixed left-0 right-0 z-50"
-        style={{ top: block, paddingInline: inline }}
+        className="pointer-events-none fixed z-50"
+        style={{ top: CANTO, left: CANTO, mixBlendMode: "difference" }}
       >
-        <div className="flex items-center justify-between">
-          <Image
-            src={
-              isDark
-                ? "/media/credencial/brand/c2-wordmark-paper.svg"
-                : "/media/credencial/brand/c2-wordmark-ink.svg"
-            }
-            alt="C2."
-            width={182}
-            height={104}
-            priority
-            style={{ height: 17, width: "auto", display: "block" }}
-          />
-          {secao && (
-            <span style={{ ...mono, textTransform: "uppercase" }}>{secao}</span>
-          )}
-        </div>
-        <div
-          style={{
-            marginTop: 10,
-            height: 1,
-            background: "var(--line-22)",
-            width: "100%",
-          }}
+        <Image
+          src="/media/credencial/brand/c2-wordmark-paper.svg"
+          alt="C2."
+          width={182}
+          height={104}
+          priority
+          style={{ height: 17, width: "auto", display: "block" }}
         />
       </div>
 
-      {/* ── RODAPÉ — RS • SP · ✱ · contador ── */}
-      <div
-        className="pointer-events-none fixed left-0 right-0 z-50"
-        style={{ bottom: block, paddingInline: inline }}
+      <span className="pointer-events-none fixed z-50" style={{ ...MONO, bottom: CANTO, left: CANTO }}>
+        RS • SP
+      </span>
+
+      <span
+        className="pointer-events-none fixed z-50"
+        style={{ ...MONO, bottom: CANTO, right: CANTO, fontVariantNumeric: "tabular-nums" }}
       >
-        <div
-          style={{
-            marginBottom: 9,
-            height: 1,
-            background: "var(--line-22)",
-            width: "100%",
-          }}
-        />
-        <div className="flex items-center justify-between">
-          <span style={{ ...mono, textTransform: "uppercase" }}>RS • SP</span>
-
-          <Asterisco size={11} style={{ color: "var(--mute-3)", flexShrink: 0 }} />
-
-          <span style={mono}>
-            {pad(idx + 1)} / {pad(total)}
-          </span>
-        </div>
-      </div>
+        {pad(idx + 1)} / {pad(total)}
+      </span>
     </>
   )
 }

@@ -9,11 +9,17 @@
 
 .cred-root {
   /* ── superfícies ── */
-  --black:  #0a0a0a;  /* o fundo mais profundo — capa, dividers */
-  --ink:    #151515;  /* superfície padrão */
+  /* Preto e branco PUROS: os slides alternam entre um e outro, sem
+   * meio-tom de fundo. Os cinzas (ink-2/3) ficam só para placeholders. */
+  --black:  #000000;  /* fundo dos slides escuros */
+  --ink:    #000000;  /* superfície escura / texto sobre o branco */
   --ink-2:  #1c1c1c;
   --ink-3:  #232323;
-  --paper:  #f5f5f5;
+  --paper:  #ffffff;  /* fundo dos slides claros / texto sobre o preto */
+  /* as classes do Tailwind (bg-ink, bg-paper) seguem os mesmos valores
+   * aqui dentro — no site elas continuam com os tons dele */
+  --color-ink:   #000000;
+  --color-paper: #ffffff;
   --grey:   #6b6b6b;
 
   /* ── acento ──

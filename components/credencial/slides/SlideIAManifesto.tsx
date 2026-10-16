@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 import { motion } from "motion/react"
-import { Grain } from "../Grain"
 import { GridLines, CropMarks, IndexLabel, EASE, ghostColor } from "../Editorial"
 
 const SANS = "'Helvetica Neue', Helvetica, Arial, sans-serif"
@@ -174,7 +173,6 @@ export function SlideIAManifesto() {
         </motion.div>
       </div>
 
-      <Grain />
     </div>
   )
 }

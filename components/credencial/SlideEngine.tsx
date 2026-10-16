@@ -1,124 +1,26 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { AnimatePresence, motion } from "motion/react"
-import { cases } from "@/data/credencial/cases"
-import { iaCases } from "@/data/credencial/ia"
 import { SlideFrame } from "./SlideFrame"
 import { SlideProgress } from "./SlideProgress"
 import { AudioProvider, useAudio } from "./audio"
 import { preloadAll } from "./preload"
-import { SlideTransition, type TransitionVariant } from "./SlideTransition"
-import type { SweepFrom } from "./Refraction"
-import { SlideCapa } from "./slides/SlideCapa"
-import { SlideReel } from "./slides/SlideReel"
-import { SlideManifesto } from "./slides/SlideManifesto"
-import { SlideServicos } from "./slides/SlideServicos"
-import { SlideDivider } from "./slides/SlideDivider"
-import { SlideCase } from "./slides/SlideCase"
-import { SlideIAManifesto } from "./slides/SlideIAManifesto"
-import { SlideIACase } from "./slides/SlideIACase"
-import { SlideEstrutura } from "./slides/SlideEstrutura"
-import { SlideTime } from "./slides/SlideTime"
-import { SlideClientes } from "./slides/SlideClientes"
-import { SlideContato } from "./slides/SlideContato"
+import { SlideTransition } from "./SlideTransition"
+import { DECKS, type Versao } from "./decks"
 
-type SlideDef = {
-  render: () => ReactNode
-  theme: "dark" | "light"
-  variant?: TransitionVariant
-  /** Esconde header/footer (moldura) e a progress bar — usado na capa. */
-  hideFrame?: boolean
-  /** Nome da seção — vai no topo direito da moldura. */
-  secao?: string
-  /** Índice aceso na régua de formatos do rodapé. */
-  formato?: number
-  /** Lado de onde a varredura do `veil` entra — um lado por capítulo. */
-  veilFrom?: SweepFrom
-  /** Origem do zoom do `dive` — centro do tile/foto em que se entra. */
-  diveOrigin?: string
-  /**
-   * Segura a navegação por N ms ao avançar DESTE slide: o engine
-   * dispara `cred:capa-leave`, o slide roda a própria coreografia de
-   * saída (ponto viaja e abre), e só então a troca acontece.
-   */
-  exitHold?: number
-  /**
-   * Chuvisco ligado. Padrão: ligado — os slides de texto e a capa
-   * vivem dele. Desligado nos slides que são imagem (reel, cases,
-   * time), onde o grão competiria com a foto.
-   */
-  grao?: boolean
-}
-
-const slides: SlideDef[] = [
-  { render: () => <SlideCapa />, theme: "dark", hideFrame: true, variant: "fade", exitHold: 1250 },
-  { render: () => <SlideReel />, theme: "dark", variant: "still", secao: "reel", formato: 3, grao: false },
-  { render: () => <SlideManifesto />, theme: "light", variant: "dive", diveOrigin: "80% 27%", secao: "manifesto" },
-  { render: () => <SlideServicos />, theme: "dark", variant: "fade", secao: "o que fazemos" },
-
-  // — trabalho (prova) — a varredura entra da esquerda
-  {
-    render: () => <SlideDivider label="03 · TRABALHO" titulo="trabalho." bg="dark" />,
-    theme: "dark",
-    variant: "veil",
-    veilFrom: "left",
-    secao: "trabalho",
-  },
-  ...cases.map((c) => ({
-    render: () => <SlideCase case={c} />,
-    theme: "dark" as const,
-    variant: "mask" as const,
-    secao: "trabalho",
-    formato: 3,
-    grao: false,
-  })),
-
-  // — ia (diferencial) — a varredura desce de cima
-  {
-    render: () => <SlideDivider label="04 · IA" titulo="ia." bg="dark" glow />,
-    theme: "dark",
-    variant: "veil",
-    veilFrom: "top",
-    secao: "ia",
-  },
-  { render: () => <SlideIAManifesto />, theme: "dark", variant: "type", secao: "ia" },
-  ...iaCases.map((ia) => ({
-    render: () => <SlideIACase ia={ia} />,
-    theme: "dark" as const,
-    variant: "mask" as const,
-    secao: "ia",
-    formato: 3,
-    grao: false,
-  })),
-
-  // — a empresa (confiança): estrutura · time · clientes —
-  // a varredura sobe de baixo
-  {
-    render: () => <SlideDivider label="05 · A EMPRESA" titulo="a empresa." bg="light" />,
-    theme: "light",
-    variant: "veil",
-    veilFrom: "bottom",
-    secao: "a empresa",
-  },
-  { render: () => <SlideEstrutura />, theme: "light", secao: "a empresa" },
-  { render: () => <SlideTime />, theme: "dark", variant: "mask", secao: "a empresa", grao: false },
-  { render: () => <SlideClientes />, theme: "dark", variant: "depth", secao: "clientes" },
-
-  { render: () => <SlideContato />, theme: "dark", variant: "type", secao: "contato" },
-]
-
-const TOTAL = slides.length
-
-export function SlideEngine() {
+export function SlideEngine({ versao = "v1" }: { versao?: Versao }) {
   return (
     <AudioProvider>
-      <SlideEngineInner />
+      <SlideEngineInner versao={versao} />
     </AudioProvider>
   )
 }
 
-function SlideEngineInner() {
+function SlideEngineInner({ versao }: { versao: Versao }) {
+  // a versão não muda durante a sessão: deck e total são estáveis
+  const slides = DECKS[versao]
+  const TOTAL = slides.length
   const { muted, toggle: toggleAudio } = useAudio()
 
   // ── preloader: carrega tudo da apresentação antes de começar ──
@@ -128,13 +30,13 @@ function SlideEngineInner() {
     let alive = true
     // tempo mínimo em tela — o loader nunca pisca
     const minimo = new Promise((r) => setTimeout(r, 1200))
-    Promise.all([preloadAll((p) => alive && setPct(p)), minimo]).then(() => {
+    Promise.all([preloadAll((p) => alive && setPct(p), versao), minimo]).then(() => {
       if (alive) setReady(true)
     })
     return () => {
       alive = false
     }
-  }, [])
+  }, [versao])
 
   const [idx, setIdx] = useState(0)
   const [direction, setDirection] = useState<1 | -1>(1)
@@ -188,7 +90,7 @@ function SlideEngineInner() {
     if (next < 0 || next >= TOTAL || holdRef.current) return
     setDirection(dir)
     setIdx(next)
-  }, [])
+  }, [TOTAL])
 
   const next = useCallback(() => {
     if (holdRef.current) return
@@ -208,7 +110,7 @@ function SlideEngineInner() {
     }
     setDirection(1)
     setIdx(i + 1)
-  }, [])
+  }, [slides, TOTAL])
 
   const prev = useCallback(() => {
     if (holdRef.current) return
@@ -236,7 +138,7 @@ function SlideEngineInner() {
     }
     window.addEventListener("keydown", onKey)
     return () => window.removeEventListener("keydown", onKey)
-  }, [next, prev, goTo, toggleFullscreen])
+  }, [next, prev, goTo, toggleFullscreen, TOTAL])
 
   const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const w = e.currentTarget.clientWidth
@@ -275,7 +177,7 @@ function SlideEngineInner() {
       {!current.hideFrame && (
         <>
           <SlideProgress idx={idx} total={TOTAL} theme={theme} />
-          <SlideFrame idx={idx} total={TOTAL} theme={theme} secao={current.secao} />
+          <SlideFrame idx={idx} total={TOTAL} theme={theme} />
         </>
       )}
 
@@ -293,15 +195,6 @@ function SlideEngineInner() {
         </AnimatePresence>
       )}
 
-      {/* ── CHUVISCO — uma camada só, por cima do deck inteiro.
-           É o que costura capa, cases e dividers num filme só; cada
-           slide não carrega mais o seu. ── */}
-      <div
-        className="cred-grain"
-        data-fixed="1"
-        data-on={current.grao === false ? "0" : "1"}
-        aria-hidden
-      />
 
       {/* ── LOADER — uma linha atravessando a tela + número mínimo ── */}
       <AnimatePresence>

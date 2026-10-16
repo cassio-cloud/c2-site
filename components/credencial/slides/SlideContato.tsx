@@ -5,7 +5,6 @@ import Image from "next/image"
 import { AnimatePresence, motion } from "motion/react"
 import { cases } from "@/data/credencial/cases"
 import { iaCases } from "@/data/credencial/ia"
-import { Grain } from "../Grain"
 import { FACE_POSITION } from "../Editorial"
 
 const EASE = [0.2, 0.7, 0.2, 1] as const
@@ -194,7 +193,6 @@ export function SlideContato() {
         />
       </motion.div>
 
-      <Grain />
     </div>
   )
 }

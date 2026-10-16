@@ -93,7 +93,26 @@ const todos: Diretor[] = [
       { marca: "Ademicon", titulo: "Café", video: "https://vimeo.com/917292958" },
     ],
   },
-  { id: "diego-lisboa", nome: "Diego Lisboa", filmes: [], standby: true },
+  {
+    id: "diego-lisboa",
+    nome: "Diego Lisboa",
+    foto: `${F}/diego-lisboa.jpg`,
+    frase: "histórias reais que emocionam e comunicam.",
+    bio:
+      "Diretor de cena e cineasta baiano, com mais de 20 anos entre publicidade, documentário e ficção. Combina força visual e experimentação de linguagem com uma habilidade central: encontrar em pessoas reais histórias capazes de emocionar. Na publicidade, dirigiu para o Governo Federal e a Embratur, com agências como Propeg, Leiaute e Calia — e a campanha “Depoimentos”, do Governo da Bahia, levou Profissionais do Ano, Galo de Bronze em Gramado e o Grand Prix Bahia Recall.",
+    premios: [
+      "Profissionais do Ano",
+      "Galo de Bronze · Gramado",
+      "Grand Prix Bahia Recall",
+      "Melhor Direção e Melhor Roteiro · “Ode”",
+    ],
+    marcas: ["Governo Federal", "Embratur", "Governo da Bahia"],
+    filmes: [
+      { marca: "Embratur", titulo: "Amazônia", video: "https://vimeo.com/1006608110" },
+      { marca: "Governo Federal", titulo: "Mãe Gentil", video: "https://vimeo.com/893069981" },
+      { marca: "Governo da Bahia", video: "https://vimeo.com/1120172427" },
+    ],
+  },
   {
     id: "raoni-rodrigues",
     nome: "Raoni Rodrigues",

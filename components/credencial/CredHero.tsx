@@ -87,6 +87,37 @@ export function CredHero({ src, className, style }: Props) {
     }
   }, [muted, ehEmbed, tipo])
 
+  if ((source.kind === "youtube" || source.kind === "vimeo") && source.isVertical) {
+    // filme 9:16 — o player continua 16:9 (num iframe vertical o YouTube
+    // troca para o player de Shorts, com like/share por cima), mas grande
+    // o bastante para o quadro vertical do meio COBRIR o container, como
+    // o object-cover de um vídeo local. Altura do player = altura do
+    // filme: max(H, W·16/9); largura = altura·16/9. Medido pelo próprio
+    // container (cqw/cqh). Num painel 9:16 dá exatamente o filme inteiro.
+    return (
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" style={{ containerType: "size" }}>
+        <div
+          className="absolute left-1/2 top-1/2"
+          style={{
+            width: "max(calc(100cqh * 16 / 9), calc(100cqw * 256 / 81))",
+            height: "max(100cqh, calc(100cqw * 16 / 9))",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <iframe
+            ref={frameRef}
+            src={source.embedUrl}
+            title="C2"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            className="block h-full w-full"
+            style={{ border: 0 }}
+          />
+        </div>
+      </div>
+    )
+  }
+
   if (source.kind === "youtube" || source.kind === "vimeo") {
     return (
       <div className="pointer-events-none absolute inset-0 overflow-hidden">

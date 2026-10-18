@@ -28,6 +28,12 @@ export type Case = {
    * fotos em largura total — ex.: o plano com a inserção de IA.
    */
   insercao?: { src: string; label: string }
+  /**
+   * Short 9:16 sem fotos: imagem que ocupa o espaço ao lado do filme
+   * (no paisagem), em vez do preto. `focoFundo` = object-position dela.
+   */
+  fundo?: string
+  focoFundo?: string
   sobre?: string
   /** Sem slug = case ainda sem página no site → sem "ver no site". */
   siteSlug?: string
@@ -72,6 +78,9 @@ const todos: Case[] = [
     projeto: "Fiuk",
     tags: ["conteúdo"],
     video: "https://youtube.com/shorts/Cq7NiQ688hY",
+    // key visual da Loja do Fiuk — o título e o rosto à esquerda do corte
+    fundo: `${L}/magalu/fundo.jpg`,
+    focoFundo: "left center",
     sobre: "Conteúdo que acompanha o timing — da ideia à entrega em menos de 24h.",
     imagens: [],
     siteSlug: "magalu-fiuk",

@@ -31,10 +31,9 @@ export const clientes: ClienteLogo[] = [
   { name: "Brivia", src: "/media/credencial/logos/brivia.png", ratio: 3.74 },
   { name: "WT.AG", src: "/media/credencial/logos/wtag.png", ratio: 3.87 },
   { name: "Husqvarna", src: "/media/credencial/logos/husqvarna.png", ratio: 5.03 },
-  { name: "Ismo", src: "/media/credencial/logos/ismo.png", ratio: 4.48, ajuste: 0.85 },
   { name: "Nürnbergmesse", src: "/media/credencial/logos/nurnbergmesse.png", ratio: 2.57, ajuste: 1.35 },
   { name: "Golden Lake", src: "/media/credencial/logos/golden.png", ratio: 1.58, ajuste: 1.3 },
-  // Keeta: raster oficial pequeno (68×37) — trocar pelo vetor da marca
-  { name: "Keeta", src: "/media/credencial/logos/keeta.png", ratio: 1.84 },
+  // Keeta: logo enviado pela C2 (500×500), recortado e com fundo transparente
+  { name: "Keeta", src: "/media/credencial/logos/keeta.png", ratio: 1.89 },
   { name: "Magalu", src: "/media/credencial/logos/magalu.png", ratio: 3.5 },
 ]

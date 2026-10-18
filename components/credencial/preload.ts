@@ -67,6 +67,7 @@ export function collectAssets(versao: Versao = "v1"): { imagens: string[]; video
   } else {
     cases.forEach((c) => {
       c.imagens.forEach((i) => imagens.add(i))
+      if (c.fundo) imagens.add(c.fundo)
       addVideo(c.video)
       addVideo(c.insercao?.src)
     })

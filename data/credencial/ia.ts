@@ -50,7 +50,9 @@ const todos: IACase[] = [
     cliente: "Carrano",
     projeto: "Summer 25",
     tipo: "híbrido",
-    video: `${L}/ia-carrano/video.mp4`,
+    // making of no YouTube (C2 Content) — vídeo vertical (1080×1920): a URL
+    // em /shorts/ é o que marca o embed como 9:16
+    video: "https://youtube.com/shorts/7Q8OxX69LK4",
     imagens: [`${L}/ia-carrano/01.jpg`, `${L}/ia-carrano/02.jpg`, `${L}/ia-carrano/03.jpg`],
     sobre: "Produção híbrida — captação real + IA. Moda Summer 25 com craft.",
     siteSlug: "ia-carrano",

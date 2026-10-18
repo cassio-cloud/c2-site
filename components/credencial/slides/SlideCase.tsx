@@ -154,11 +154,33 @@ export function SlideCase({ case: c }: Props) {
            filme e o áudio dobrava. Sem elemento, não há segundo som. */
         !ampliado &&
         (verticalSolo ? (
-          <div
-            className="absolute inset-y-0 right-0 overflow-hidden"
-            style={{ aspectRatio: "9 / 16" }}
-          >
-            <CredHero src={c.video!} />
+          <div className="absolute inset-0 flex">
+            {/* o espaço ao lado do filme: a imagem do case, ou o preto */}
+            <div className="relative min-w-0 flex-1 overflow-hidden">
+              {c.fundo && (
+                <>
+                  <Image
+                    src={c.fundo}
+                    alt=""
+                    fill
+                    sizes="70vw"
+                    priority
+                    className="object-cover"
+                    style={{ objectPosition: c.focoFundo ?? "center center" }}
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-x-0 bottom-0"
+                    style={{
+                      height: "60%",
+                      background: "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 100%)",
+                    }}
+                  />
+                </>
+              )}
+            </div>
+            <div className="relative h-full shrink-0 overflow-hidden" style={{ aspectRatio: "9 / 16" }}>
+              <CredHero src={c.video!} />
+            </div>
           </div>
         ) : (
           <CredHero

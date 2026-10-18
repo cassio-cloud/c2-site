@@ -3,7 +3,6 @@
 import Image from "next/image"
 import { motion } from "motion/react"
 import { clientes } from "@/data/credencial/clientes"
-import { GradientBloom } from "../GradientBloom"
 import { Asterisco } from "../Asterisco"
 import { usePortrait } from "../Editorial"
 
@@ -40,7 +39,6 @@ export function SlideClientes() {
       className="relative flex h-full w-full flex-col overflow-hidden"
       style={{ background: "var(--black)" }}
     >
-      <GradientBloom x={50} y={115} size={85} intensity={0.15} />
 
       {/* cabeçalho */}
       <div

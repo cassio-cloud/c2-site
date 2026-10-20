@@ -65,7 +65,7 @@ const secaoDiretores: SlideDef[] = [
     render: () => <SlideDiretores />,
     theme: "light",
     variant: "mask",
-    secao: "diretores de cena",
+    secao: "diretores parceiros",
   },
   ...diretores.flatMap((d) => [
     {
@@ -73,13 +73,13 @@ const secaoDiretores: SlideDef[] = [
       // no branco: o retrato (fundo branco) se funde com a página
       theme: "light" as const,
       variant: "mask" as const,
-      secao: "diretores de cena",
+      secao: "diretores parceiros",
     },
     ...d.filmes.slice(0, 3).map((f, i) => ({
       render: () => <SlideDiretorFilme d={d} f={f} i={i} />,
       theme: "dark" as const,
       variant: "still" as const,
-      secao: "diretores de cena",
+      secao: "diretores parceiros",
       formato: 3,
     })),
   ]),
@@ -153,11 +153,11 @@ const advertising: SlideDef[] = [
   },
 
   {
-    render: () => <SlideDivider label="01 · DIRETORES DE CENA" titulo="diretores." bg="light" />,
+    render: () => <SlideDivider label="01 · DIRETORES PARCEIROS" titulo="diretores parceiros." bg="light" />,
     theme: "light",
     variant: "veil",
     veilFrom: "left",
-    secao: "diretores de cena",
+    secao: "diretores parceiros",
   },
   ...secaoDiretores,
 

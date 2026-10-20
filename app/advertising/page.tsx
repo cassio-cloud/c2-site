@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { SlideEngine } from "@/components/credencial/SlideEngine"
 
 export const metadata: Metadata = {
-  title: "Advertising · Diretores de cena",
+  title: "Advertising · Diretores parceiros",
   robots: { index: false, follow: false },
 }
 

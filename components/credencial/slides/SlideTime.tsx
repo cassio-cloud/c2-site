@@ -21,13 +21,22 @@ const EASE = [0.32, 0.72, 0, 1] as const
  * Sem hierarquia entre fundador e time: todo mundo é uma coluna igual.
  * ═══════════════════════════════════════════════════════════════════ */
 
-export function SlideTime({ time = timePadrao }: { time?: Pessoa[] } = {}) {
+export function SlideTime({
+  time = timePadrao,
+  escuro = false,
+}: {
+  time?: Pessoa[]
+  /** No preto: para retratos de fundo preto (o time do /advertising). */
+  escuro?: boolean
+} = {}) {
+  const tinta = escuro ? "var(--paper)" : "var(--ink)"
+  const apagado = escuro ? "rgba(255,255,255,0.45)" : "rgba(0,0,0,0.45)"
   const [active, setActive] = useState<number | null>(null)
   // portrait: 6 colunas lado a lado ficam espremidas — vira grade 3×2
   const portrait = usePortrait()
 
   return (
-    <div className="relative h-full w-full overflow-hidden" style={{ background: "var(--paper)" }}>
+    <div className="relative h-full w-full overflow-hidden" style={{ background: escuro ? "var(--black)" : "var(--paper)" }}>
       <motion.h2
         className="cred-display absolute z-10"
         initial={{ opacity: 0, y: 16 }}
@@ -36,7 +45,7 @@ export function SlideTime({ time = timePadrao }: { time?: Pessoa[] } = {}) {
           left: "var(--cred-margin)",
           top: "clamp(52px, 8vh, 84px)",
           fontSize: portrait ? "clamp(30px, 9vw, 48px)" : "clamp(30px, 3.4vw, 58px)",
-          color: "var(--ink)",
+          color: tinta,
           margin: 0,
         }}
       >
@@ -99,11 +108,15 @@ export function SlideTime({ time = timePadrao }: { time?: Pessoa[] } = {}) {
                   // sem foto ainda: as iniciais, no cinza do placeholder dos diretores
                   <div
                     className="absolute inset-0 flex items-center justify-center"
-                    style={{ background: "#f1f1f1", containerType: "size" }}
+                    style={{ background: escuro ? "#111" : "#f1f1f1", containerType: "size" }}
                   >
                     <span
                       className="cred-display"
-                      style={{ fontSize: "clamp(22px, 40cqw, 180px)", color: "rgba(0,0,0,0.1)", letterSpacing: "-0.06em" }}
+                      style={{
+                        fontSize: "clamp(22px, 40cqw, 180px)",
+                        color: escuro ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.1)",
+                        letterSpacing: "-0.06em",
+                      }}
                     >
                       {iniciais(p.nome)}
                     </span>
@@ -121,7 +134,7 @@ export function SlideTime({ time = timePadrao }: { time?: Pessoa[] } = {}) {
               >
                 <div
                   style={{
-                    color: "var(--ink)",
+                    color: tinta,
                     fontWeight: 700,
                     fontSize: portrait ? "clamp(10px, 2.7vw, 14px)" : "clamp(13px, 1.25vw, 22px)",
                     letterSpacing: "-0.02em",
@@ -137,7 +150,7 @@ export function SlideTime({ time = timePadrao }: { time?: Pessoa[] } = {}) {
                   className="cred-mono uppercase"
                   style={{
                     fontSize: 9,
-                    color: "rgba(0,0,0,0.45)",
+                    color: apagado,
                     marginTop: 5,
                     letterSpacing: "0.18em",
                     whiteSpace: "nowrap",

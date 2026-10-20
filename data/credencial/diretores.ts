@@ -31,6 +31,16 @@ export type Diretor = {
   bio?: string
   premios?: string[]
   marcas?: string[]
+  /**
+   * Ajuste do retrato no ELENCO, para as cabeças ficarem na mesma altura:
+   * `escala` = zoom da foto (1 = altura da coluna), `topo` = deslocamento
+   * vertical em fração da coluna (negativo sobe). Medido nos retratos:
+   * olhos na mesma linha (~49% da coluna). `topo` nunca positivo: a foto
+   * tem que cobrir a coluna inteira, senão aparece uma faixa no alto.
+   */
+  elenco?: { escala: number; topo: number; /** posição horizontal do corte (padrão 45%) */ x?: string }
+  /** Corte do retrato no PERFIL (object-position; padrão "50% 40%"). */
+  posicaoPerfil?: string
   /** Até 3. */
   filmes: Filme[]
   /**
@@ -43,7 +53,8 @@ export type Diretor = {
 const todos: Diretor[] = [
   {
     // grafia da dupla: "ANGRY" (bio enviada por eles e vimeo.com/angryfilms)
-    id: "angry-duo",
+    id: "angry-duo", elenco: { escala: 1, topo: 0, x: "32%" }, // sem zoom: a mão mecânica dela, no pé da foto, fica à vista
+    posicaoPerfil: "50% 100%",
     nome: "Angry Duo",
     sub: "Bruno Silva e Gabe Maruyama",
     subCurto: "Bruno e Gabe",
@@ -68,10 +79,30 @@ const todos: Diretor[] = [
       { marca: "TCL", titulo: "The Four-Year Gap", video: "https://vimeo.com/1174218887" },
     ],
   },
-  // dados e foto a caminho — até lá entra como placeholder ("em breve")
-  { id: "thiago-artmonte", nome: "Thiago Artmonte", filmes: [] },
   {
-    id: "bia-flecha",
+    // bio e filmes: vimeo.com/artmontcreative
+    id: "thiago-artmonte", elenco: { escala: 1.02, topo: -0.01 },
+    nome: "Thiago Artmonte",
+    foto: `${F}/thiago-artmonte.jpg`,
+    frase: "craft impecável, processos leves e filmes com resultado.",
+    bio:
+      "Das celebridades aos produtos consagrados, do drama à comédia, navega por todos os gêneros: não é o filme que veste o Artmonte, é o Artmonte que veste o filme. Formado pela Vancouver Film School e pela New York Film Academy, estudou História da Arte e Fotografia em Florença e fez MBA em Liderança Criativa na Berlin School of Creative Leadership. Ganhou o primeiro Profissionais do Ano aos 21 anos.",
+    premios: [
+      "Cannes Lions",
+      "London International Awards",
+      "El Ojo",
+      "2x Profissionais do Ano",
+      "Clube de Criação",
+    ],
+    marcas: ["Coca-Cola", "McDonald's", "Hyundai", "Nestlé", "Ferrero Rocher", "Duolingo"],
+    filmes: [
+      { marca: "Nestlé", titulo: "Greek Yogurt", video: "https://vimeo.com/1207889548" },
+      { marca: "Claro", titulo: "João Fonseca", video: "https://vimeo.com/1154091164" },
+      { marca: "Casas Bahia", titulo: "Preço Impossível", video: "https://vimeo.com/1096091809" },
+    ],
+  },
+  {
+    id: "bia-flecha", elenco: { escala: 1.02, topo: -0.01 },
     nome: "Bia Flecha",
     foto: `${F}/bia-flecha.jpg`,
     frase: "a emoção certa, a intenção correta.",
@@ -95,7 +126,7 @@ const todos: Diretor[] = [
     ],
   },
   {
-    id: "john-porciuncula",
+    id: "john-porciuncula", elenco: { escala: 1.31, topo: -0.1 },
     nome: "John Porciúncula",
     foto: `${F}/john-porciuncula.jpg`,
     frase: "transformar ideias em experiências audiovisuais.",
@@ -111,7 +142,7 @@ const todos: Diretor[] = [
     ],
   },
   {
-    id: "raoni-rodrigues",
+    id: "raoni-rodrigues", elenco: { escala: 1.47, topo: 0 },
     nome: "Raoni Rodrigues",
     foto: `${F}/raoni-rodrigues.jpg`,
     frase: "colaboração, escuta, respeito e troca.",
@@ -131,7 +162,7 @@ const todos: Diretor[] = [
     ],
   },
   {
-    id: "diego-lisboa",
+    id: "diego-lisboa", elenco: { escala: 1.0, topo: 0.0 },
     nome: "Diego Lisboa",
     foto: `${F}/diego-lisboa.jpg`,
     frase: "histórias reais que emocionam e comunicam.",
@@ -150,8 +181,23 @@ const todos: Diretor[] = [
       { marca: "Governo da Bahia", video: "https://vimeo.com/1120172427" },
     ],
   },
-  // dados e foto a caminho — até lá entra como placeholder ("em breve")
-  { id: "cassio-caberlon", nome: "Cássio Caberlon", filmes: [] },
+  {
+    id: "cassio-caberlon",
+    elenco: { escala: 1.31, topo: -0.19 },
+    nome: "Cássio Caberlon",
+    foto: `${F}/cassio-caberlon.jpg`,
+    frase: "refino visual e contraste de movimento.",
+    bio:
+      "Fotógrafo e diretor de cena, formado em Publicidade, fundador e sócio da C2. Há mais de 8 anos no mercado, dirige dos filmes de conteúdo à publicidade para as marcas que a C2 atende, como Nomad, GolLog, Magalu e Keeta. Entusiasta de novas tecnologias, assina filmes de refino visual e contraste de movimentos, sempre com a experiência visual em primeiro lugar.",
+    premios: ["AI Creative Festival · Melhor Produção Híbrida"],
+    marcas: ["Nomad", "GolLog", "Magalu", "Keeta", "Grêmio", "Unicred"],
+    filmes: [
+      { marca: "Unicred", titulo: "Fim de Ano", video: "https://youtu.be/E0i_O1tQAfg" },
+      { marca: "Grêmio × New Balance", titulo: "Camisa 3", video: "https://youtu.be/0uis4XJUdKg" },
+      // no YouTube: "Unicred Ziin" — o Ziin é a plataforma de investimentos
+      { marca: "Ziin", titulo: "Plataforma de investimentos", video: "https://youtu.be/Qjof_TJGwoM" },
+    ],
+  },
 ]
 
 /** O que entra na apresentação — elenco, perfis, filmes e preload. */

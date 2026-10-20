@@ -91,7 +91,7 @@ export function SlideDiretores() {
           margin: 0,
         }}
       >
-        diretores de cena.
+        diretores parceiros.
       </motion.h2>
 
       <div
@@ -138,7 +138,16 @@ export function SlideDiretores() {
               }}
             >
               <div className="relative min-h-0 flex-1 overflow-hidden">
-                <RetratoDiretor d={d} emBreve />
+                {/* zoom + deslocamento por diretor: olhos na mesma linha */}
+                <div
+                  className="absolute inset-x-0"
+                  style={{
+                    top: `${(d.elenco?.topo ?? 0) * 100}%`,
+                    height: `${(d.elenco?.escala ?? 1) * 100}%`,
+                  }}
+                >
+                  <RetratoDiretor d={d} emBreve posicao={`${d.elenco?.x ?? "45%"} 40%`} />
+                </div>
               </div>
 
               {/* ficha — sempre à vista. Altura FIXA: com a linha extra de

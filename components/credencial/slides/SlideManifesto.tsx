@@ -96,30 +96,33 @@ export function SlideManifesto({ texto = "c2" }: { texto?: "c2" | "diretores" } 
   return (
     <div className="relative h-full w-full overflow-hidden bg-paper text-ink" data-theme="light">
       <GridLines theme="light" cols={4} inset={INSET} />
-      {/* fotos editoriais — atrás do tipo */}
-      <Foto
-        src="/media/credencial/moodboard/mb-03.jpg"
-        delay={0.75}
-        rotate={-2}
-        style={{
-          right: "calc(" + INSET + " + 2vw)",
-          top: "11%",
-          width: "clamp(170px, 21vw, 400px)",
-          height: "clamp(210px, 27vw, 520px)",
-        }}
-      />
-      <Foto
-        src="/media/credencial/moodboard/mb-08.jpg"
-        delay={0.9}
-        rotate={2.5}
-        style={{
-          right: "calc(" + INSET + " + 18vw)",
-          bottom: "9%",
-          width: "clamp(130px, 15vw, 290px)",
-          height: "clamp(165px, 19vw, 370px)",
-        }}
-      />
-
+      {/* fotos editoriais — atrás do tipo (só no manifesto da c2) */}
+      {!diretores && (
+        <>
+          <Foto
+            src="/media/credencial/moodboard/mb-03.jpg"
+            delay={0.75}
+            rotate={-2}
+            style={{
+              right: "calc(" + INSET + " + 2vw)",
+              top: "11%",
+              width: "clamp(170px, 21vw, 400px)",
+              height: "clamp(210px, 27vw, 520px)",
+            }}
+          />
+          <Foto
+            src="/media/credencial/moodboard/mb-08.jpg"
+            delay={0.9}
+            rotate={2.5}
+            style={{
+              right: "calc(" + INSET + " + 18vw)",
+              bottom: "9%",
+              width: "clamp(130px, 15vw, 290px)",
+              height: "clamp(165px, 19vw, 370px)",
+            }}
+          />
+        </>
+      )}
 
       {/* o bloco — 4 linhas em escada, cada uma nascendo da baseline */}
       <div
@@ -161,7 +164,7 @@ export function SlideManifesto({ texto = "c2" }: { texto?: "c2" | "diretores" } 
               letterSpacing: "-0.02em",
             }}
           >
-            {diretores ? "diretores de cena com assinatura." : "on e off, com direção."}
+            {diretores ? "diretores parceiros com assinatura." : "on e off, com direção."}
           </p>
         </MaskedLine>
 

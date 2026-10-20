@@ -22,9 +22,9 @@ const TEXTO = "rgba(0,0,0,0.78)"
 const ROTULO = "rgba(0,0,0,0.42)"
 
 /**
- * Fileira de selos dos prêmios. Todos com a mesma ÁREA visual — o leão
- * de Cannes (quase quadrado) não fica nanico ao lado do "NEW YORK
- * FESTIVALS" (comprido): altura = base · √(2,5 / proporção), com teto.
+ * Fileira de selos dos prêmios. Todos com a mesma ÁREA visual — o "CC"
+ * (largo) não pesa mais que a estatueta do LIA (estreita):
+ * altura = base · √(1,2 / proporção), com teto.
  */
 function Selos({ d, delay }: { d: Diretor; delay: number }) {
   const selos = selosDe(d.premios)
@@ -37,7 +37,7 @@ function Selos({ d, delay }: { d: Diretor; delay: number }) {
       style={{ gap: "clamp(14px, 1.8vw, 30px)", rowGap: 12, marginBottom: "clamp(8px, 2vh, 18px)" }}
     >
       {selos.map((s) => {
-        const f = Math.min(1.5, Math.sqrt(2.5 / s.ratio))
+        const f = Math.min(1.25, Math.sqrt(1.2 / s.ratio))
         return (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -46,7 +46,7 @@ function Selos({ d, delay }: { d: Diretor; delay: number }) {
             alt={s.nome}
             title={s.nome}
             style={{
-              height: `calc(clamp(18px, min(2vw, 3.4vh), 30px) * ${f.toFixed(2)})`,
+              height: `calc(clamp(22px, min(2.4vw, 4vh), 38px) * ${f.toFixed(2)})`,
               width: "auto",
               opacity: 0.82,
             }}
@@ -86,7 +86,8 @@ function Linha({
 
 export function SlideDiretor({ d }: { d: Diretor }) {
   const portrait = usePortrait()
-  const vazio = !d.bio && !d.foto && d.filmes.length === 0
+  // sem bio e sem filmes ainda: "perfil em breve" (o retrato pode já estar)
+  const vazio = !d.bio && d.filmes.length === 0
 
   return (
     <div
@@ -101,7 +102,11 @@ export function SlideDiretor({ d }: { d: Diretor }) {
         initial={{ opacity: 0, scale: 1.03 }}
         animate={{ opacity: 1, scale: 1, transition: { duration: 1, ease: EASE } }}
       >
-        <RetratoDiretor d={d} posicao={portrait ? "50% 36%" : "50% 40%"} emBreve={!d.foto} />
+        <RetratoDiretor
+          d={d}
+          posicao={d.posicaoPerfil ?? (portrait ? "50% 36%" : "50% 40%")}
+          emBreve={!d.foto}
+        />
       </motion.div>
 
       <div

@@ -48,8 +48,8 @@ export const time: Pessoa[] = [
 ]
 
 /**
- * Time da /advertising: sem o Bruno, com a Sabrina na coordenação de
- * produção (foto a caminho — até lá, placeholder).
+ * Time da /advertising: sem o Bruno; com a Sabrina na coordenação de
+ * produção (foto a caminho — até lá, placeholder). Fotos: as atuais.
  */
 export const timeAdvertising: Pessoa[] = [
   ...time.filter((p) => p.nome !== "Bruno Fiuza"),

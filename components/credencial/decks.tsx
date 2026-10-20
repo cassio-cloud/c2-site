@@ -4,6 +4,7 @@ import type { ReactNode } from "react"
 import { cases } from "@/data/credencial/cases"
 import { iaCases } from "@/data/credencial/ia"
 import { diretores } from "@/data/credencial/diretores"
+import { timeAdvertising } from "@/data/credencial/time"
 import type { TransitionVariant } from "./SlideTransition"
 import type { SweepFrom } from "./Refraction"
 import { SlideCapa } from "./slides/SlideCapa"
@@ -44,9 +45,11 @@ export type SlideDef = {
   exitHold?: number
 }
 
-/** Abertura comum às duas versões: capa, reel, manifesto, serviços. */
+const capa: SlideDef = { render: () => <SlideCapa />, theme: "dark", hideFrame: true, variant: "fade", exitHold: 1250 }
+
+/** Abertura da V1: capa, reel, manifesto, serviços. */
 const abertura: SlideDef[] = [
-  { render: () => <SlideCapa />, theme: "dark", hideFrame: true, variant: "fade", exitHold: 1250 },
+  capa,
   { render: () => <SlideReel />, theme: "dark", variant: "still", secao: "reel", formato: 3 },
   { render: () => <SlideManifesto />, theme: "light", variant: "dive", diveOrigin: "80% 27%", secao: "manifesto" },
   { render: () => <SlideServicos />, theme: "dark", variant: "fade", secao: "o que fazemos" },
@@ -136,22 +139,21 @@ const v1: SlideDef[] = [
   { render: () => <SlideContato />, theme: "dark", variant: "type", secao: "contato" },
 ]
 
-/* ── V2 · /credencial/v2 — a empresa → diretores de cena → final ──
- * O "trabalho" vira o elenco de diretores. */
-const v2: SlideDef[] = [
-  ...abertura,
-
+/* ── ADVERTISING · /advertising — a apresentação dos diretores de cena:
+ * capa → manifesto → diretores → estrutura (rs e sp, time) → tks.
+ * Sem reel, cases, ia ou clientes: o produto aqui são os diretores. ── */
+const advertising: SlideDef[] = [
+  capa,
   {
-    render: () => <SlideDivider label="03 · A EMPRESA" titulo="a empresa." bg="light" />,
+    render: () => <SlideManifesto texto="diretores" />,
     theme: "light",
-    variant: "veil",
-    veilFrom: "bottom",
-    secao: "a empresa",
+    variant: "dive",
+    diveOrigin: "80% 27%",
+    secao: "manifesto",
   },
-  { render: () => <SlideEstrutura />, theme: "light", secao: "a empresa" },
 
   {
-    render: () => <SlideDivider label="04 · DIRETORES DE CENA" titulo="diretores." bg="light" />,
+    render: () => <SlideDivider label="01 · DIRETORES DE CENA" titulo="diretores." bg="light" />,
     theme: "light",
     variant: "veil",
     veilFrom: "left",
@@ -159,9 +161,19 @@ const v2: SlideDef[] = [
   },
   ...secaoDiretores,
 
+  {
+    render: () => <SlideDivider label="02 · ESTRUTURA" titulo="estrutura." bg="light" />,
+    theme: "light",
+    variant: "veil",
+    veilFrom: "bottom",
+    secao: "estrutura",
+  },
+  { render: () => <SlideEstrutura />, theme: "light", secao: "estrutura" },
+  { render: () => <SlideTime time={timeAdvertising} />, theme: "light", variant: "mask", secao: "estrutura" },
+
   { render: () => <SlideContato />, theme: "dark", variant: "type", secao: "contato" },
 ]
 
-export type Versao = "v1" | "v2"
+export type Versao = "v1" | "advertising"
 
-export const DECKS: Record<Versao, SlideDef[]> = { v1, v2 }
+export const DECKS: Record<Versao, SlideDef[]> = { v1, advertising }

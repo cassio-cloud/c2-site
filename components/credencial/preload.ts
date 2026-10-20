@@ -3,9 +3,10 @@
 import { cases } from "@/data/credencial/cases"
 import { iaCases } from "@/data/credencial/ia"
 import { clientes } from "@/data/credencial/clientes"
-import { time } from "@/data/credencial/time"
+import { time, timeAdvertising } from "@/data/credencial/time"
 import { fotosServicos } from "@/data/credencial/servicos"
 import { diretores } from "@/data/credencial/diretores"
+import { selosDe } from "@/data/credencial/premios"
 import { REEL_EMBED, REEL_FALLBACK } from "@/data/credencial/reel"
 import type { Versao } from "./decks"
 
@@ -55,15 +56,17 @@ export function collectAssets(versao: Versao = "v1"): { imagens: string[]; video
     if (src && src.startsWith("/media")) videos.add(src)
   }
 
-  // o reel (slide 2) primeiro, quando é arquivo do site
-  addVideo(REEL_EMBED || REEL_FALLBACK)
+  // o reel (slide 2 da V1) primeiro, quando é arquivo do site
+  if (versao === "v1") addVideo(REEL_EMBED || REEL_FALLBACK)
 
-  if (versao === "v2") {
-    // V2: diretores — os cases da V1 não aparecem aqui
+  if (versao === "advertising") {
+    // advertising: diretores e o time — os cases da V1 não aparecem aqui
     diretores.forEach((d) => {
       if (d.foto) imagens.add(d.foto)
+      selosDe(d.premios).forEach((s) => imagens.add(s.src))
       d.filmes.forEach((f) => addVideo(f.video))
     })
+    timeAdvertising.forEach((p) => p.foto && imagens.add(p.foto))
   } else {
     cases.forEach((c) => {
       c.imagens.forEach((i) => imagens.add(i))
@@ -76,7 +79,7 @@ export function collectAssets(versao: Versao = "v1"): { imagens: string[]; video
       addVideo(c.video)
     })
     clientes.forEach((l) => imagens.add(l.src))
-    time.forEach((p) => imagens.add(p.foto))
+    time.forEach((p) => p.foto && imagens.add(p.foto))
   }
   imagens.add("/media/credencial/estudio/311.jpg")
 

@@ -76,7 +76,12 @@ function Foto({
   )
 }
 
-export function SlideManifesto() {
+/**
+ * `c2` = o manifesto da credencial (conteúdo + craft).
+ * `diretores` = o do /advertising: o diretor é a origem do craft.
+ */
+export function SlideManifesto({ texto = "c2" }: { texto?: "c2" | "diretores" } = {}) {
+  const diretores = texto === "diretores"
   // bold em tudo — a hierarquia vem da cor (ink × mute), não do peso
   const display: React.CSSProperties = {
     fontFamily: SANS,
@@ -123,16 +128,25 @@ export function SlideManifesto() {
       >
         <MaskedLine delay={0.15}>
           <p style={display}>
-            a c2 nasce do <span style={{ color: mute }}>conteúdo.</span>
+            {diretores ? (
+              <>
+                <span style={{ color: mute }}>todo filme tem um</span> diretor.
+              </>
+            ) : (
+              <>
+                a c2 nasce do <span style={{ color: mute }}>conteúdo.</span>
+              </>
+            )}
           </p>
         </MaskedLine>
 
         <MaskedLine delay={0.3} style={{ marginLeft: "clamp(24px, 4vw, 90px)" }}>
           <p style={display}>
-            mas pensa com{" "}
+            {diretores ? "o " : "mas pensa com "}
             <span>
-              <span className="cred-cr">Cr</span>aft.
+              <span className="cred-cr">Cr</span>aft
             </span>
+            {diretores ? " começa nele." : "."}
           </p>
         </MaskedLine>
 
@@ -147,7 +161,7 @@ export function SlideManifesto() {
               letterSpacing: "-0.02em",
             }}
           >
-            on e off, com direção.
+            {diretores ? "diretores de cena com assinatura." : "on e off, com direção."}
           </p>
         </MaskedLine>
 
@@ -160,7 +174,7 @@ export function SlideManifesto() {
               color: mute,
             }}
           >
-            da produção à ia.
+            {diretores ? "e a produção da c2 por trás." : "da produção à ia."}
           </p>
         </MaskedLine>
       </div>

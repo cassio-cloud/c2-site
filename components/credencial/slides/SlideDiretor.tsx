@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react"
 import type { Diretor } from "@/data/credencial/diretores"
+import { selosDe } from "@/data/credencial/premios"
 import { usePortrait } from "../Editorial"
 import { RetratoDiretor } from "./SlideDiretores"
 
@@ -12,12 +13,49 @@ const EASE = [0.32, 0.72, 0, 1] as const
  *
  * Metade da tela é o retrato, de cima a baixo (o fundo branco da foto
  * se funde com a página). Na outra metade, só o essencial: o nome
- * grande, a frase, uma bio curta, prêmios e marcas numa linha cada.
+ * grande, a frase, uma bio curta, os selos dos prêmios (logos oficiais)
+ * e prêmios e marcas numa linha cada.
  * Sem dados, entra como placeholder ("perfil em breve").
  * ═══════════════════════════════════════════════════════════════════ */
 
 const TEXTO = "rgba(0,0,0,0.78)"
 const ROTULO = "rgba(0,0,0,0.42)"
+
+/**
+ * Fileira de selos dos prêmios. Todos com a mesma ÁREA visual — o leão
+ * de Cannes (quase quadrado) não fica nanico ao lado do "NEW YORK
+ * FESTIVALS" (comprido): altura = base · √(2,5 / proporção), com teto.
+ */
+function Selos({ d, delay }: { d: Diretor; delay: number }) {
+  const selos = selosDe(d.premios)
+  if (!selos.length) return null
+  return (
+    <motion.div
+      className="flex flex-wrap items-center"
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE, delay } }}
+      style={{ gap: "clamp(14px, 1.8vw, 30px)", rowGap: 12, marginBottom: "clamp(8px, 2vh, 18px)" }}
+    >
+      {selos.map((s) => {
+        const f = Math.min(1.5, Math.sqrt(2.5 / s.ratio))
+        return (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={s.id}
+            src={s.src}
+            alt={s.nome}
+            title={s.nome}
+            style={{
+              height: `calc(clamp(18px, min(2vw, 3.4vh), 30px) * ${f.toFixed(2)})`,
+              width: "auto",
+              opacity: 0.82,
+            }}
+          />
+        )
+      })}
+    </motion.div>
+  )
+}
 
 function Linha({
   rotulo,
@@ -126,6 +164,7 @@ export function SlideDiretor({ d }: { d: Diretor }) {
             )}
 
             <div style={{ display: "grid", gap: 6, marginTop: portrait ? 14 : "clamp(12px, 3.6vh, 32px)" }}>
+              <Selos d={d} delay={0.42} />
               {d.premios?.length ? <Linha rotulo="prêmios" itens={d.premios} delay={0.45} /> : null}
               {d.marcas?.length ? <Linha rotulo="marcas" itens={d.marcas} delay={0.52} fecho=", entre muitas outras." /> : null}
             </div>

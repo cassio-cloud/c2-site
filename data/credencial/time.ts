@@ -4,7 +4,8 @@ export type Pessoa = {
   nome: string
   funcao: string
   code: string
-  foto: string
+  /** Sem foto → placeholder com as iniciais. */
+  foto?: string
 }
 
 export const time: Pessoa[] = [
@@ -43,5 +44,18 @@ export const time: Pessoa[] = [
     funcao: "Foto · Produção",
     code: "POL · 0623",
     foto: "https://c2content.nyc3.digitaloceanspaces.com/01HZ7ZNBHJ0Z8N7W67NCBNNWKC.jpg",
+  },
+]
+
+/**
+ * Time da /advertising: sem o Bruno, com a Sabrina na coordenação de
+ * produção (foto a caminho — até lá, placeholder).
+ */
+export const timeAdvertising: Pessoa[] = [
+  ...time.filter((p) => p.nome !== "Bruno Fiuza"),
+  {
+    nome: "Sabrina Lippi",
+    funcao: "Coordenação de produção",
+    code: "SLP · 1026",
   },
 ]

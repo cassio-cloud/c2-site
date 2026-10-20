@@ -1,12 +1,6 @@
-import type { Metadata } from "next"
-import { SlideEngine } from "@/components/credencial/SlideEngine"
+import { redirect } from "next/navigation"
 
-export const metadata: Metadata = {
-  title: "Credencial · Diretores de cena · C2 Content",
-  robots: { index: false, follow: false },
-}
-
-// V2: a empresa + diretores de cena. O deck vive em components/credencial/decks.tsx.
+// A V2 virou /advertising — o link antigo continua funcionando.
 export default function CredencialV2Page() {
-  return <SlideEngine versao="v2" />
+  redirect("/advertising")
 }

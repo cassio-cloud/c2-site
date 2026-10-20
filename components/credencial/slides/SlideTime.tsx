@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 import { motion } from "motion/react"
-import { time } from "@/data/credencial/time"
+import { time as timePadrao, type Pessoa } from "@/data/credencial/time"
+import { iniciais } from "./SlideDiretores"
 import { usePortrait } from "../Editorial"
 
 const EASE = [0.32, 0.72, 0, 1] as const
@@ -20,7 +21,7 @@ const EASE = [0.32, 0.72, 0, 1] as const
  * Sem hierarquia entre fundador e time: todo mundo é uma coluna igual.
  * ═══════════════════════════════════════════════════════════════════ */
 
-export function SlideTime() {
+export function SlideTime({ time = timePadrao }: { time?: Pessoa[] } = {}) {
   const [active, setActive] = useState<number | null>(null)
   // portrait: 6 colunas lado a lado ficam espremidas — vira grade 3×2
   const portrait = usePortrait()
@@ -85,14 +86,29 @@ export function SlideTime() {
               }}
             >
               <div className="relative min-h-0 flex-1 overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={p.foto}
-                  alt={p.nome}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover"
-                  style={{ objectPosition: "center 20%", filter: "grayscale(100%) contrast(1.05)" }}
-                />
+                {p.foto ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={p.foto}
+                    alt={p.nome}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover"
+                    style={{ objectPosition: "center 20%", filter: "grayscale(100%) contrast(1.05)" }}
+                  />
+                ) : (
+                  // sem foto ainda: as iniciais, no cinza do placeholder dos diretores
+                  <div
+                    className="absolute inset-0 flex items-center justify-center"
+                    style={{ background: "#f1f1f1", containerType: "size" }}
+                  >
+                    <span
+                      className="cred-display"
+                      style={{ fontSize: "clamp(22px, 40cqw, 180px)", color: "rgba(0,0,0,0.1)", letterSpacing: "-0.06em" }}
+                    >
+                      {iniciais(p.nome)}
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* ficha — sempre à vista, altura fixa (alinha a faixa) */}

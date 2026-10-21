@@ -9,15 +9,29 @@
  * design da home é curado — ordem e tamanhos são decisões editoriais.
  */
 
+import type { MediaItem } from "./types";
+
 export type TileLayout = {
   slug: string;
   col: 4 | 5 | 6 | 7 | 8 | 12;
   ratio?: "1/1" | "4/3" | "16/9" | "21/9" | "4/5";
   tag: string;
+  /**
+   * Qual mídia vira a capa do tile. Padrão: a primeira do case.
+   *
+   * O tile não esconde o overlay do YouTube (título e botão de pause), então
+   * quando a página do case abre com o filme no YouTube vale dar ao tile um
+   * clipe nativo sem mexer na ordem das mídias do case:
+   *   "first-video"     o primeiro vídeo nativo do próprio case
+   *   { type, src }     um arquivo só pra capa, em public/media/cases/<slug>/
+   */
+  cover?: "first-video" | MediaItem;
 };
 
-/** Cases principais (15 tiles). Ordem é a ordem de exibição. */
+/** Cases principais (17 tiles). Ordem é a ordem de exibição. */
 export const HOME_BENTO: TileLayout[] = [
+  { slug: "keeta",           col: 6, ratio: "4/3", tag: "Campanha", cover: { type: "video", src: "media/cases/keeta/capa.mp4" } },
+  { slug: "gremio-camisa-3", col: 6, ratio: "4/3", tag: "Campanha · Híbrido IA", cover: "first-video" },
   { slug: "nomad",    col: 6, ratio: "4/3",  tag: "Campanha" },
   { slug: "gollog",   col: 6, ratio: "4/3",  tag: "Campanha · Institucional" },
   { slug: "barra",    col: 4,                tag: "Campanha" },

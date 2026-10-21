@@ -20,7 +20,12 @@ type Props = {
 };
 
 export function BentoTile({ layout, c2case, index }: Props) {
-  const cover = c2case.media[0];
+  // "first-video" sem vídeo no case cai de volta na primeira mídia, então
+  // um case editado no admin nunca fica com o tile vazio.
+  const cover =
+    (layout.cover === "first-video"
+      ? c2case.media.find((m) => m.type === "video")
+      : layout.cover) ?? c2case.media[0];
   const ratio = layout.ratio ?? "4/5";
 
   return (

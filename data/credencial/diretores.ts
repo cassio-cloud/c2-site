@@ -102,7 +102,7 @@ const todos: Diretor[] = [
     ],
   },
   {
-    id: "bia-flecha", elenco: { escala: 1.02, topo: -0.01 },
+    id: "bia-flecha", elenco: { escala: 1.02, topo: -0.01, x: "74%" }, // o rosto fica à direita da foto
     nome: "Bia Flecha",
     foto: `${F}/bia-flecha.jpg`,
     frase: "a emoção certa, a intenção correta.",
@@ -183,7 +183,7 @@ const todos: Diretor[] = [
   },
   {
     id: "cassio-caberlon",
-    elenco: { escala: 1.31, topo: -0.19 },
+    elenco: { escala: 1.31, topo: -0.19, x: "70%" }, // ele olha para o lado: o rosto fica à direita
     nome: "Cássio Caberlon",
     foto: `${F}/cassio-caberlon.jpg`,
     frase: "refino visual e contraste de movimento.",

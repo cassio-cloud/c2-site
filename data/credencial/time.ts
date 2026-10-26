@@ -49,13 +49,15 @@ export const time: Pessoa[] = [
 
 /**
  * Time da /advertising: sem o Bruno; com a Sabrina na coordenação de
- * produção (foto a caminho — até lá, placeholder). Fotos: as atuais.
+ * produção, em 3º. Fotos: as atuais (a da Sabrina, recortada e P&B, em
+ * public/media/credencial/time/).
  */
-export const timeAdvertising: Pessoa[] = [
-  ...time.filter((p) => p.nome !== "Bruno Fiuza"),
-  {
-    nome: "Sabrina Lippi",
-    funcao: "Coordenação de produção",
-    code: "SLP · 1026",
-  },
-]
+const sabrina: Pessoa = {
+  nome: "Sabrina Lippi",
+  funcao: "Coordenação de produção",
+  code: "SLP · 1026",
+  foto: "/media/credencial/time/sabrina.jpg",
+}
+
+const semBruno = time.filter((p) => p.nome !== "Bruno Fiuza")
+export const timeAdvertising: Pessoa[] = [...semBruno.slice(0, 2), sabrina, ...semBruno.slice(2)]

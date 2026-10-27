@@ -3,6 +3,7 @@ import Link from "next/link";
 import { auth, signOut } from "@/lib/auth";
 import { DirtyProvider } from "@/components/admin/dirty-state";
 import { DirtyBadge } from "@/components/admin/DirtyBadge";
+import { SempreEscuro } from "@/components/SempreEscuro";
 
 export const metadata = {
   title: "Admin",
@@ -29,7 +30,8 @@ export default async function AuthedAdminLayout({
   }
 
   return (
-    <DirtyProvider>
+    <SempreEscuro>
+      <DirtyProvider>
       <div className="flex min-h-[100dvh] flex-col">
         <header className="border-b border-line">
           <div className="wrap flex items-center justify-between gap-6 py-4">
@@ -60,5 +62,6 @@ export default async function AuthedAdminLayout({
         <main className="flex-1">{children}</main>
       </div>
     </DirtyProvider>
+    </SempreEscuro>
   );
 }

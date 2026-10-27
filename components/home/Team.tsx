@@ -1,9 +1,10 @@
-import { readSiteCached } from "@/lib/site";
+import { timeSite } from "@/data/credencial/time";
 import { mediaSrc } from "@/lib/media-url";
 import { Reveal } from "./Reveal";
 
-export async function Team() {
-  const { team } = await readSiteCached();
+/** O time vem da credencial (data/credencial/time.ts), como os clientes. */
+export function Team() {
+  const team = timeSite.map((p) => ({ name: p.nome, role: p.funcao, code: p.code, photo: p.foto ?? "" }));
 
   return (
     <section id="time" className="section">
@@ -12,7 +13,7 @@ export async function Team() {
           <h2
             className="h-display font-bold lowercase tracking-tight"
             style={{
-              fontSize: "clamp(48px, 8vw, 132px)",
+              fontSize: "clamp(44px, 6.8vw, 112px)",
               letterSpacing: "-0.045em",
               lineHeight: 0.96,
             }}
@@ -26,7 +27,7 @@ export async function Team() {
             className="text-paper"
             style={{ fontSize: "clamp(20px, 1.6vw, 28px)", lineHeight: 1.35 }}
           >
-            A C2 nasce do conteúdo, mas pensa com craft. On e off, com direção —
+            A C2 nasce do conteúdo, mas pensa com craft. On e off, com direção,
             da produção à IA. Desde 2018, criando, produzindo e bem executando.
           </p>
         </Reveal>
@@ -51,13 +52,13 @@ export async function Team() {
                 />
               </div>
               <div className="mt-4">
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em]">
+                <p className="rotulo">
                   {p.name}
                 </p>
-                <p className="mt-2 min-h-[32px] font-mono text-[10px] uppercase tracking-[0.18em] text-mute-2">
+                <p className="mt-2 min-h-[32px] rotulo text-mute-2">
                   {p.role}
                 </p>
-                <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-mute-3">
+                <p className="mt-3 rotulo text-mute-3">
                   {p.code}
                 </p>
               </div>

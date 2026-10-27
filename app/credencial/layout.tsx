@@ -3,7 +3,7 @@ import "./credencial.css"
 
 export const metadata: Metadata = {
   title: "Credencial · C2 Content",
-  description: "Apresentação comercial C2 Content — where content meets craft.",
+  description: "Apresentação comercial C2 Content · where content meets craft.",
   robots: { index: false, follow: false },
 }
 

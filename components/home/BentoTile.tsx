@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Case } from "@/lib/types";
 import type { TileLayout } from "@/lib/home-layout";
 import { TileMedia } from "./TileMedia";
+import { TagsNoHover } from "./TagsNoHover";
 import { Reveal } from "./Reveal";
 
 const COL_CLASSES: Record<TileLayout["col"], string> = {
@@ -25,7 +26,9 @@ export function BentoTile({ layout, c2case, index }: Props) {
   const cover =
     (layout.cover === "first-video"
       ? c2case.media.find((m) => m.type === "video")
-      : layout.cover) ?? c2case.media[0];
+      : layout.cover === "first-image"
+        ? c2case.media.find((m) => m.type === "image")
+        : layout.cover) ?? c2case.media[0];
   const ratio = layout.ratio ?? "4/5";
 
   return (
@@ -40,17 +43,10 @@ export function BentoTile({ layout, c2case, index }: Props) {
           style={{ aspectRatio: ratio }}
         >
           {cover ? <TileMedia cover={cover} alt={c2case.title} /> : null}
+          <TagsNoHover tags={layout.tag} ano={c2case.year} />
         </div>
 
-        <div className="mt-3 flex items-baseline justify-between gap-4 text-paper">
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-mute-2">
-              {layout.tag}
-            </p>
-            <p className="mt-1 text-sm">{c2case.title}</p>
-          </div>
-          <span className="font-mono text-xs text-mute-2">{c2case.year}</span>
-        </div>
+        <p className="mt-3 text-sm text-paper">{c2case.title}</p>
       </Link>
     </Reveal>
   );

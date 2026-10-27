@@ -5,7 +5,7 @@
  * paleta + clamps para garantir paridade visual sem re-design.
  */
 :root {
-  --ink:    #0d0d0d;
+  --ink:    #000000;
   --ink-2:  #131313;
   --ink-3:  #1a1a1a;
   --ink-4:  #262626;
@@ -61,7 +61,38 @@ html, body {
 
 /* Seção padrão. */
 .section {
-  padding-block: clamp(80px, 10vw, 160px);
+  padding-block: clamp(72px, 8vw, 128px);
+}
+
+/* Rótulos pequenos (tags, metadados, legendas, rodapé): a mesma Inter dos
+ * títulos, em caixa alta com tracking leve, no lugar da mono. Um tamanho
+ * só no site todo. A credencial e o admin seguem com a mono deles. */
+.rotulo {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Alvo de toque de 44px sem mudar o desenho: um ::before invisível
+ * estende o link na vertical (o ::after fica livre pros sublinhados). */
+.toque {
+  position: relative;
+}
+.toque::before {
+  content: "";
+  position: absolute;
+  inset: min(0px, calc((100% - 44px) / 2)) 0;
+}
+
+/* Foco de teclado visível em qualquer fundo (o header usa difference). */
+:where(a, button, summary, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 2px;
 }
 
 /* Grain overlay (SVG noise) — usado no hero e seções com mídia. */
@@ -91,6 +122,13 @@ html, body {
   opacity: 1;
   transform: none;
 }
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 
 /* Títulos grandes — mobile override.
  * O clamp genérico usa 8vw que em 375px = 30px, forçando o min (48px).
@@ -98,7 +136,7 @@ html, body {
  */
 @media (max-width: 640px) {
   .h-display {
-    font-size: clamp(32px, 11vw, 80px) !important;
+    font-size: clamp(32px, 10vw, 68px) !important;
   }
 }
 
@@ -126,4 +164,50 @@ html, body {
 #time,
 #contato {
   scroll-margin-top: clamp(76px, 8vw, 104px);
+}
+
+/* ── Tema branco do site (data-tema="branco" no <html>, app/layout) ───
+ * Inverte os mesmos tokens que o site inteiro usa. As páginas de detalhe
+ * (um trabalho, um diretor) e o admin voltam ao preto com <SempreEscuro>,
+ * que marca data-tema-fixo="escuro". Exceções:
+ * - a abertura (vídeo com texto branco) continua escura;
+ * - os logos de clientes, pintados de branco por filtro, viram pretos;
+ * - o menu fixo passa por vídeo e por branco: com mix-blend-mode
+ *   "difference" ele se inverte sozinho contra o que estiver atrás.
+ */
+html[data-tema="branco"] {
+  --ink:    #ffffff;
+  --ink-2:  #f5f5f5;
+  --ink-3:  #ededed;
+  --ink-4:  #dcdcdc;
+  --paper:  #000000;
+  --mute-1: rgba(0, 0, 0, 0.82);
+  --mute-2: rgba(0, 0, 0, 0.55);
+  --mute-3: rgba(0, 0, 0, 0.36);
+  --mute-4: rgba(0, 0, 0, 0.16);
+  --line:   rgba(0, 0, 0, 0.10);
+}
+html[data-tema="branco"] [data-tema-fixo="escuro"] {
+  --ink:    #000000;
+  --ink-2:  #131313;
+  --ink-3:  #1a1a1a;
+  --ink-4:  #262626;
+  --paper:  #efefef;
+  --mute-1: rgba(239, 239, 239, 0.88);
+  --mute-2: rgba(239, 239, 239, 0.55);
+  --mute-3: rgba(239, 239, 239, 0.32);
+  --mute-4: rgba(239, 239, 239, 0.16);
+  --line:   rgba(239, 239, 239, 0.08);
+}
+html[data-tema="branco"] #clientes img {
+  filter: brightness(0) !important;
+}
+html[data-tema="branco"] header.fixed {
+  --paper: #ffffff;
+  --ink: #ffffff;
+  mix-blend-mode: difference;
+}
+html[data-tema="branco"] header.fixed * {
+  text-shadow: none !important;
+  filter: none !important;
 }

@@ -22,7 +22,7 @@ export function FilterChips({ active, counts, total }: Props) {
     <Link
       key={href}
       href={href}
-      className={`group inline-flex items-baseline gap-2 rounded-full border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors ${
+      className={`group inline-flex items-baseline gap-2 rounded-full border px-4 py-2 rotulo transition-colors ${
         isActive
           ? "border-paper bg-paper text-ink"
           : "border-line text-mute-1 hover:border-mute-2 hover:text-paper"
@@ -30,7 +30,7 @@ export function FilterChips({ active, counts, total }: Props) {
     >
       <span>{label}</span>
       <span
-        className={`font-mono text-[9px] ${isActive ? "text-ink/60" : "text-mute-3"}`}
+        className={`text-[10px] tabular-nums ${isActive ? "text-ink/60" : "text-mute-3"}`}
       >
         {String(count).padStart(2, "0")}
       </span>

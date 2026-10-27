@@ -50,11 +50,11 @@ export function Estrutura() {
   return (
     <section id="estrutura" className="section">
       <div className="wrap">
-        <Reveal className="mb-16">
+        <Reveal className="mb-12">
           <h2
             className="h-display font-bold lowercase tracking-tight"
             style={{
-              fontSize: "clamp(48px, 8vw, 132px)",
+              fontSize: "clamp(44px, 6.8vw, 112px)",
               letterSpacing: "-0.045em",
               lineHeight: 0.96,
             }}
@@ -76,7 +76,7 @@ export function Estrutura() {
             >
               <CornerMarks />
 
-              <div className="flex items-baseline justify-between border-b border-line pb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-mute-2">
+              <div className="flex items-baseline justify-between border-b border-line pb-3 rotulo text-mute-2">
                 <span>Studio · {s.name.replace(".", "")}</span>
                 <span>{s.area}</span>
               </div>
@@ -84,7 +84,7 @@ export function Estrutura() {
               <p
                 className="mt-12 font-bold tracking-tight"
                 style={{
-                  fontSize: "clamp(80px, 12vw, 192px)",
+                  fontSize: "clamp(72px, 10.4vw, 166px)",
                   letterSpacing: "-0.05em",
                   lineHeight: 0.9,
                 }}
@@ -92,7 +92,7 @@ export function Estrutura() {
                 {s.name}
               </p>
 
-              <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.2em] text-mute-1">
+              <p className="mt-3 rotulo text-mute-1">
                 {s.location}
               </p>
 
@@ -102,7 +102,7 @@ export function Estrutura() {
 
               <a
                 href="#contato"
-                className="mt-10 inline-block font-mono text-[11px] uppercase tracking-[0.2em] text-paper underline-offset-[6px] hover:underline"
+                className="toque mt-10 inline-block rotulo text-paper underline-offset-[6px] hover:underline"
               >
                 Saber mais →
               </a>

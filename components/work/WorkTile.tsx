@@ -4,6 +4,7 @@ import type { WorkTileSize } from "@/lib/work-layout";
 import { TileMedia } from "@/components/home/TileMedia";
 import { Reveal } from "@/components/home/Reveal";
 import { fmtTag } from "@/lib/tags";
+import { TagsNoHover } from "@/components/home/TagsNoHover";
 
 const COL_CLASSES: Record<WorkTileSize["col"], string> = {
   4: "md:col-span-4 col-span-12",
@@ -34,16 +35,9 @@ export function WorkTile({ c2case, size, index }: Props) {
           style={{ aspectRatio: size.ratio }}
         >
           {cover ? <TileMedia cover={cover} alt={c2case.title} /> : null}
+          <TagsNoHover tags={tagLabel} ano={c2case.year} />
         </div>
-        <div className="mt-3 flex items-baseline justify-between gap-4 text-paper">
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-mute-2">
-              {tagLabel}
-            </p>
-            <p className="mt-1 text-sm">{c2case.title}</p>
-          </div>
-          <span className="font-mono text-xs text-mute-2">{c2case.year}</span>
-        </div>
+        <p className="mt-3 text-sm text-paper">{c2case.title}</p>
       </Link>
     </Reveal>
   );

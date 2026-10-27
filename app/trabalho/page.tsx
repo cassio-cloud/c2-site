@@ -53,18 +53,18 @@ export default async function TrabalhoPage(props: Props) {
                 <h1
                   className="h-display font-bold lowercase tracking-tight"
                   style={{
-                    fontSize: "clamp(48px, 8vw, 132px)",
+                    fontSize: "clamp(44px, 6.8vw, 112px)",
                     letterSpacing: "-0.045em",
                     lineHeight: 0.96,
                   }}
                 >
                   work.
                 </h1>
-                <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.22em] text-mute-2">
-                  Campanha · Conteúdo · IA · 2023 — 2026
+                <p className="mt-3 rotulo text-mute-2">
+                  Campanha · Conteúdo · IA · 2023 a 2026
                 </p>
               </div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-mute-2">
+              <p className="rotulo text-mute-2">
                 {String(visible.length).padStart(2, "0")} projeto
                 {visible.length === 1 ? "" : "s"}
                 {activeTag ? ` · ${fmtTag(activeTag)}` : ""}

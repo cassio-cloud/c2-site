@@ -3,10 +3,10 @@
     "slug": "nomad",
     "title": "Nomad · Cartão Global",
     "client": "Nomad",
-    "agency": "—",
+    "agency": "WT.AG",
     "director": "Cássio Caberlon",
     "year": "2023",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "description": "Banco de imagens exclusivo para a fintech global Nomad, produzido em 4 diárias. As fotos transmitem liberdade e facilidade de uso da marca e servem de suporte para todos os formatos de mídia da empresa.",
     "media": [
       {
         "type": "image",
@@ -18,10 +18,6 @@
       },
       {
         "type": "image",
-        "src": "media/cases/nomad/03.jpg"
-      },
-      {
-        "type": "image",
         "src": "media/cases/nomad/05.jpg"
       },
       {
@@ -30,7 +26,27 @@
       },
       {
         "type": "image",
-        "src": "media/cases/nomad/08.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/nomad/7542.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/nomad/7700.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/nomad/7811.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/nomad/7956.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/nomad/8122.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/nomad/8235.jpg"
       }
     ],
     "tags": [
@@ -89,34 +105,46 @@
     "slug": "barra",
     "title": "BarraShopping Sul · Institucional",
     "client": "BarraShopping Sul",
-    "agency": "—",
-    "director": "Cássio Caberlon",
+    "agency": "WT.AG",
+    "director": "Lucas Fogs",
     "year": "2026",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "description": "A primeira campanha da C2 com a direção do Lucas Fogs foi para o BarraShoppingSul e nela colocamos em prática nosso propósito de Content + Craft - produzimos um grande filme institucional, fotos still, conteúdos digitais e making of em uma entrega completa. Em breve compartilhamos tudo por aqui.",
     "media": [
       {
         "type": "video",
         "src": "media/cases/barra/01.mp4"
       },
       {
-        "type": "image",
-        "src": "media/cases/barra/03.jpg"
+        "type": "embed",
+        "src": "https://youtu.be/qjhiGOqEywA"
       },
       {
         "type": "image",
-        "src": "media/cases/barra/04.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/barra/3360.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/barra/05.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/barra/3602.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/barra/06.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/barra/3491.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/barra/07.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/barra/3720.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/barra/3849.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/barra/9582.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/barra/9783.jpg"
       }
     ],
     "tags": [
@@ -126,13 +154,192 @@
     "featured": true
   },
   {
+    "slug": "unicred-1",
+    "title": "Unicred 2024",
+    "client": "Unicred",
+    "agency": "",
+    "director": "Cássio Caberlon",
+    "year": "2024",
+    "description": "No ar, novo filme da @unicredbrasil. Com produção da @c2.content e criação da @wt.ag o filme aborda a reflexão do que fizemos em 2023 e a maneira de como vemos as metas para 2024!",
+    "media": [
+      {
+        "type": "video",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unicred-1/1780669359408-0.mp4"
+      },
+      {
+        "type": "embed",
+        "src": "https://youtu.be/E0i_O1tQAfg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unicred-1/1780669095130-0.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unicred-1/1780669096401-1.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unicred-1/1780669097031-2.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unicred-1/1780669097673-3.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unicred-1/1780669098439-4.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unicred-1/1780669099159-5.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unicred-1/1780669100306-6.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unicred-1/1780669101002-7.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unicred-1/1780669101911-8.jpg"
+      }
+    ],
+    "tags": [
+      "campanha"
+    ],
+    "featured": false
+  },
+  {
+    "slug": "carrano",
+    "title": "Carrano · True Love",
+    "client": "Carrano",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2024",
+    "description": "Editorial fotográfico e audiovisual de Dia dos Namorados para a Carrano. A produção capturou imagens românticas e emotivas para sustentar a comunicação sazonal da marca de calçados.",
+    "media": [
+      {
+        "type": "video",
+        "src": "media/cases/carrano/02.mov"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/carrano/03.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/carrano/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/carrano/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/carrano/06.jpg"
+      }
+    ],
+    "tags": [
+      "campanha",
+      "captacao-e-motion"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "carrano-pre-summer",
+    "title": "Carrano Summer Preview",
+    "client": "Carrano",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2024",
+    "description": "A Carrano Pre Summer 2025 apresenta as tendências da estação mais quente do ano. Nós fotografamos a campanha em estúdio e o resultado ficou fantástico.",
+    "media": [
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/carrano-pre-summer/1780669487057-0.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/carrano-pre-summer/1780669488480-1.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/carrano-pre-summer/1780669489318-2.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/carrano-pre-summer/1780669490012-3.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/carrano-pre-summer/1780669490778-4.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/carrano-pre-summer/1780669491851-5.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/carrano-pre-summer/1780669492740-6.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/carrano-pre-summer/1780669493477-7.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/carrano-pre-summer/1780669494174-8.jpg"
+      }
+    ],
+    "tags": [
+      "campanha",
+      "conteudo"
+    ],
+    "featured": false
+  },
+  {
+    "slug": "carrano-back",
+    "title": "Carrano • Backstage",
+    "client": "Carrano",
+    "agency": "WT.AG",
+    "director": "Cássio Caberlon",
+    "year": "2024",
+    "description": "",
+    "media": [
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/carrano-back/1780669582746-0.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/carrano-back/1780669583856-1.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/carrano-back/1780669584824-2.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/carrano-back/1780669585728-3.jpg"
+      }
+    ],
+    "tags": [
+      "campanha",
+      "conteudo"
+    ],
+    "featured": false
+  },
+  {
     "slug": "unicred",
     "title": "Unicred · ZIIN",
     "client": "Unicred",
     "agency": "—",
     "director": "Cássio Caberlon",
     "year": "2024",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "description": "Campanha de lançamento da plataforma de investimentos Ziin, da Unicred. A C2 produziu 1 filme institucional, 7 shorts e 15 fotos em apenas 1 diária, conciliando toda a complexidade de movimentos de câmera propostos pelo diretor.",
     "media": [
       {
         "type": "video",
@@ -166,57 +373,13 @@
     "featured": true
   },
   {
-    "slug": "carrano",
-    "title": "Carrano · Balões",
-    "client": "Carrano",
-    "agency": "—",
-    "director": "Cássio Caberlon",
-    "year": "2024",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
-    "media": [
-      {
-        "type": "video",
-        "src": "media/cases/carrano/02.mov"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/carrano/03.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/carrano/04.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/carrano/05.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/carrano/06.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/carrano/07.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/carrano/08.jpg"
-      }
-    ],
-    "tags": [
-      "campanha",
-      "captacao-e-motion"
-    ],
-    "featured": true
-  },
-  {
     "slug": "voa",
     "title": "VOA Telecom",
     "client": "VOA Telecom",
-    "agency": "—",
+    "agency": "ISMO DESIGN",
     "director": "Cássio Caberlon",
     "year": "2024",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "description": "Campanha de reposicionamento de marca da Voa Telecom, em parceria com a Ismo Design. Filmada em Novo Hamburgo e Campo Bom, buscou ângulos inusitados e atuações que transmitem liberdade e tranquilidade, alinhados ao mote \"Mais perto para você ir mais longe\".",
     "media": [
       {
         "type": "image",
@@ -244,6 +407,10 @@
       },
       {
         "type": "image",
+        "src": "media/cases/voa/10.jpg"
+      },
+      {
+        "type": "image",
         "src": "media/cases/voa/07.jpg"
       },
       {
@@ -253,10 +420,6 @@
       {
         "type": "image",
         "src": "media/cases/voa/09.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/voa/10.jpg"
       }
     ],
     "tags": [
@@ -271,23 +434,19 @@
     "agency": "—",
     "director": "Cássio Caberlon",
     "year": "2025",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "description": "Pra curtir do teu jeito - Em 2025, o Park apresenta um novo posicionamento, celebrando encontros, histórias e experiências de todas as gerações. No filme institucional, destacamos as muitas formas de aproveitar o Park para viver momentos especiais, reforçando que, aqui, tudo se conecta.",
     "media": [
       {
         "type": "video",
-        "src": "media/cases/park/01.mp4"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/park/1780668625922-0.mp4"
       },
       {
-        "type": "image",
-        "src": "media/cases/park/02.jpg"
+        "type": "embed",
+        "src": "https://youtu.be/HBcURorfxjg"
       },
       {
         "type": "image",
         "src": "media/cases/park/03.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/park/04.jpg"
       },
       {
         "type": "image",
@@ -308,10 +467,6 @@
       {
         "type": "image",
         "src": "media/cases/park/09.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/park/10.jpg"
       }
     ],
     "tags": [
@@ -320,13 +475,71 @@
     "featured": true
   },
   {
+    "slug": "sindtur",
+    "title": "Gramado Turismo 25",
+    "client": "Sindtur Gramado",
+    "agency": "",
+    "director": "Cassio Caberlon",
+    "year": "2026",
+    "description": "Confira a produção da nova campanha do Sindtur e da Secretaria Municipal de Turismo de Gramado. Com o mote “É você que faz Gramado feliz”, destacamos as experiências inesquecíveis que a cidade proporciona a cada visitante.",
+    "media": [
+      {
+        "type": "embed",
+        "src": "https://youtu.be/UjlyC3LCMWo"
+      }
+    ],
+    "tags": [
+      "campanha"
+    ],
+    "featured": false
+  },
+  {
+    "slug": "byd",
+    "title": "BYD King • Personal Project",
+    "client": "Personal Project",
+    "agency": "",
+    "director": "Cássio Caberlon",
+    "year": "2026",
+    "description": "Projeto criado para testar técnicas de integração IA e consistência de produto. ",
+    "media": [
+      {
+        "type": "embed",
+        "src": "https://youtu.be/0bS00K6SG2g"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/byd/1780666838679-0.png"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/byd/1780666840929-1.png"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/byd/1780666842637-2.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/byd/1780666844186-3.png"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/byd/1780666846488-4.png"
+      }
+    ],
+    "tags": [
+      "100-ia"
+    ],
+    "featured": false
+  },
+  {
     "slug": "golden",
     "title": "Golden Lake",
     "client": "Golden Lake",
     "agency": "—",
     "director": "Cássio Caberlon",
     "year": "2025",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "description": "Campanha para o primeiro bairro privativo de Porto Alegre. O objetivo foi exaltar a beleza do empreendimento e mostrar o lifestyle exclusivo que o Golden Lake oferece aos seus futuros moradores.",
     "media": [
       {
         "type": "image",
@@ -334,15 +547,7 @@
       },
       {
         "type": "image",
-        "src": "media/cases/golden/02.jpg"
-      },
-      {
-        "type": "image",
         "src": "media/cases/golden/03.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/golden/04.jpg"
       },
       {
         "type": "image",
@@ -367,6 +572,10 @@
       {
         "type": "image",
         "src": "media/cases/golden/10.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/golden/6528.jpg"
       }
     ],
     "tags": [
@@ -381,23 +590,23 @@
     "agency": "—",
     "director": "Cássio Caberlon",
     "year": "2025",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "description": "Campanhas de divulgação das 6ª e 7ª edições da BFSHOW que ocorrem em 2026, a maior feira de calçados do Brasil, realizada em São Paulo pela Abicalçados em parceria com a NurnbergMesse Brasil. A C2 foi responsável pela produção fotográfica e audiovisual do evento.",
     "media": [
-      {
-        "type": "image",
-        "src": "media/cases/bfshow/01.jpg"
-      },
       {
         "type": "image",
         "src": "media/cases/bfshow/02.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/bfshow/03.jpg"
+        "src": "media/cases/bfshow/01.jpg"
       },
       {
         "type": "image",
         "src": "media/cases/bfshow/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/bfshow/03.jpg"
       },
       {
         "type": "image",
@@ -432,20 +641,20 @@
   },
   {
     "slug": "vicenza",
-    "title": "Vicenza · Fall 23",
+    "title": "Vicenza · My First Jeans",
     "client": "Vicenza",
     "agency": "—",
     "director": "Cássio Caberlon",
     "year": "2023",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "description": "",
     "media": [
       {
         "type": "image",
         "src": "media/cases/vicenza/01.jpg"
       },
       {
-        "type": "image",
-        "src": "media/cases/vicenza/02.jpg"
+        "type": "embed",
+        "src": "https://youtu.be/qTg7jMHsH1Y"
       },
       {
         "type": "image",
@@ -461,15 +670,7 @@
       },
       {
         "type": "image",
-        "src": "media/cases/vicenza/06.jpg"
-      },
-      {
-        "type": "image",
         "src": "media/cases/vicenza/07.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/vicenza/08.jpg"
       },
       {
         "type": "image",
@@ -486,59 +687,126 @@
     "featured": true
   },
   {
-    "slug": "viamarte",
-    "title": "Via Marte · Summer 26",
-    "client": "Via Marte",
-    "agency": "—",
-    "director": "Cássio Caberlon",
+    "slug": "stok",
+    "title": "Stok Center • Preço baixo com um tok a mais",
+    "client": "",
+    "agency": "",
+    "director": "",
     "year": "2026",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "description": "A gente não consegue tirar a música da cabeça, o @stokcenteroficial tem mesmo um tok a mais! Dá play e curte com a gente o vídeo de reposicionamento da marca.",
     "media": [
       {
-        "type": "video",
-        "src": "media/cases/viamarte/01.mp4"
+        "type": "embed",
+        "src": "https://youtu.be/QJNq21MloFM"
+      }
+    ],
+    "tags": [
+      "campanha"
+    ],
+    "featured": false
+  },
+  {
+    "slug": "unidasul",
+    "title": "Rissul • Social Content",
+    "client": "Rissul",
+    "agency": "-",
+    "director": "Cássio Caberlon",
+    "year": "2026",
+    "description": "Serie de conteudos em estudio e PDV para rede de mercados Rissul",
+    "media": [
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669913471-0.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/viamarte/02.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669914317-1.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/viamarte/03.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669915202-2.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/viamarte/04.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669916049-3.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/viamarte/05.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669916796-4.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/viamarte/06.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669918107-5.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/viamarte/07.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669918941-6.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/viamarte/08.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669919726-7.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/viamarte/09.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669920467-8.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/viamarte/10.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669921569-9.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669922377-10.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669923182-11.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669924246-12.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669925096-13.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669926543-14.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669988008-0.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669988786-1.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669990303-2.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669991179-3.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669991973-4.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669992795-5.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/unidasul/1780669993693-6.jpg"
       }
     ],
     "tags": [
       "conteudo"
     ],
-    "featured": true
+    "featured": false
   },
   {
     "slug": "yam",
@@ -572,49 +840,38 @@
       {
         "type": "image",
         "src": "media/cases/yam/10.jpg"
-      }
-    ],
-    "tags": [
-      "conteudo"
-    ],
-    "featured": true
-  },
-  {
-    "slug": "natura",
-    "title": "Natura · Linha Buriti",
-    "client": "Natura",
-    "agency": "—",
-    "director": "Cássio Caberlon",
-    "year": "2025",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
-    "media": [
-      {
-        "type": "image",
-        "src": "media/cases/natura/01.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/natura/02.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/yam/1631.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/natura/03.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/yam/1726.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/natura/04.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/yam/1879.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/natura/05.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/yam/1998.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/natura/06.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/yam/2053.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/natura/07.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/yam/2111.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/yam/2181.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/yam/2278.jpg"
       }
     ],
     "tags": [
@@ -626,10 +883,10 @@
     "slug": "bliss",
     "title": "Bliss",
     "client": "Bliss",
-    "agency": "—",
+    "agency": "OTRO DESIGN",
     "director": "Cássio Caberlon",
     "year": "2025",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "description": "Shooting fotográfico para o lançamento da marca de vinhos Bliss Wine, com direção de criação da agência Otro Design. Trabalho voltado à construção da identidade visual da nova marca.",
     "media": [
       {
         "type": "image",
@@ -645,19 +902,15 @@
       },
       {
         "type": "image",
-        "src": "media/cases/bliss/04.jpg"
-      },
-      {
-        "type": "image",
         "src": "media/cases/bliss/05.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/bliss/06.jpg"
+        "src": "media/cases/bliss/07.jpg"
       },
       {
         "type": "image",
-        "src": "media/cases/bliss/07.jpg"
+        "src": "media/cases/bliss/06.jpg"
       },
       {
         "type": "image",
@@ -670,6 +923,22 @@
       {
         "type": "image",
         "src": "media/cases/bliss/10.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/bliss/6737.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/bliss/6858.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/bliss/7125.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/bliss/7194.jpg"
       }
     ],
     "tags": [
@@ -684,7 +953,7 @@
     "agency": "—",
     "director": "Cássio Caberlon",
     "year": "2025",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "description": "Para o novo lançamento da Topper, destacamos os detalhes que fazem a diferença no produto. Dê o play e confira! ",
     "media": [
       {
         "type": "video",
@@ -692,7 +961,7 @@
       },
       {
         "type": "image",
-        "src": "media/cases/topper/02.jpg"
+        "src": "media/cases/topper/08.jpg"
       },
       {
         "type": "image",
@@ -708,23 +977,11 @@
       },
       {
         "type": "image",
+        "src": "media/cases/topper/02.jpg"
+      },
+      {
+        "type": "image",
         "src": "media/cases/topper/06.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/topper/07.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/topper/08.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/topper/09.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/topper/10.jpg"
       }
     ],
     "tags": [
@@ -737,10 +994,10 @@
     "slug": "ia-odontoprev",
     "title": "Odontoprev · Dia das Mães",
     "client": "Odontoprev",
-    "agency": "—",
+    "agency": "WT.AG",
     "director": "Cássio Caberlon",
-    "year": "2024",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "year": "2026",
+    "description": "Tem coisas, como sentimento, que a IA não cria, mas ela já ajuda a transformar boas ideias em filmes incríveis e sensíveis.\nProjeto de Dia das Mães para a Odontoprev, produzido 100% em IA ao lado da WT.AG em menos de uma semana.",
     "media": [
       {
         "type": "video",
@@ -753,25 +1010,44 @@
     "featured": true
   },
   {
+    "slug": "legacy",
+    "title": "Legacy • Natal 25",
+    "client": "Legacy School",
+    "agency": "",
+    "director": "Cássio Caberlon",
+    "year": "2026",
+    "description": "O Natal é uma época de luz, e dessa vez utilizamos IA para produzir um filme sobre a luz para a @legacyschooloficial. Dirigido por @cassiocaberlon com a criação da @wt.ag exploramos a luz de maneira contínua contando a história de maneira lúdica e mágica.",
+    "media": [
+      {
+        "type": "embed",
+        "src": "https://youtube.com/shorts/MIwUKaboaxQ?si=oJIyN4yE8kW_NTJE"
+      }
+    ],
+    "tags": [
+      "100-ia"
+    ],
+    "featured": false
+  },
+  {
     "slug": "ia-goat",
     "title": "The Goat Collection",
     "client": "The Goat Collection",
-    "agency": "—",
+    "agency": "IDK BRASIL",
     "director": "Cássio Caberlon",
     "year": "2025",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "description": "Recebemos o roteiro as imagens e, juntos da IDK Brasil , desenvolvemos uma narrativa visual completa a partir de apenas dois itens: um anel da NBA de 2009 e uma bola autografada por Kobe Bryant e Shaquille O’Neal.\n\nCom IA e direção, construímos o universo visual da campanha, inserindo os produtos na história e transformando referências estáticas em um filme totalmente gerado por inteligência artificial. Confira o resultado abaix",
     "media": [
       {
         "type": "video",
-        "src": "media/cases/ia-goat/01.mp4"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-goat/1780663928725-0.mp4"
       },
       {
         "type": "image",
         "src": "media/cases/ia-goat/02.jpg"
       },
       {
-        "type": "image",
-        "src": "media/cases/ia-goat/03.jpg"
+        "type": "video",
+        "src": "media/cases/ia-goat/01.mp4"
       },
       {
         "type": "image",
@@ -783,23 +1059,7 @@
       },
       {
         "type": "image",
-        "src": "media/cases/ia-goat/06.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/ia-goat/07.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/ia-goat/08.jpg"
-      },
-      {
-        "type": "image",
         "src": "media/cases/ia-goat/09.jpg"
-      },
-      {
-        "type": "image",
-        "src": "media/cases/ia-goat/10.jpg"
       }
     ],
     "tags": [
@@ -814,23 +1074,15 @@
     "agency": "—",
     "director": "Cássio Caberlon",
     "year": "2025",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "description": " AICF 2025 Winner - Produção Híbrida. Uma experiência única, alinhando fotografia e novas tecnologias para chegar a um resultado exclusivo. Modelos reais e cenários criados usando a inteligência artificial.\n",
     "media": [
       {
         "type": "image",
-        "src": "media/cases/ia-carrano/05.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-carrano/1780664272873-0.jpg"
       },
       {
-        "type": "video",
-        "src": "media/cases/ia-carrano/01.mp4"
-      },
-      {
-        "type": "video",
-        "src": "media/cases/ia-carrano/02.mp4"
-      },
-      {
-        "type": "video",
-        "src": "media/cases/ia-carrano/03.mp4"
+        "type": "image",
+        "src": "media/cases/ia-carrano/06.jpg"
       },
       {
         "type": "video",
@@ -838,15 +1090,31 @@
       },
       {
         "type": "image",
-        "src": "media/cases/ia-carrano/06.jpg"
-      },
-      {
-        "type": "image",
         "src": "media/cases/ia-carrano/07.jpg"
       },
       {
+        "type": "video",
+        "src": "media/cases/ia-carrano/01.mp4"
+      },
+      {
         "type": "image",
-        "src": "media/cases/ia-carrano/08.jpg"
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-carrano/1780664278112-5.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-carrano/1780664276031-3.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-carrano/1780664274108-1.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-carrano/1780664274938-2.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-carrano/1780664279197-6.jpg"
       },
       {
         "type": "image",
@@ -855,6 +1123,10 @@
       {
         "type": "image",
         "src": "media/cases/ia-carrano/10.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-carrano/1780664279987-7.jpg"
       }
     ],
     "tags": [
@@ -869,8 +1141,8 @@
     "client": "Grêmio",
     "agency": "—",
     "director": "Cássio Caberlon",
-    "year": "2025",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Direção e captação C2 Content — produção, edição e finalização em estúdio próprio. Entrega multi-formato pronta pra rodar em digital, social e PDV.",
+    "year": "2026",
+    "description": "Campanha de lançamento da primeira camisa do Grêmio Foot-Ball Porto Alegrense com a New Balance. Unimos Inteligência Artificial, captação real e pós produção para recriar e inserir os jogadores no vestiário do olímpico e resgatar a memória dos títulos de 1996 do clube.",
     "media": [
       {
         "type": "image",
@@ -918,5 +1190,319 @@
       "captacao-e-motion"
     ],
     "featured": true
+  },
+  {
+    "slug": "viamarte",
+    "title": "Via Marte · Previw Bolsas",
+    "client": "Via Marte",
+    "agency": "—",
+    "director": "Cássio Caberlon",
+    "year": "2026",
+    "description": "Campanha de preview da nova coleção de bolsas da Via Marte, com produção fotográfica e vídeo para apresentar as peças da nova coleção ao mercado.",
+    "media": [
+      {
+        "type": "video",
+        "src": "media/cases/viamarte/01.mp4"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/viamarte/02.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/viamarte/04.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/viamarte/7324.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/viamarte/7510.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/viamarte/7627.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/viamarte/7741.jpg"
+      }
+    ],
+    "tags": [
+      "conteudo"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "natura",
+    "title": "Natura · Linha Buriti",
+    "client": "Natura",
+    "agency": "COPHY",
+    "director": "Cássio Caberlon",
+    "year": "2025",
+    "description": "",
+    "media": [
+      {
+        "type": "image",
+        "src": "media/cases/natura/01.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/natura/02.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/natura/05.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/natura/06.jpg"
+      },
+      {
+        "type": "image",
+        "src": "media/cases/natura/07.jpg"
+      }
+    ],
+    "tags": [
+      "conteudo"
+    ],
+    "featured": true
+  },
+  {
+    "slug": "keeta",
+    "title": "Keeta · Crias do Corre",
+    "client": "Keeta",
+    "tags": [
+      "campanha"
+    ],
+    "description": "Campanha com entregadores de São Paulo. Filme e foto, com direção, captação e finalização C2.",
+    "agency": "",
+    "director": "Cássio Caberlon",
+    "year": "2026",
+    "featured": false,
+    "media": [
+      {
+        "type": "embed",
+        "src": "https://youtu.be/lYk-iq4uajg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-0.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-1.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-2.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-3.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-4.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-5.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-6.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-7.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-8.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-9.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-10.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-11.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-12.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-13.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-14.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-15.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-16.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-17.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-18.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-19.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-20.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/keeta/1792585032656-21.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "gremio-camisa-3",
+    "title": "Grêmio × New Balance · Camisa 3",
+    "client": "Grêmio",
+    "tags": [
+      "campanha",
+      "hibrido-ia"
+    ],
+    "description": "Lançamento da camisa 3. Campanha com captação real e IA aplicada na composição.",
+    "agency": "",
+    "director": "Cássio Caberlon",
+    "year": "2026",
+    "featured": false,
+    "media": [
+      {
+        "type": "embed",
+        "src": "https://youtu.be/0uis4XJUdKg"
+      },
+      {
+        "type": "video",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/gremio-camisa-3/1792585045957-0.mp4"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/gremio-camisa-3/1792585045957-1.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/gremio-camisa-3/1792585045957-2.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/gremio-camisa-3/1792585045957-3.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "magalu-fiuk",
+    "title": "Magalu · Fiuk",
+    "client": "Magalu",
+    "tags": [
+      "conteudo"
+    ],
+    "description": "Conteúdo que acompanha o timing, da ideia à entrega em menos de 24h.",
+    "agency": "",
+    "director": "Cássio Caberlon",
+    "year": "2026",
+    "featured": false,
+    "media": [
+      {
+        "type": "embed",
+        "src": "https://youtube.com/shorts/Cq7NiQ688hY"
+      }
+    ]
+  },
+  {
+    "slug": "ia-baikal",
+    "title": "Golden Lake · Lançamento Baikal",
+    "client": "Golden Lake",
+    "tags": [
+      "hibrido-ia"
+    ],
+    "description": "Lançamento imobiliário para a Multiplan. Produção híbrida: captação real combinada com IA.",
+    "agency": "",
+    "director": "Cássio Caberlon",
+    "year": "2026",
+    "featured": false,
+    "media": [
+      {
+        "type": "embed",
+        "src": "https://youtu.be/_ZZEscSJi5I"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-baikal/1792585047975-0.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-baikal/1792585047975-1.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-baikal/1792585047975-2.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "ia-vbet",
+    "title": "VBET · Hype",
+    "client": "VBET",
+    "tags": [
+      "100-ia"
+    ],
+    "description": "Filme esportivo 100% IA. Conceito visual e finalização C2.",
+    "agency": "",
+    "director": "Cássio Caberlon",
+    "year": "2026",
+    "featured": false,
+    "media": [
+      {
+        "type": "video",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-vbet/1792585049445-0.mp4"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-vbet/1792585049445-1.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-vbet/1792585049445-2.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-vbet/1792585049445-3.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-vbet/1792585049445-4.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-vbet/1792585049445-5.jpg"
+      },
+      {
+        "type": "image",
+        "src": "https://nz7yssjrtersxwl6.public.blob.vercel-storage.com/c2/media/cases/ia-vbet/1792585049445-6.jpg"
+      }
+    ]
   }
 ]

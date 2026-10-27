@@ -21,14 +21,16 @@ export function Hero({ videoSrc }: Props) {
   const source = parseEmbedUrl(videoSrc);
 
   return (
-    <section className="relative overflow-hidden bg-ink" style={{ minHeight: "100dvh" }}>
+    // text-paper aqui recalcula a cor dentro do escopo escuro: sem ela, o
+    // texto herdaria a cor já calculada do <body> (preta no tema branco)
+    <section className="relative overflow-hidden bg-ink text-paper" style={{ minHeight: "100dvh" }} data-tema-fixo="escuro">
       <BackgroundVideo source={source} />
 
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "linear-gradient(to top, rgba(13,13,13,0.92) 0%, rgba(13,13,13,0.15) 50%, rgba(13,13,13,0.45) 100%)",
+            "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.45) 100%)",
         }}
       />
       <Grain />
@@ -37,10 +39,11 @@ export function Hero({ videoSrc }: Props) {
         className="wrap relative z-10 flex h-[100dvh] items-end"
         style={{ paddingBottom: "clamp(120px, 18vh, 220px)" }}
       >
+        {/* o título fica sobre o vídeo do reel: branco sempre, em qualquer tema */}
         <h1
-          className="font-bold lowercase tracking-tight"
+          className="font-bold lowercase tracking-tight text-white"
           style={{
-            fontSize: "clamp(36px, 8.4vw, 148px)",
+            fontSize: "clamp(34px, 7.2vw, 128px)",
             lineHeight: 0.92,
             letterSpacing: "-0.045em",
           }}
@@ -53,12 +56,9 @@ export function Hero({ videoSrc }: Props) {
 
       <div className="absolute bottom-0 left-0 right-0 z-10">
         <div
-          className="wrap flex items-center justify-between font-mono text-mute-1"
+          className="wrap flex items-center justify-between rotulo text-mute-1"
           style={{
             paddingBlock: "clamp(20px, 3vh, 36px)",
-            fontSize: "clamp(10px, 0.85vw, 12px)",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
           }}
         >
           <span>Rio Grande do Sul · São Paulo</span>
@@ -67,6 +67,11 @@ export function Hero({ videoSrc }: Props) {
       </div>
     </section>
   );
+}
+
+/** `reel.hero.mp4` → `reel.poster.jpg` (gerado junto no encode). */
+function posterDe(src: string): string | undefined {
+  return /\.hero\.mp4$/.test(src) ? mediaSrc(src.replace(/\.hero\.mp4$/, ".poster.jpg")) : undefined;
 }
 
 /** Background video que cobre full-screen mantendo aspect-ratio (object-cover). */
@@ -129,6 +134,7 @@ function BackgroundVideo({ source }: { source: EmbedSource }) {
         loop
         playsInline
         preload="none"
+        poster={posterDe(source.src)}
       />
     );
   }

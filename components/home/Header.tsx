@@ -7,8 +7,14 @@ import { LogoLink } from "@/components/nav/LogoLink";
  *
  * Usa `.wrap` igual às seções para garantir que o logo fique
  * pixel-aligned com os títulos `selected work.`, `estrutura.`, etc.
+ *
+ * `tone="light"` é para páginas de fundo branco (o índice de /diretores):
+ * texto em tinta e sem a sombra que só faz sentido sobre vídeo.
  */
-export function Header() {
+export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
+  const light = tone === "light";
+  const cor = light ? "text-ink" : "text-paper";
+  const sombra = light ? undefined : "0 1px 12px rgba(0,0,0,0.35)";
   return (
     <header
       className="fixed top-0 left-0 right-0 z-[100] pointer-events-none"
@@ -20,30 +26,31 @@ export function Header() {
           style={{ gridTemplateColumns: "1fr auto 1fr" }}
         >
           <LogoLink
-            ariaLabel="C2 Content — home"
-            className="pointer-events-auto justify-self-start text-paper transition-opacity hover:opacity-80"
-            style={{ filter: "drop-shadow(0 1px 12px rgba(0,0,0,0.35))" }}
+            ariaLabel="C2 Content, página inicial"
+            className={`toque pointer-events-auto justify-self-start ${cor} transition-opacity hover:opacity-80`}
+            style={light ? undefined : { filter: "drop-shadow(0 1px 12px rgba(0,0,0,0.35))" }}
           >
             <C2Logo />
           </LogoLink>
 
           <nav
-            className="pointer-events-auto flex items-center gap-10 font-semibold text-paper"
+            className={`pointer-events-auto flex items-center gap-6 font-semibold sm:gap-10 ${cor}`}
             style={{
               fontSize: "clamp(14px, 1.05vw, 16px)",
-              textShadow: "0 1px 12px rgba(0,0,0,0.35)",
+              textShadow: sombra,
             }}
           >
-            <NavLink href="/trabalho">Work</NavLink>
-            <NavLink href="/#time">About</NavLink>
+            <NavLink href="/trabalho" light={light}>Work</NavLink>
+            <NavLink href="/diretores" light={light}>Directors</NavLink>
+            <NavLink href="/#time" light={light}>About</NavLink>
           </nav>
 
           <Link
             href="/#contato"
-            className="pointer-events-auto justify-self-end font-semibold text-paper transition-opacity hover:opacity-70"
+            className={`toque pointer-events-auto justify-self-end font-semibold ${cor} transition-opacity hover:opacity-70`}
             style={{
               fontSize: "clamp(14px, 1.05vw, 16px)",
-              textShadow: "0 1px 12px rgba(0,0,0,0.35)",
+              textShadow: sombra,
             }}
           >
             Contact
@@ -56,15 +63,17 @@ export function Header() {
 
 function NavLink({
   href,
+  light,
   children,
 }: {
   href: string;
+  light?: boolean;
   children: React.ReactNode;
 }) {
   return (
     <Link
       href={href}
-      className="relative transition-opacity hover:opacity-70 after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-paper after:transition-[width] after:duration-300 hover:after:w-full"
+      className={`toque transition-opacity hover:opacity-70 after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 ${light ? "after:bg-ink" : "after:bg-paper"} after:transition-[width] after:duration-300 hover:after:w-full`}
     >
       {children}
     </Link>

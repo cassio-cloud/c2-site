@@ -9,7 +9,7 @@ import { ImageResponse } from "next/og";
  */
 
 export const runtime = "edge";
-export const alt = "C2 Content — where content meets craft.";
+export const alt = "C2 Content · where content meets craft.";
 export const contentType = "image/png";
 export const size = { width: 1200, height: 630 };
 
@@ -24,7 +24,7 @@ export default async function HomeOG() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "80px",
-          background: "#0d0d0d",
+          background: "#000000",
           color: "#efefef",
           fontFamily: "system-ui, sans-serif",
         }}

@@ -18,7 +18,7 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://c2content.com.br"),
   title: {
-    default: "C2 Content — where content meets craft.",
+    default: "C2 Content · where content meets craft.",
     template: "%s · C2 Content",
   },
   description:
@@ -38,13 +38,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     siteName: "C2 Content",
-    title: "C2 Content — where content meets craft.",
+    title: "C2 Content · where content meets craft.",
     description:
       "Produtora audiovisual brasileira. Campanhas, conteúdo e produções híbridas com IA.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "C2 Content — where content meets craft.",
+    title: "C2 Content · where content meets craft.",
   },
 };
 
@@ -55,6 +55,9 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       className={`${inter.variable} ${jetbrains.variable} h-full antialiased`}
+      // o site é branco (globals.css); páginas de detalhe e o admin ficam
+      // pretos com <SempreEscuro>, a credencial tem tema próprio
+      data-tema="branco"
     >
       <body className="min-h-full flex flex-col bg-ink text-paper">
         <ScrollResetOnReload />

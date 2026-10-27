@@ -25,10 +25,10 @@ export type TileLayout = {
    *   "first-video"     o primeiro vídeo nativo do próprio case
    *   { type, src }     um arquivo só pra capa, em public/media/cases/<slug>/
    */
-  cover?: "first-video" | MediaItem;
+  cover?: "first-video" | "first-image" | MediaItem;
 };
 
-/** Cases principais (17 tiles). Ordem é a ordem de exibição. */
+/** Cases principais (12 tiles). Ordem é a ordem de exibição. */
 export const HOME_BENTO: TileLayout[] = [
   { slug: "keeta",           col: 6, ratio: "4/3", tag: "Campanha", cover: { type: "video", src: "media/cases/keeta/capa.mp4" } },
   { slug: "gremio-camisa-3", col: 6, ratio: "4/3", tag: "Campanha · Híbrido IA", cover: "first-video" },
@@ -40,13 +40,8 @@ export const HOME_BENTO: TileLayout[] = [
   { slug: "voa",      col: 6, ratio: "4/3",  tag: "Campanha" },
   { slug: "park",     col: 6, ratio: "4/3",  tag: "Campanha · Institucional" },
   { slug: "golden",   col: 4,                tag: "Campanha" },
-  { slug: "bfshow",   col: 4,                tag: "Campanha · Conteúdo" },
   { slug: "vicenza",  col: 4,                tag: "Campanha · Conteúdo" },
-  { slug: "viamarte", col: 4,                tag: "Campanha" },
   { slug: "yam",      col: 4,                tag: "Campanha" },
-  { slug: "natura",   col: 4,                tag: "Campanha" },
-  { slug: "bliss",    col: 6, ratio: "4/3",  tag: "Campanha" },
-  { slug: "topper",   col: 6, ratio: "4/3",  tag: "Campanha · Produto" },
 ];
 
 export type IaGroup = {
@@ -64,10 +59,12 @@ export const HOME_IA: IaGroup[] = [
     ],
   },
   {
-    label: "Híbrido — captura real + IA",
+    label: "Híbrido · captura real + IA",
     tiles: [
-      { slug: "ia-carrano", col: 6, tag: "Híbrido · Captura real + IA" },
-      { slug: "ia-gremio",  col: 6, tag: "Híbrido · Direção real + IA" },
+      { slug: "ia-carrano", col: 4, tag: "Híbrido · Captura real + IA" },
+      { slug: "ia-gremio",  col: 4, tag: "Híbrido · Direção real + IA" },
+      // o case abre com o filme no YouTube; o tile usa a primeira foto
+      { slug: "ia-baikal",  col: 4, tag: "Híbrido · Golden Lake", cover: "first-image" },
     ],
   },
 ];

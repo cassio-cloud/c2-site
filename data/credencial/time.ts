@@ -52,7 +52,7 @@ export const time: Pessoa[] = [
  * produção, em 3º. Fotos: as atuais (a da Sabrina, recortada e P&B, em
  * public/media/credencial/time/).
  */
-const sabrina: Pessoa = {
+export const sabrina: Pessoa = {
   nome: "Sabrina Lippi",
   funcao: "Coordenação de produção",
   code: "SLP · 1026",
@@ -60,4 +60,6 @@ const sabrina: Pessoa = {
 }
 
 const semBruno = time.filter((p) => p.nome !== "Bruno Fiuza")
+/** Time da seção "about." da home e da /advertising: sem o Bruno, com a Sabrina em 3º. */
 export const timeAdvertising: Pessoa[] = [...semBruno.slice(0, 2), sabrina, ...semBruno.slice(2)]
+export const timeSite: Pessoa[] = timeAdvertising

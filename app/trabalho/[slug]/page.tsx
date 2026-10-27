@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/home/Header";
+import { SempreEscuro } from "@/components/SempreEscuro";
 import { Footer } from "@/components/home/Footer";
 import { Reveal } from "@/components/home/Reveal";
 import { CaseMedia } from "@/components/work/CaseMedia";
@@ -75,7 +76,7 @@ export default async function CasePage(props: Props) {
   const next = all[(idx + 1) % all.length];
 
   return (
-    <>
+    <SempreEscuro>
       <CaseLd c2case={c2case} />
       <Header />
 
@@ -101,7 +102,7 @@ export default async function CasePage(props: Props) {
             <div className="grid gap-12 md:grid-cols-[320px_1fr] md:gap-16">
               <aside className="md:sticky md:top-32 md:self-start">
                 <Reveal>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-mute-1">
+                  <p className="rotulo text-mute-1">
                     {c2case.tags.map(fmtTag).join(" · ")}
                   </p>
                   <h1
@@ -146,7 +147,7 @@ export default async function CasePage(props: Props) {
 
       <Lightbox items={c2case.media} />
       <Footer />
-    </>
+    </SempreEscuro>
   );
 }
 
@@ -186,7 +187,7 @@ function NextCaseLink({ next }: { next: Case }) {
       </div>
 
       <div className="min-w-0 flex-1">
-        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-mute-2 md:text-[11px]">
+        <p className="rotulo text-mute-2">
           Próximo case →
         </p>
         <p
@@ -205,12 +206,16 @@ function NextCaseLink({ next }: { next: Case }) {
 }
 
 function MetaRow({ label, value }: { label: string; value: string }) {
+  // campo vazio não vira linha com traço: a linha some. Vários cases têm a
+  // agência gravada como "—" no Blob, que conta como vazio.
+  const v = (value ?? "").trim();
+  if (!v || v === "—" || v === "-") return null;
   return (
     <div className="flex items-baseline justify-between gap-4 border-b border-line py-3">
-      <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-mute-2">
+      <dt className="rotulo text-mute-2">
         {label}
       </dt>
-      <dd className="text-right text-sm text-paper">{value || "—"}</dd>
+      <dd className="text-right text-sm text-paper">{v}</dd>
     </div>
   );
 }

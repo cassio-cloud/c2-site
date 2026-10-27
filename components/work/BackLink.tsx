@@ -45,7 +45,7 @@ export function BackLink() {
   return (
     <Link
       href={target.href}
-      className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-mute-2 transition-colors hover:text-paper"
+      className="toque inline-flex items-center gap-2 rotulo text-mute-2 transition-colors hover:text-paper"
     >
       ← {target.label}
     </Link>

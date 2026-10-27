@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import Link from "next/link";
 import { auth, signIn } from "@/lib/auth";
 import { consume, getClientKey, reset } from "@/lib/rate-limit";
+import { SempreEscuro } from "@/components/SempreEscuro";
 
 export const metadata = {
   title: "Admin",
@@ -59,6 +60,7 @@ export default async function LoginPage(props: { searchParams: SearchParams }) {
   }
 
   return (
+    <SempreEscuro>
     <main className="flex min-h-[100dvh] items-center justify-center px-6">
       <form
         action={login}
@@ -107,5 +109,6 @@ export default async function LoginPage(props: { searchParams: SearchParams }) {
         </button>
       </form>
     </main>
+    </SempreEscuro>
   );
 }

@@ -14,7 +14,7 @@ export async function BentoGrid() {
           <h2
             className="h-display font-bold lowercase tracking-tight"
             style={{
-              fontSize: "clamp(48px, 8vw, 132px)",
+              fontSize: "clamp(44px, 6.8vw, 112px)",
               letterSpacing: "-0.045em",
               lineHeight: 0.96,
             }}

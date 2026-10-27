@@ -73,7 +73,7 @@ export function Lightbox({ items }: Props) {
       <button
         aria-label="Fechar"
         onClick={close}
-        className="absolute right-6 top-6 z-10 font-mono text-2xl text-paper hover:opacity-70"
+        className="absolute right-6 top-6 z-10 text-2xl text-paper hover:opacity-70"
       >
         ×
       </button>
@@ -83,7 +83,7 @@ export function Lightbox({ items }: Props) {
           e.stopPropagation();
           prev();
         }}
-        className="absolute left-4 top-1/2 z-10 -translate-y-1/2 px-4 py-6 font-mono text-3xl text-paper hover:opacity-70"
+        className="absolute left-4 top-1/2 z-10 -translate-y-1/2 px-4 py-6 text-3xl text-paper hover:opacity-70"
       >
         ←
       </button>
@@ -93,7 +93,7 @@ export function Lightbox({ items }: Props) {
           e.stopPropagation();
           next();
         }}
-        className="absolute right-4 top-1/2 z-10 -translate-y-1/2 px-4 py-6 font-mono text-3xl text-paper hover:opacity-70"
+        className="absolute right-4 top-1/2 z-10 -translate-y-1/2 px-4 py-6 text-3xl text-paper hover:opacity-70"
       >
         →
       </button>
@@ -125,7 +125,7 @@ export function Lightbox({ items }: Props) {
         ) : null}
       </div>
 
-      <span className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[11px] uppercase tracking-[0.2em] text-mute-1">
+      <span className="absolute bottom-6 left-1/2 -translate-x-1/2 rotulo text-mute-1">
         {index + 1} / {items.length}
       </span>
     </div>

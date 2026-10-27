@@ -67,6 +67,9 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "c2content.nyc3.digitaloceanspaces.com",
       },
+      // miniaturas dos filmes em /diretores (canais de Vimeo e YouTube)
+      { protocol: "https", hostname: "i.vimeocdn.com" },
+      { protocol: "https", hostname: "img.youtube.com" },
     ],
   },
 

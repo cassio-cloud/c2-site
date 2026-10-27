@@ -27,7 +27,7 @@ export function Footer() {
 
         <hr className="mt-16 border-line" />
 
-        <div className="mt-6 grid grid-cols-1 gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-mute-2 md:grid-cols-3 md:items-center">
+        <div className="mt-6 grid grid-cols-1 gap-3 rotulo text-mute-2 md:grid-cols-3 md:items-center">
           <p className="md:justify-self-start">
             © {year} C2 Content · Todos os direitos reservados
           </p>

@@ -5,6 +5,10 @@ import { Grain } from "./Grain";
 import { parseEmbedUrl, type EmbedSource } from "@/lib/embed";
 import { mediaSrc } from "@/lib/media-url";
 
+/** Vídeo em URL absoluta (o reel fica no Vercel Blob): o parseEmbedUrl só
+ *  reconhece arquivo em `media/...` e devolveria "none". */
+const ARQUIVO_ABSOLUTO = /^https?:\/\/[^?#]+\.(mp4|webm|m4v|mov)(\?.*)?$/i;
+
 type Props = {
   /** URL embed YouTube/Vimeo OU path local (`/media/reel.mp4`). */
   videoSrc: string;
@@ -18,7 +22,9 @@ type Props = {
  * - Vazio → fundo ink puro (fallback)
  */
 export function Hero({ videoSrc }: Props) {
-  const source = parseEmbedUrl(videoSrc);
+  const source: EmbedSource = ARQUIVO_ABSOLUTO.test(videoSrc ?? "")
+    ? { kind: "file", src: videoSrc! }
+    : parseEmbedUrl(videoSrc);
 
   return (
     // text-paper aqui recalcula a cor dentro do escopo escuro: sem ela, o

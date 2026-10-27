@@ -33,10 +33,6 @@ export default async function DiretoresPage() {
       {/* a aba é a única parte branca do site, e o índice é uma tela só:
           sem rolagem, nem o elástico do overscroll */}
       <style>{"html,body{background:#fff;height:100%;overflow:hidden;overscroll-behavior:none}"}</style>
-      {/* sem JS os nomes não são medidos: aparecem no tamanho de partida */}
-      <noscript>
-        <style>{".caber{visibility:visible!important}"}</style>
-      </noscript>
       <Header tone="light" />
       <main className="flex h-[100dvh] flex-col overflow-hidden bg-white text-ink">
         <div

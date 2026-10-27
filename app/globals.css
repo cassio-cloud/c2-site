@@ -77,6 +77,35 @@ html, body {
   font-variant-numeric: tabular-nums;
 }
 
+/* Nomes de /diretores: estimativa do tamanho que o useCaber encontra
+ * (medida em 8 telas). O texto já pinta perto do final, sem esperar o JS
+ * e sem pular de tamanho depois. Celular e tablet em pé esbarram na
+ * altura; telas deitadas, na largura. */
+.caber {
+  font-size: min(15vw, 6.7dvh);
+}
+@media (min-width: 640px) and (orientation: portrait) {
+  .caber {
+    font-size: min(12.5vw, 9.4dvh);
+  }
+}
+@media (min-width: 640px) and (orientation: landscape) {
+  .caber {
+    font-size: min(7.8vw, 13.8dvh);
+  }
+}
+/* telas mais quadradas (4:3, 5:4) quebram as linhas em outro ponto */
+@media (min-width: 640px) and (orientation: landscape) and (max-aspect-ratio: 3/2) {
+  .caber {
+    font-size: min(8.8vw, 11.7dvh);
+  }
+}
+@media (min-width: 640px) and (orientation: landscape) and (max-aspect-ratio: 13/10) {
+  .caber {
+    font-size: min(10.5vw, 13.2dvh);
+  }
+}
+
 /* Alvo de toque de 44px sem mudar o desenho: um ::before invisível
  * estende o link na vertical (o ::after fica livre pros sublinhados). */
 .toque {

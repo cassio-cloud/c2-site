@@ -105,7 +105,9 @@ export default async function CasePage(props: Props) {
           <div className="wrap">
             <div className="grid gap-12 md:grid-cols-[320px_1fr] md:gap-16">
               <aside className="md:sticky md:top-32 md:self-start">
-                <Reveal>
+                {/* sem Reveal: título e descrição são o primeiro conteúdo da
+                    página (o LCP do Google) e não podem esperar o JS */}
+                <div>
                   <p className="rotulo text-mute-1">
                     {c2case.tags.map(fmtTag).join(" · ")}
                   </p>
@@ -130,14 +132,21 @@ export default async function CasePage(props: Props) {
                     <MetaRow label="Direção" value={c2case.director} />
                     <MetaRow label="Ano" value={c2case.year} />
                   </dl>
-                </Reveal>
+                </div>
               </aside>
 
               <div className="space-y-4 md:space-y-6">
                 {c2case.media.map((m, i) => (
-                  <Reveal key={`${m.src}-${i}`} delay={(i % 3) * 80}>
-                    <CaseMedia item={m} index={i} titulo={c2case.title} />
-                  </Reveal>
+                  i === 0 ? (
+                    // a primeira mídia aparece na hora, como o texto ao lado
+                    <div key={`${m.src}-${i}`}>
+                      <CaseMedia item={m} index={i} titulo={c2case.title} />
+                    </div>
+                  ) : (
+                    <Reveal key={`${m.src}-${i}`} delay={(i % 3) * 80}>
+                      <CaseMedia item={m} index={i} titulo={c2case.title} />
+                    </Reveal>
+                  )
                 ))}
               </div>
             </div>

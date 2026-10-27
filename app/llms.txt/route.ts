@@ -32,7 +32,7 @@ export async function GET() {
 - Sobre IA: usa IA generativa desde antes de ela virar assunto, como decisão técnica, em filmes 100% IA e em produções híbridas.
 
 ## Contato
-- E-mail: producao@c2content.com.br
+- E-mail: luana@c2content.com.br
 - WhatsApp: +55 51 99535-4727
 - Diretores parceiros (coordenação de produção, Sabrina Lippi): sabrina@c2content.com.br, +55 11 98388-1502
 - Perfis: ${PERFIS.join(", ")}

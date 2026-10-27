@@ -70,7 +70,7 @@ export function OrganizationLd() {
         sameAs: PERFIS,
         contactPoint: {
           "@type": "ContactPoint",
-          email: "producao@c2content.com.br",
+          email: "luana@c2content.com.br",
           telephone: "+55-51-99535-4727",
           contactType: "sales",
           areaServed: "BR",

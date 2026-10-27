@@ -10,6 +10,7 @@ import { Sobre } from "@/components/diretores/Sobre";
 import { CONTATO_DIRETORES as C } from "@/components/diretores/Contato";
 import { ContatoSecao } from "@/components/home/Contact";
 import { acharDiretor, slugsDiretores } from "@/lib/diretores";
+import { BreadcrumbLd, DiretorLd } from "@/components/seo/JsonLd";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -27,11 +28,17 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const achado = await acharDiretor(slug);
   if (!achado) return { title: "Diretor não encontrado" };
   const d = achado.diretor;
-  const desc = (d.frase ? `${d.frase} ` : "") + "Diretor parceiro da C2 Content.";
+  // nome, prêmios e marcas: o que alguém busca ao procurar um diretor
+  const desc = [
+    `${d.nome}, diretor de cena parceiro da C2 Content.`,
+    d.premios.length ? `Prêmios: ${d.premios.slice(0, 3).join(", ")}.` : "",
+    d.marcas.length ? `Filmes para ${d.marcas.slice(0, 5).join(", ")} e muitas outras.` : "",
+  ].filter(Boolean).join(" ").slice(0, 300);
   const og = d.reel?.thumb ?? d.obras[0]?.thumb;
   return {
-    title: `${d.nome} · Diretores parceiros`,
+    title: `${d.nome} · Diretor de cena`,
     description: desc,
+    alternates: { canonical: `/diretores/${d.slug}` },
     openGraph: {
       title: `${d.nome} · C2 Content`,
       description: desc,
@@ -48,6 +55,8 @@ export default async function DiretorPage(props: Props) {
 
   return (
     <SempreEscuro>
+      <DiretorLd d={d} />
+      <BreadcrumbLd itens={[{ nome: "Diretores parceiros", url: "/diretores" }, { nome: d.nome, url: `/diretores/${d.slug}` }]} />
       <Header />
       <main className="text-paper">
         <div className="wrap" style={{ paddingTop: "clamp(128px, 13vw, 196px)" }}>

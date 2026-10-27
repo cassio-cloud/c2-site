@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { Grain } from "./Grain";
 import { parseEmbedUrl, type EmbedSource } from "@/lib/embed";
 import { mediaSrc } from "@/lib/media-url";
+import { useDepoisDoLoad } from "@/lib/depois-do-load";
 
 /** Vídeo em URL absoluta (o reel fica no Vercel Blob): o parseEmbedUrl só
  *  reconhece arquivo em `media/...` e devolveria "none". */
@@ -80,19 +81,39 @@ function posterDe(src: string): string | undefined {
   return /\.hero\.mp4$/.test(src) ? mediaSrc(src.replace(/\.hero\.mp4$/, ".poster.jpg")) : undefined;
 }
 
+/**
+ * No celular, `reel.hero.mp4` → `reel.hero-720.mp4` (um terço do peso).
+ * Se a versão leve não existir, o onError volta para a original.
+ */
+function versaoDaTela(src: string): string {
+  const celular = window.matchMedia("(max-width: 900px)").matches;
+  return celular && /\.hero\.mp4$/.test(src) ? src.replace(/\.hero\.mp4$/, ".hero-720.mp4") : src;
+}
+
 /** Background video que cobre full-screen mantendo aspect-ratio (object-cover). */
 function BackgroundVideo({ source }: { source: EmbedSource }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  // o vídeo (ou o player do YouTube) só entra depois do load: o título e a
+  // capa pintam primeiro
+  const pronto = useDepoisDoLoad();
 
   useEffect(() => {
-    if (source.kind !== "file") return;
+    if (source.kind !== "file" || !pronto) return;
     const v = videoRef.current;
     if (!v) return;
+    const original = mediaSrc(source.src);
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
           if (e.isIntersecting && !v.src) {
-            v.src = mediaSrc(source.src);
+            const escolhida = versaoDaTela(original);
+            v.onerror = () => {
+              if (escolhida === original) return;
+              v.onerror = null;
+              v.src = original;
+              v.load();
+            };
+            v.src = escolhida;
             v.load();
             io.disconnect();
           }
@@ -102,7 +123,9 @@ function BackgroundVideo({ source }: { source: EmbedSource }) {
     );
     io.observe(v);
     return () => io.disconnect();
-  }, [source]);
+  }, [source, pronto]);
+
+  if ((source.kind === "youtube" || source.kind === "vimeo") && !pronto) return null;
 
   if (source.kind === "youtube" || source.kind === "vimeo") {
     // Cover full-screen 16:9: container ocupa 100% e o iframe é

@@ -12,13 +12,15 @@ import { FILTER_TAGS, fmtTag, type CanonicalTag } from "@/lib/tags";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Work",
+  title: "Portfólio · Campanhas, filmes e produções com IA",
   description:
-    "Portfólio completo de campanhas, conteúdos e produções com IA da C2 Content.",
+    "Portfólio da C2 Content: campanhas publicitárias, filmes, fotografia, conteúdo de marca e produções com IA para Keeta, Magalu, Grêmio, Nomad, Unicred e outras marcas.",
+  alternates: { canonical: "/trabalho" },
   openGraph: {
-    title: "Work · C2 Content",
+    title: "Portfólio · C2 Content",
     description:
-      "Portfólio completo de campanhas, conteúdos e produções com IA.",
+      "Campanhas, filmes, conteúdo de marca e produções com IA.",
+    images: ["/opengraph-image"],
   },
 };
 

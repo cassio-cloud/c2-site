@@ -7,7 +7,7 @@ import { Footer } from "@/components/home/Footer";
 import { Reveal } from "@/components/home/Reveal";
 import { CaseMedia } from "@/components/work/CaseMedia";
 import { Lightbox } from "@/components/work/Lightbox";
-import { CaseLd } from "@/components/seo/JsonLd";
+import { BreadcrumbLd, CaseLd } from "@/components/seo/JsonLd";
 import { BackLink } from "@/components/work/BackLink";
 import { mediaSrc } from "@/lib/media-url";
 import { getCase, listSlugs, readCasesCached } from "@/lib/cases";
@@ -43,13 +43,16 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     c.media[0]?.src;
   // OG precisa de URL absoluta (já tratado pelo metadataBase se for path local)
   const ogImage = cover ? mediaSrc(cover) : undefined;
-  const desc =
-    c.description?.slice(0, 200).trim() ??
-    `${c.title} · Produção C2 Content · ${c.year}`;
+  // descrição vazia ou de rascunho cai num texto montado com os dados do case
+  const rascunho = !c.description?.trim() || /lorem ipsum/i.test(c.description);
+  const desc = rascunho
+    ? `${c.title}: ${c.tags.join(", ").toLowerCase() || "produção"} para ${c.client || c.title}, ${c.year}. Produção C2 Content.`
+    : c.description.slice(0, 200).trim();
 
   return {
     title: c.title,
     description: desc,
+    alternates: { canonical: `/trabalho/${c.slug}` },
     openGraph: {
       type: "article",
       title: `${c.title} · C2 Content`,
@@ -78,6 +81,7 @@ export default async function CasePage(props: Props) {
   return (
     <SempreEscuro>
       <CaseLd c2case={c2case} />
+      <BreadcrumbLd itens={[{ nome: "Portfólio", url: "/trabalho" }, { nome: c2case.title, url: `/trabalho/${c2case.slug}` }]} />
       <Header />
 
       {/*
@@ -132,7 +136,7 @@ export default async function CasePage(props: Props) {
               <div className="space-y-4 md:space-y-6">
                 {c2case.media.map((m, i) => (
                   <Reveal key={`${m.src}-${i}`} delay={(i % 3) * 80}>
-                    <CaseMedia item={m} index={i} />
+                    <CaseMedia item={m} index={i} titulo={c2case.title} />
                   </Reveal>
                 ))}
               </div>

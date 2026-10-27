@@ -81,10 +81,12 @@ export function Elenco({ itens }: { itens: ElencoItem[] }) {
     <div ref={caixaRef} className="flex h-full min-h-0 w-full items-end overflow-hidden">
       <p
         ref={textoRef}
-        className="m-0 w-full font-extrabold lowercase"
+        className="caber m-0 w-full font-extrabold lowercase"
         style={{
-          // ponto de partida antes da medição — o useCaber ajusta
+          // ponto de partida antes da medição — o useCaber ajusta e só
+          // então mostra (senão os nomes pulam de tamanho: CLS no Google)
           fontSize: "clamp(40px, 8vw, 140px)",
+          visibility: "hidden",
           letterSpacing: "-0.055em",
           lineHeight: 1.04,
           textWrap: "pretty",
@@ -185,11 +187,27 @@ function useCaber(
       texto.style.fontSize = `${Math.floor(lo * 0.98)}px`;
     };
 
+    const mostrar = () => {
+      texto.style.visibility = "visible";
+    };
+
     ajustar();
     const ro = new ResizeObserver(ajustar);
     ro.observe(caixa);
-    document.fonts?.ready.then(ajustar);
-    return () => ro.disconnect();
+    // aparece já no tamanho final, com a Inter carregada (ou em 800ms, no máximo)
+    const prazo = window.setTimeout(mostrar, 800);
+    if (document.fonts) {
+      document.fonts.ready.then(() => {
+        ajustar();
+        mostrar();
+      });
+    } else {
+      mostrar();
+    }
+    return () => {
+      ro.disconnect();
+      window.clearTimeout(prazo);
+    };
   }, [caixaRef, textoRef]);
 }
 

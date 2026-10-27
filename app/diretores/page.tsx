@@ -5,9 +5,10 @@ import { listarDiretores } from "@/lib/diretores";
 import { Contato } from "@/components/diretores/Contato";
 
 export const metadata: Metadata = {
-  title: "Diretores parceiros",
+  title: "Diretores de cena parceiros",
   description:
-    "Diretores de cena parceiros da C2 Content: filmes, rolos e prêmios.",
+    "Diretores de cena parceiros da C2 Content: Bia Flecha, John Porciúncula, Raoni Rodrigues, Diego Lisboa e Cássio Caberlon. Filmes, rolos e prêmios como Cannes Lions e New York Festivals.",
+  alternates: { canonical: "/diretores" },
 };
 
 // os trabalhos do Cássio vêm dos cases, que o admin edita no Blob
@@ -32,6 +33,10 @@ export default async function DiretoresPage() {
       {/* a aba é a única parte branca do site, e o índice é uma tela só:
           sem rolagem, nem o elástico do overscroll */}
       <style>{"html,body{background:#fff;height:100%;overflow:hidden;overscroll-behavior:none}"}</style>
+      {/* sem JS os nomes não são medidos: aparecem no tamanho de partida */}
+      <noscript>
+        <style>{".caber{visibility:visible!important}"}</style>
+      </noscript>
       <Header tone="light" />
       <main className="flex h-[100dvh] flex-col overflow-hidden bg-white text-ink">
         <div

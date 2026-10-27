@@ -22,9 +22,20 @@ export const metadata: Metadata = {
     template: "%s · C2 Content",
   },
   description:
-    "Produtora audiovisual brasileira em Novo Hamburgo e São Paulo. Campanhas, conteúdo e produções híbridas com IA.",
+    "Produtora audiovisual com estúdios em Novo Hamburgo (RS) e São Paulo (SP). Campanhas publicitárias, filmes, fotografia, conteúdo de marca e produções híbridas com IA.",
+  // prévias grandes de imagem e vídeo no Google (Discover, resultados com mídia)
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-video-preview": -1, "max-snippet": -1 },
+  },
+  // Search Console: o código da tag HTML vai na env GOOGLE_SITE_VERIFICATION
+  ...(process.env.GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }
+    : {}),
   keywords: [
     "produtora audiovisual",
+    "produtora de vídeo",
     "C2 Content",
     "Novo Hamburgo",
     "São Paulo",
@@ -40,7 +51,7 @@ export const metadata: Metadata = {
     siteName: "C2 Content",
     title: "C2 Content · where content meets craft.",
     description:
-      "Produtora audiovisual brasileira. Campanhas, conteúdo e produções híbridas com IA.",
+      "Produtora audiovisual em Novo Hamburgo e São Paulo. Campanhas, filmes, conteúdo e produções híbridas com IA.",
   },
   twitter: {
     card: "summary_large_image",

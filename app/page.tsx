@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/home/Header";
 import { Hero } from "@/components/home/Hero";
 import { BentoGrid } from "@/components/home/BentoGrid";
@@ -17,6 +18,11 @@ import { mediaSrc } from "@/lib/media-url";
  * e os assets (mídia, fonts) são CDN-cached, o hit cold é só o HTML.
  */
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: { absolute: "C2 Content · Produtora audiovisual em Novo Hamburgo e São Paulo" },
+  alternates: { canonical: "/" },
+};
 
 export default async function Home() {
   const site = await readSiteCached();

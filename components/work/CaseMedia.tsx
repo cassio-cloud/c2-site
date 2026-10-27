@@ -5,10 +5,13 @@ import { useEffect, useRef, useState } from "react";
 import type { MediaItem } from "@/lib/types";
 import { mediaSrc, posterSrc, webSrc } from "@/lib/media-url";
 import { parseEmbedUrl } from "@/lib/embed";
+import { useDepoisDoLoad } from "@/lib/depois-do-load";
 
 type Props = {
   item: MediaItem;
   index: number;
+  /** Título do case: vira o texto alternativo (Google Imagens, leitor de tela). */
+  titulo?: string;
 };
 
 /**
@@ -16,10 +19,13 @@ type Props = {
  * Clique abre a lightbox via evento custom `c2:lightbox`.
  * Vídeos têm autoplay/loop com play-on-view threshold 25%.
  */
-export function CaseMedia({ item, index }: Props) {
+export function CaseMedia({ item, index, titulo }: Props) {
   const ref = useRef<HTMLButtonElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [loaded, setLoaded] = useState(false);
+  // o player do YouTube pesa ~2MB de JS e vídeo: entra depois do load
+  const embedPronto = useDepoisDoLoad();
+  const descricao = titulo ? `${titulo}, ${item.type === "video" ? "vídeo" : "imagem"} ${index + 1}` : "";
 
   useEffect(() => {
     if (item.type !== "video") return;
@@ -75,14 +81,25 @@ export function CaseMedia({ item, index }: Props) {
             className="relative w-full overflow-hidden bg-ink-3"
             style={{ aspectRatio: aspect, maxWidth }}
           >
-            <iframe
-              src={src.embedUrl}
-              title="Vídeo do case"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-              className="absolute inset-0 h-full w-full"
-              style={{ border: 0 }}
-            />
+            {embedPronto ? (
+              <iframe
+                src={src.embedUrl}
+                title={titulo ? `${titulo}, vídeo` : "Vídeo do case"}
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full"
+                style={{ border: 0 }}
+              />
+            ) : (
+              src.kind === "youtube" && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={`https://i.ytimg.com/vi/${src.videoId}/hqdefault.jpg`}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              )
+            )}
           </div>
         </div>
       );
@@ -98,6 +115,7 @@ export function CaseMedia({ item, index }: Props) {
       ref={ref}
       type="button"
       onClick={openLb}
+      aria-label={item.type === "video" ? `Assistir ${descricao || "vídeo"}` : `Ampliar ${descricao || "imagem"}`}
       className={`block w-full bg-ink-3 transition-opacity hover:opacity-95 ${cursor}`}
     >
       <div className="relative w-full">
@@ -118,7 +136,7 @@ export function CaseMedia({ item, index }: Props) {
         ) : (
           <Image
             src={mediaSrc(item.src)}
-            alt=""
+            alt={descricao}
             width={2400}
             height={1600}
             sizes="(max-width: 900px) 100vw, 70vw"

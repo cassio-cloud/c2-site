@@ -12,6 +12,13 @@ import { parseEmbedUrl } from "@/lib/embed";
  * DA_CREDENCIAL mostra só os filmes escolhidos na credencial.
  */
 
+/**
+ * Aba /diretores à mostra no site. Com `false` ela sai do menu, do sitemap e
+ * do llms.txt, e as páginas ficam fora do Google (noindex), mas continuam
+ * abrindo por link direto. Para voltar, é só trocar para `true`.
+ */
+export const DIRETORES_PUBLICO = false;
+
 /** Quem entra no site, nesta ordem. A credencial tem mais nomes. */
 const NO_SITE = [
   "bia-flecha",

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { readCasesCached } from "@/lib/cases";
-import { listarDiretores } from "@/lib/diretores";
+import { DIRETORES_PUBLICO, listarDiretores } from "@/lib/diretores";
 import { SITE_URL, absoluta } from "@/lib/seo";
 
 /**
@@ -9,10 +9,14 @@ import { SITE_URL, absoluta } from "@/lib/seo";
  * Sem `lastModified`: os dados não guardam data de edição, e uma data
  * inventada (o "agora" de cada request) faz o Google desconfiar do campo
  * no site todo. Cada case leva a capa como imagem, o que ajuda a indexação
- * no Google Imagens. Credencial, advertising e admin ficam de fora (noindex).
+ * no Google Imagens. Credencial, advertising e admin ficam de fora (noindex),
+ * e os diretores também enquanto a aba estiver oculta (DIRETORES_PUBLICO).
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [cases, diretores] = await Promise.all([readCasesCached(), listarDiretores()]);
+  const [cases, diretores] = await Promise.all([
+    readCasesCached(),
+    DIRETORES_PUBLICO ? listarDiretores() : Promise.resolve([]),
+  ]);
 
   const capa = (c: (typeof cases)[number]) =>
     c.cover ?? c.media.find((m) => m.type === "image")?.src;
@@ -20,7 +24,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     { url: `${SITE_URL}/`, changeFrequency: "weekly", priority: 1 },
     { url: `${SITE_URL}/trabalho`, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${SITE_URL}/diretores`, changeFrequency: "monthly", priority: 0.8 },
+    ...(DIRETORES_PUBLICO
+      ? [{ url: `${SITE_URL}/diretores`, changeFrequency: "monthly" as const, priority: 0.8 }]
+      : []),
     ...cases.map((c) => {
       const img = capa(c);
       return {

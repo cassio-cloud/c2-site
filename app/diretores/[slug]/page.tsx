@@ -9,7 +9,7 @@ import { Obras } from "@/components/diretores/Obras";
 import { Sobre } from "@/components/diretores/Sobre";
 import { CONTATO_DIRETORES as C } from "@/components/diretores/Contato";
 import { ContatoSecao } from "@/components/home/Contact";
-import { acharDiretor, slugsDiretores } from "@/lib/diretores";
+import { DIRETORES_PUBLICO, acharDiretor, slugsDiretores } from "@/lib/diretores";
 import { BreadcrumbLd, DiretorLd } from "@/components/seo/JsonLd";
 
 type Props = {
@@ -39,6 +39,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     title: `${d.nome} · Diretor de cena`,
     description: desc,
     alternates: { canonical: `/diretores/${d.slug}` },
+    ...(DIRETORES_PUBLICO ? {} : { robots: { index: false, follow: false } }),
     openGraph: {
       title: `${d.nome} · C2 Content`,
       description: desc,

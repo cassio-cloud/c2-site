@@ -1,5 +1,5 @@
 import { readCasesCached } from "@/lib/cases";
-import { listarDiretores } from "@/lib/diretores";
+import { DIRETORES_PUBLICO, listarDiretores } from "@/lib/diretores";
 import { PERFIS } from "@/components/seo/JsonLd";
 import { SITE_URL } from "@/lib/seo";
 
@@ -12,13 +12,32 @@ import { SITE_URL } from "@/lib/seo";
 export const revalidate = 3600;
 
 export async function GET() {
-  const [cases, diretores] = await Promise.all([readCasesCached(), listarDiretores()]);
+  const [cases, diretores] = await Promise.all([
+    readCasesCached(),
+    DIRETORES_PUBLICO ? listarDiretores() : Promise.resolve([]),
+  ]);
 
   const linhaCase = (c: (typeof cases)[number]) => {
     const meta = [c.client, c.year, c.tags.join(", ")].filter(Boolean).join(" · ");
     const desc = c.description && !/lorem ipsum/i.test(c.description) ? `: ${c.description}` : "";
     return `- [${c.title}](${SITE_URL}/trabalho/${c.slug}) (${meta})${desc}`;
   };
+
+  // enquanto a aba estiver oculta, os diretores ficam fora do resumo
+  const contatoDiretores =
+    "- Diretores parceiros (coordenação de produção, Sabrina Lippi): sabrina@c2content.com.br, +55 11 98388-1502\n";
+  const secaoDiretores = `- [Diretores parceiros](${SITE_URL}/diretores): diretores de cena representados pela C2
+
+## Diretores parceiros
+${diretores
+  .map((d) => {
+    const extra = [d.premios.length ? `prêmios: ${d.premios.join(", ")}` : "", d.marcas.length ? `marcas: ${d.marcas.join(", ")}` : ""]
+      .filter(Boolean)
+      .join("; ");
+    return `- [${d.nome}](${SITE_URL}/diretores/${d.slug})${extra ? ` (${extra})` : ""}`;
+  })
+  .join("\n")}
+`;
 
   const texto = `# C2 Content
 
@@ -34,24 +53,12 @@ export async function GET() {
 ## Contato
 - E-mail: luana@c2content.com.br
 - WhatsApp: +55 51 99535-4727
-- Diretores parceiros (coordenação de produção, Sabrina Lippi): sabrina@c2content.com.br, +55 11 98388-1502
-- Perfis: ${PERFIS.join(", ")}
+${DIRETORES_PUBLICO ? contatoDiretores : ""}- Perfis: ${PERFIS.join(", ")}
 
 ## Páginas principais
 - [Início](${SITE_URL}/): trabalhos selecionados, IA, estrutura, clientes, time e contato
 - [Portfólio](${SITE_URL}/trabalho): todos os cases, com filtro por campanha, conteúdo, captação e motion, 100% IA e híbrido IA
-- [Diretores parceiros](${SITE_URL}/diretores): diretores de cena representados pela C2
-
-## Diretores parceiros
-${diretores
-  .map((d) => {
-    const extra = [d.premios.length ? `prêmios: ${d.premios.join(", ")}` : "", d.marcas.length ? `marcas: ${d.marcas.join(", ")}` : ""]
-      .filter(Boolean)
-      .join("; ");
-    return `- [${d.nome}](${SITE_URL}/diretores/${d.slug})${extra ? ` (${extra})` : ""}`;
-  })
-  .join("\n")}
-
+${DIRETORES_PUBLICO ? secaoDiretores : ""}
 ## Cases
 ${cases.map(linhaCase).join("\n")}
 `;

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LogoLink } from "@/components/nav/LogoLink";
+import { DIRETORES_PUBLICO } from "@/lib/diretores";
 
 /**
  * Topbar overlay sobre o hero. Sem barra de fundo;
@@ -41,7 +42,7 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
             }}
           >
             <NavLink href="/trabalho" light={light}>Work</NavLink>
-            <NavLink href="/diretores" light={light}>Directors</NavLink>
+            {DIRETORES_PUBLICO && <NavLink href="/diretores" light={light}>Directors</NavLink>}
             <NavLink href="/#time" light={light}>About</NavLink>
           </nav>
 

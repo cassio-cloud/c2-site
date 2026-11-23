@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/home/Header";
 import { Elenco, type ElencoItem } from "@/components/diretores/Elenco";
-import { listarDiretores } from "@/lib/diretores";
+import { DIRETORES_PUBLICO, listarDiretores } from "@/lib/diretores";
 import { Contato } from "@/components/diretores/Contato";
 
 export const metadata: Metadata = {
@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description:
     "Diretores de cena parceiros da C2 Content: Bia Flecha, John Porciúncula, Raoni Rodrigues, Diego Lisboa e Cássio Caberlon. Filmes, rolos e prêmios como Cannes Lions e New York Festivals.",
   alternates: { canonical: "/diretores" },
+  // aba oculta: abre por link direto, mas fora do Google
+  ...(DIRETORES_PUBLICO ? {} : { robots: { index: false, follow: false } }),
 };
 
 // os trabalhos do Cássio vêm dos cases, que o admin edita no Blob
